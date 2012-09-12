@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" template="index.xhtml">
+
+<ui:define name="conteudo">
+<!-- Estabelecimento -->
+<div data-role="page" id="estabelecimento">
+    <div data-theme="f" data-role="header">
+        <h3>
+            
+        </h3>
+        <a data-role="button" data-transition="fade" href="listagem.xhtml" data-icon="arrow-l"
+        data-iconpos="left" class="ui-btn-left">
+            voltar
+        </a>
+        <a data-role="button" data-transition="fade" href="menu.xhtml" data-icon="grid"
+        data-iconpos="left" class="ui-btn-right">
+            menu
+        </a>
+    </div>
+    
+    <div data-role="content" style="padding: 0px">
+    	<div id="topoPromo">
+            <div class="marca">
+                <figure><a href="estabelecimento.xhtml" data-transition="slide"><img src="img/model/80x80.jpg" alt="MARCA DO ESTABELECIMENTO" /></a></figure>
+            </div>
+            <!--<div class="info">-->
+                <div class="nomeEstab">Restaurante Yemanjá</div>
+                <div class="categoria">Restaurante</div>
+                <!--<span class="separador"></span>
+                <div class="tipoPromocao">Promoção da Hora</div>
+                <div class="nomePromocao">Muqueca Sereia</div>-->
+                
+                <span class="indicacao">60 indicações</span>
+            <!--</div>-->
+            	<span class="btnIndicar"><a href="">Eu indico</a></span>
+        </div>
+    	<div class="mapa">
+            <figure><img src="img/model/590x260.jpg" width="320" height="160" alt="IMAGEM DO ESTABELECIMENTO. PODE SER A DO SITE WEB"/></figure>
+        </div>
+        <div id="infoPromo">
+            <p class="titulo">Sobre o Estabelecimento</p>
+            <div class="dadosEstab">
+                <p>Aqui entra texto sobre o estabelecimento. Lembrando que texto pra app tem que ser suscinto.</p>
+
+            </div>
+    
+            <!--SE FOR PROMOÇÃO POR DESCONTO-->
+            
+        </div>
+        <div id="infoEstab">
+            <p class="titulo">Outras informações</p>
+            <p class="endereco">
+                <span class="map"></span>Avenida Otavio Mangabeira, 27, Pituba - Salvador - Bahia
+            </p>
+            <a href="callto:07133408808">
+                <p class="tel"><span class="tel"></span>(71) 3340.8808</p>
+            </a>
+            <div class="pagamento">
+                <p>Formas de Pagamento</p>
+                <figure class="cartao visa"></figure>
+                <figure class="cartao master"></figure>
+                <figure class="cartao amex"></figure>
+                <figure class="cartao diners"></figure>
+            </div>
+        </div> 
+	</div>    
+</div>
+</ui:define>
+</ui:composition>

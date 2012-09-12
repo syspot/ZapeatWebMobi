@@ -51,7 +51,16 @@
 				
 					  google.maps.event.addDomListener(window, 'load', initializeMap);
 				</script>
-    
+    		
+		<script>
+
+			function setarPromocao(id) {
+				document.getElementById('teste').value=id;
+				carregarPromocoes();
+			}
+		
+		</script>
+		
     <style type="text/css">
 *{margin:0; padding:0; font-family:Arial, Helvetica, sans-serif;}
 
@@ -139,6 +148,7 @@ span.ui-slider-label{font-size:14px!important;}
 
 <body onload="initialize()">
 
+<!-- 
 <ui:include src="inc/menu.xhtml"/>
 
 <ui:include src="inc/listagem.xhtml"/>
@@ -150,6 +160,10 @@ span.ui-slider-label{font-size:14px!important;}
 <ui:include src="inc/mapa.xhtml"/>
 
 <ui:include src="inc/configuracao.xhtml"/>
+ -->
+ 
+ <ui:insert name="conteudo"/>
+
 
 </body>
 </html>

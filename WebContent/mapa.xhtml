@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" template="index.xhtml">
+
+<ui:define name="conteudo">
+<div data-role="page" id="mapa" data-theme="f">
+    <div data-theme="f" data-role="header">
+        <span class="ui-title">
+        </span>
+        <a data-role="button" data-transition="fade" href="listagem.xhtml" data-icon="arrow-l"
+        data-iconpos="left" class="ui-btn-left">
+            voltar
+        </a>
+        <a data-role="button" data-transition="fade" href="menu.xhtml" data-icon="grid"
+        data-iconpos="left" class="ui-btn-right">
+            menu
+        </a>
+    </div>
+    <div data-role="content" style="padding:0px;">
+    	<div id="map_canvas"></div>
+    </div>
+
+</div>
+</ui:define>
+</ui:composition>

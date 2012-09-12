@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" template="index.xhtml">
+	
+	<ui:define name="conteudo">
+	
+		<div data-role="page" id="menu">
+			<div data-theme="f" data-role="header">
+				<span class="ui-title"> </span> <a data-role="button" data-transition="fade" href="#page1" data-icon="refresh" data-iconpos="left" class="ui-btn-left"> atualizar </a> <a data-role="button" data-transition="slidedown" href="#config" data-icon="gear" data-iconpos="left" class="ui-btn-right"> configuração </a>
+			</div>
+
+			<div id="content" data-role="content" style="padding: 0px; height: 100%">
+
+				<div class="ui-grid-b" id="gridb">
+					<ui:repeat var="menu" varStatus="key" value="#{menuFaces.menus}">
+						<div class="#{menu.styleClass}">
+							<a data-role="button" rel="external" data-inline="true" data-transition="flip" 
+								href="listagem.xhtml?categoriaId=#{menu.id}" data-icon="grid" data-iconpos="top"> #{menu.descricao} </a>
+						</div>
+					</ui:repeat>
+				</div>
+			</div>
+	
+			<div data-theme="f" data-role="footer" data-position="fixed">
+				<h6>Você está aqui: ENDEREÇO</h6>
+			</div>
+		</div>
+		</ui:define>
+</ui:composition>
