@@ -3,7 +3,7 @@ package br.com.zapeat.site.model;
 import java.io.Serializable;
 
 @SuppressWarnings("serial")
-public class CategoriaModel implements Serializable {
+public class TipoPromocaoModel  implements Serializable {
 
 	private Long id;
 
@@ -11,17 +11,6 @@ public class CategoriaModel implements Serializable {
 
 	private Boolean flagAtivo;
 
-	private String imagem;
-
-	private String styleClass;
-
-	public CategoriaModel() {
-	
-	}
-	
-	public CategoriaModel(Long id) {
-		this.id = id;
-	}
 	
 	public Long getId() {
 		return id;
@@ -47,22 +36,6 @@ public class CategoriaModel implements Serializable {
 		this.flagAtivo = flagAtivo;
 	}
 
-	public String getImagem() {
-		return imagem;
-	}
-
-	public void setImagem(String imagem) {
-		this.imagem = imagem;
-	}
-
-	public String getStyleClass() {
-		return styleClass;
-	}
-
-	public void setStyleClass(String styleClass) {
-		this.styleClass = styleClass;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -79,7 +52,7 @@ public class CategoriaModel implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		CategoriaModel other = (CategoriaModel) obj;
+		TipoPromocaoModel other = (TipoPromocaoModel) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

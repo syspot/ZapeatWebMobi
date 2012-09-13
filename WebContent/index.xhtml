@@ -5,7 +5,7 @@
         xmlns:h="http://java.sun.com/jsf/html"
         xmlns:p="http://primefaces.org/ui"
         xmlns:ui="http://java.sun.com/jsf/facelets">
-<head>
+<h:head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>zapeat</title>
@@ -51,16 +51,7 @@
 				
 					  google.maps.event.addDomListener(window, 'load', initializeMap);
 				</script>
-    		
-		<script>
-
-			function setarPromocao(id) {
-				document.getElementById('teste').value=id;
-				carregarPromocoes();
-			}
-		
-		</script>
-		
+    	
     <style type="text/css">
 *{margin:0; padding:0; font-family:Arial, Helvetica, sans-serif;}
 
@@ -144,7 +135,7 @@ span.ui-slider-label{font-size:14px!important;}
 	.ui-block-a,.ui-block-b,.ui-block-c{width:80px; height:80px;}
 	.marcaZapeat{text-indent:-99999px; background:url(http://www.tigurio.com.br/cliente/topsys/zapeat/m/outro/img/favicon.png) center no-repeat; width:3.75em;}*/
 	</style>
-</head>
+</h:head>
 
 <body onload="initialize()">
 
@@ -163,7 +154,6 @@ span.ui-slider-label{font-size:14px!important;}
  -->
  
  <ui:insert name="conteudo"/>
-
 
 </body>
 </html>

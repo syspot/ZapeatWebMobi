@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui" template="index.xhtml">
+ template="index.xhtml">
 	
 	<ui:define name="conteudo">
 	
@@ -15,7 +15,7 @@
 				<div class="ui-grid-b" id="gridb">
 					<ui:repeat var="menu" varStatus="key" value="#{menuFaces.menus}">
 						<div class="#{menu.styleClass}">
-							<a data-role="button" rel="external" data-inline="true" data-transition="flip" 
+							<a data-role="button"  data-inline="true" data-transition="flip" 
 								href="listagem.xhtml?categoriaId=#{menu.id}" data-icon="grid" data-iconpos="top"> #{menu.descricao} </a>
 						</div>
 					</ui:repeat>

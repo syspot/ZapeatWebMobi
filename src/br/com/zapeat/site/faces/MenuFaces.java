@@ -11,8 +11,8 @@ import javax.faces.bean.ViewScoped;
 import br.com.topsys.util.TSUtil;
 import br.com.zapeat.site.dao.CategoriaDAO;
 import br.com.zapeat.site.model.CategoriaModel;
-import br.com.zapeat.site.model.UsuarioModel;
 import br.com.zapeat.site.util.Constantes;
+import br.com.zapeat.site.util.Utilitarios;
 
 @SuppressWarnings("serial")
 @ManagedBean
@@ -26,11 +26,9 @@ public class MenuFaces implements Serializable {
 	@PostConstruct
 	private void init() {
 		this.nextStyleClass = null;
-		UsuarioModel usuario = new UsuarioModel();
-		usuario.setId(1L);
 		this.menus = new ArrayList<CategoriaModel>();
 
-		for (CategoriaModel categoria : new CategoriaDAO().pesquisar(usuario)) {
+		for (CategoriaModel categoria : new CategoriaDAO().pesquisar(Utilitarios.getUsuarioLogado())) {
 
 			categoria.setStyleClass(getNextStyleClass());
 

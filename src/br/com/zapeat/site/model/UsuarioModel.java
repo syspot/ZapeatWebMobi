@@ -1,8 +1,9 @@
 package br.com.zapeat.site.model;
 
-import br.com.topsys.util.TSUtil;
+import java.io.Serializable;
 
-public class UsuarioModel {
+@SuppressWarnings("serial")
+public class UsuarioModel implements Serializable {
 
 	private Long id;
 	
@@ -25,11 +26,11 @@ public class UsuarioModel {
 	}
 
 	public Long getId() {
-		return TSUtil.tratarLong(id);
+		return id;
 	}
 
 	public void setId(Long id) {
-		this.id = TSUtil.tratarLong(id);
+		this.id = id;
 	}
 
 	public String getNome() {
