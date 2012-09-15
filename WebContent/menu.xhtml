@@ -15,7 +15,7 @@
 				<div class="ui-grid-b" id="gridb">
 					<ui:repeat var="menu" varStatus="key" value="#{menuFaces.menus}">
 						<div class="#{menu.styleClass}">
-							<a data-role="button"  data-inline="true" data-transition="flip" 
+							<a  rel="external" data-role="button"  data-inline="true" data-transition="flip" 
 								href="listagem.xhtml?categoriaId=#{menu.id}" data-icon="grid" data-iconpos="top"> #{menu.descricao} </a>
 						</div>
 					</ui:repeat>

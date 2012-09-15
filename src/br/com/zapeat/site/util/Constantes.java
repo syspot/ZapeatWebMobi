@@ -11,6 +11,7 @@ public class Constantes {
 	public interface HttpParams {
 		String CATEGORIA_ID = "categoriaId";
 		String PROMOCAO_ID = "promocaoId";
+		String FORNECEDOR_ID = "fornecedorId";
 	}
 	
 	public interface Sequences {

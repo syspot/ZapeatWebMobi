@@ -11,7 +11,7 @@
         <h3>
             
         </h3>
-        <a data-role="button" data-transition="fade" href="listagem.xhtml?categoriaId=#{detalhamentoFaces.categoriaId}" data-icon="arrow-l"
+        <a data-role="button" rel="external" data-transition="fade" href="listagem.xhtml?categoriaId=#{detalhamentoFaces.categoriaId}" data-icon="arrow-l"
         data-iconpos="left" class="ui-btn-left">
             voltar
         </a>
@@ -24,7 +24,7 @@
     <div data-role="content" style="padding: 0px">
     	<div id="topoPromo">
             <div class="marca">
-                <figure><a href="estabelecimento.xhtml?localId=#{detalhamentoFaces.promocaoModel.fornecedorModel.id}" data-transition="slide"><img src="img/model/80x80.jpg" alt="MARCA DO ESTABELECIMENTO" /></a></figure>
+                <figure><a href="estabelecimento.xhtml?localId=#{detalhamentoFaces.promocaoModel.fornecedorModel.id}&amp;categoriaId=#{requestScope.categoriaId}"  data-transition="slide"><img src="img/model/80x80.jpg" alt="MARCA DO ESTABELECIMENTO" /></a></figure>
             </div>
             <!--<div class="info">
                 <div class="nomeEstab">Restaurante Yemanjá</div>
@@ -44,7 +44,7 @@
            	</h:form>
         </div>
     	<div class="mapa">
-            <a href="mapa.xhtml" data-transition="flip">
+            <a href="mapa.xhtml?fornecedorId=#{detalhamentoFaces.promocaoModel.fornecedorModel.id}&amp;promocaoId=#{detalhamentoFaces.promocaoModel.id}&amp;categoriaId=#{detalhamentoFaces.categoriaId}" rel="external" data-transition="flip">
                 <div class="iconAmpliar"></div>
                 <figure><img src="https://maps.googleapis.com/maps/api/staticmap?center=Alameda+Padua,salvador,Ba&amp;zoom=16&amp;size=320x160&amp;markers=Salvador,ba&amp;sensor=false" width="320" height="160"/></figure>
             </a>

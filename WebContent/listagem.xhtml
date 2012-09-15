@@ -30,6 +30,7 @@
 	    <c:if test="#{empty listagemFaces.promocoes}">
 				<h6>Ops, nenhuma promoção encontrada!</h6>
 		</c:if>
+		
         <ul data-role="listview" data-divider-theme="b" data-inset="false">
 					<ui:repeat var="promocao" value="#{listagemFaces.promocoes}">
 					
@@ -84,24 +85,28 @@
 
 <script>
 	$(document).ready(function(){
+
+	if($('.tipo2').is(":visible")==false &amp;&amp; $('.tipo3').is(":visible")==false &amp;&amp; $('.tipo1').is(":visible")) {
+		$('#clickDaHora').click();
+	}
+		
 		$('#clickDaHora').click(function() {
-			$('.tipo2').slideUp();
-			$('.tipo3').slideUp();	
+			$('.tipo2').hide();
+			$('.tipo3').hide();	
+			$('.tipo1').hide();	
 			$('.tipo1').fadeIn();
-			$('.tipo1').css('visibility','visible');
 		});
 		$('#clickDoDia').click(function() {
-			$('.tipo1').slideUp();
-			$('.tipo3').slideUp();
+			$('.tipo1').hide();
+			$('.tipo3').hide();
+			$('.tipo2').hide();
 			$('.tipo2').fadeIn();
-			$('.tipo2').css('visibility','visible');
-
 		});
 		$('#clickDaSemana').click(function() {
-			$('.tipo1').slideUp();
-			$('.tipo2').slideUp();
+			$('.tipo1').hide();
+			$('.tipo2').hide();
+			$('.tipo3').hide();
 			$('.tipo3').fadeIn();	
-			$('.tipo3').css('visibility','visible');
 		});
 	});
 </script>

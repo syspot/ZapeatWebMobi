@@ -25,6 +25,7 @@ public class DetalhamentoFaces implements Serializable {
 		this.categoriaId = TSFacesUtil.getRequestParameter(Constantes.HttpParams.CATEGORIA_ID);
 
 		String promocaoId = TSFacesUtil.getRequestParameter(Constantes.HttpParams.PROMOCAO_ID);
+
 		if (TSUtil.isNumeric(promocaoId)) {
 			this.promocaoModel = new PromocaoDAO().obter(new PromocaoModel(Long.valueOf(promocaoId)));
 		}
@@ -33,6 +34,8 @@ public class DetalhamentoFaces implements Serializable {
 			this.promocaoModel = new PromocaoModel();
 		}
 
+		TSFacesUtil.getRequest().setAttribute(Constantes.HttpParams.CATEGORIA_ID, this.categoriaId);
+		
 	}
 
 	public String indicar() {
@@ -45,7 +48,8 @@ public class DetalhamentoFaces implements Serializable {
 		comentario.setPromocaoModel(this.promocaoModel);
 		try {
 			new ComentarioDAO().inserir(comentario);
-		} catch (Exception ex) {}
+		} catch (Exception ex) {
+		}
 		return null;
 
 	}

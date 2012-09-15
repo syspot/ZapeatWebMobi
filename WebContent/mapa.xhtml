@@ -3,11 +3,12 @@
 <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" template="index.xhtml">
 
 <ui:define name="conteudo">
+
 <div data-role="page" id="mapa" data-theme="f">
     <div data-theme="f" data-role="header">
         <span class="ui-title">
         </span>
-        <a data-role="button" data-transition="fade" href="listagem.xhtml" data-icon="arrow-l"
+        <a data-role="button" data-transition="fade" href="detalhamento.xhtml?categoriaId=#{mapaFaces.categoriaId}&amp;promocaoId=#{mapaFaces.promocaoId}" data-icon="arrow-l"
         data-iconpos="left" class="ui-btn-left">
             voltar
         </a>
@@ -17,7 +18,39 @@
         </a>
     </div>
     <div data-role="content" style="padding:0px;">
-    	<div id="map_canvas"></div>
+
+    	<div id="colunaMapa" align="center">
+    	    <script src="https://maps.googleapis.com/maps/api/js?sensor=true"></script>
+        	  <div id="map" style="width: 350px; height: 700px;"></div>
+              <script type="text/javascript">
+				var locations = [
+				  ['${mapaFaces.fornecedorModel.nomeFantasia}',${mapaFaces.fornecedorModel.latitude},${mapaFaces.fornecedorModel.longitude}, 4]
+				];
+			
+				var map = new google.maps.Map(document.getElementById('map'), {
+				  zoom: 10,
+				  center: new google.maps.LatLng(${mapaFaces.fornecedorModel.latitude},${mapaFaces.fornecedorModel.longitude}),
+				  mapTypeId: google.maps.MapTypeId.ROADMAP
+				});
+			
+				var infowindow = new google.maps.InfoWindow();
+			
+				var marker, i;
+				  marker = new google.maps.Marker({
+					position: new google.maps.LatLng(locations[0][1], locations[0][2]),
+					map: map
+				  });
+			
+				  google.maps.event.addListener(marker, 'click', (function(marker, i) {
+					return function() {
+					  infowindow.setContent(locations[0][0]);
+					  infowindow.open(map, marker);
+					}
+				  })(marker, i));
+              
+			  </script>
+
+        </div>
     </div>
 
 </div>
