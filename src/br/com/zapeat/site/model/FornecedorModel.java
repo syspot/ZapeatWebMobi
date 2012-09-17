@@ -89,6 +89,13 @@ public class FornecedorModel implements Serializable {
 	public String getNomeFantasia() {
 		return nomeFantasia;
 	}
+	
+	public String getNomeFantasiaSemApostrofe() {
+		if(TSUtil.isEmpty(nomeFantasia)) {
+			return null;
+		}
+		return nomeFantasia.replaceAll("'", "");
+	}
 
 	public void setNomeFantasia(String nomeFantasia) {
 		this.nomeFantasia = nomeFantasia;

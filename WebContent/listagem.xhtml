@@ -17,12 +17,12 @@
         <span class="ui-title">
         </span>
         <a data-role="button" data-transition="slidedown" href="menu.xhtml" data-icon="grid"
-        data-iconpos="left" class="ui-btn-left">
-            menu
+        data-iconpos="left" rel="external" class="ui-btn-left">
+            Menu
         </a>
-        <a data-role="button" data-transition="slidedown" href="configuracao.xhtml" data-icon="gear"
+        <a data-role="button" data-transition="slidedown" href="configuracaoListagem.xhtml?categoriaId=#{requestScope.categoriaId}" data-icon="gear"
         data-iconpos="left" class="ui-btn-right">
-            config
+            Configurações
         </a>
     </div>
     <div data-role="content" style="padding: 15px">
@@ -54,7 +54,14 @@
 									<div class="nomePromocao">
 										#{promocao.titulo}		
 									</div>
-									<span class="ui-li-count">a 16km</span> <span class="indicacao">60 indicações</span>
+									<span class="ui-li-count">
+										<h:outputText value=" a #{promocao.distancia} km" rendered="#{!empty promocao.distancia and promocao.distancia>0}"/>
+										<h:outputText value="Você está aqui!" rendered="#{!empty promocao.distancia and promocao.distancia==0}"/>
+									</span> <span class="indicacao">
+									<h:outputText value="#{promocao.fornecedorModel.quantidadeIndicacoes} indicação" rendered="#{promocao.fornecedorModel.quantidadeIndicacoes==1}"/>
+                	<h:outputText value="Nenhuma indicação" rendered="#{promocao.fornecedorModel.quantidadeIndicacoes==0}"/>
+                	<h:outputText value="#{promocao.fornecedorModel.quantidadeIndicacoes} indicações" rendered="#{promocao.fornecedorModel.quantidadeIndicacoes>1}"/>
+									</span>
 								</div>
 						</a></li>
 					</ui:repeat>
@@ -85,10 +92,6 @@
 
 <script>
 	$(document).ready(function(){
-
-	if($('.tipo2').is(":visible")==false &amp;&amp; $('.tipo3').is(":visible")==false &amp;&amp; $('.tipo1').is(":visible")) {
-		$('#clickDaHora').click();
-	}
 		
 		$('#clickDaHora').click(function() {
 			$('.tipo2').hide();

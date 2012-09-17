@@ -12,7 +12,7 @@
         data-iconpos="left" class="ui-btn-left">
             voltar
         </a>
-        <a data-role="button" data-transition="fade" href="menu.xhtml" data-icon="grid"
+        <a data-role="button" rel="external" data-transition="fade" href="menu.xhtml" data-icon="grid"
         data-iconpos="left" class="ui-btn-right">
             menu
         </a>
@@ -24,7 +24,7 @@
         	  <div id="map" style="width: 350px; height: 700px;"></div>
               <script type="text/javascript">
 				var locations = [
-				  ['${mapaFaces.fornecedorModel.nomeFantasia}',${mapaFaces.fornecedorModel.latitude},${mapaFaces.fornecedorModel.longitude}, 4]
+				  ['${mapaFaces.fornecedorModel.nomeFantasiaSemApostrofe}',${mapaFaces.fornecedorModel.latitude},${mapaFaces.fornecedorModel.longitude}, 4]
 				];
 			
 				var map = new google.maps.Map(document.getElementById('map'), {

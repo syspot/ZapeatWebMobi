@@ -9,11 +9,11 @@
         <h3>
             
         </h3>
-        <a data-role="button" data-transition="fade" href="listagem.xhtml?categoriaId=#{detalhamentoFaces.categoriaId}" data-icon="arrow-l"
+        <a data-role="button" data-transition="fade" href="detalhamento.xhtml?categoriaId=#{estabelecimentoFaces.categoriaModel.id}&amp;promocaoId=#{estabelecimentoFaces.promocaoId}" data-icon="arrow-l"
         data-iconpos="left" class="ui-btn-left">
             voltar
         </a>
-        <a data-role="button" data-transition="fade" href="menu.xhtml" data-icon="grid"
+        <a data-role="button" rel="external" data-transition="fade" href="menu.xhtml" data-icon="grid"
         data-iconpos="left" class="ui-btn-right">
             menu
         </a>
@@ -22,16 +22,17 @@
     <div data-role="content" style="padding: 0px">
     	<div id="topoPromo">
             <div class="marca">
-                <figure><a href="estabelecimento.xhtml?categoriaId=#{detalhamentoFaces.categoriaId}" data-transition="slide"><img src="img/model/80x80.jpg" alt="MARCA DO ESTABELECIMENTO" /></a></figure>
+                <figure><img src="img/model/80x80.jpg" alt="MARCA DO ESTABELECIMENTO" /></figure>
             </div>
             <!--<div class="info">-->
-                <div class="nomeEstab">Restaurante Yemanjá</div>
-                <div class="categoria">Restaurante</div>
-                <!--<span class="separador"></span>
-                <div class="tipoPromocao">Promoção da Hora</div>
-                <div class="nomePromocao">Muqueca Sereia</div>-->
+                <div class="nomeEstab">#{estabelecimentoFaces.fornecedorModel.nomeFantasia}</div>
+                <div class="categoria">#{estabelecimentoFaces.categoriaModel.descricao}</div>
                 
-                <span class="indicacao">60 indicações</span>
+                <span class="indicacao">
+                	<h:outputText value="#{estabelecimentoFaces.fornecedorModel.quantidadeIndicacoes} indicação" rendered="#{estabelecimentoFaces.fornecedorModel.quantidadeIndicacoes==1}"/>
+                	<h:outputText value="Nenhuma indicação" rendered="#{estabelecimentoFaces.fornecedorModel.quantidadeIndicacoes==0}"/>
+                	<h:outputText value="#{estabelecimentoFaces.fornecedorModel.quantidadeIndicacoes} indicações" rendered="#{estabelecimentoFaces.fornecedorModel.quantidadeIndicacoes>1}"/>
+                </span>
             <!--</div>-->
             	<span class="btnIndicar"><a href="">Eu indico</a></span>
         </div>
@@ -41,7 +42,10 @@
         <div id="infoPromo">
             <p class="titulo">Sobre o Estabelecimento</p>
             <div class="dadosEstab">
-                <p>Aqui entra texto sobre o estabelecimento. Lembrando que texto pra app tem que ser suscinto.</p>
+                <p>
+                <h:outputText value="#{estabelecimentoFaces.fornecedorModel.descricao}" rendered="#{!empty estabelecimentoFaces.fornecedorModel.descricao}"/>
+                <h:outputText value="Nenhuma informação foi provida sobre este estabelecimento" rendered="#{empty estabelecimentoFaces.fornecedorModel.descricao}"/>
+                </p>
 
             </div>
     
@@ -51,10 +55,10 @@
         <div id="infoEstab">
             <p class="titulo">Outras informações</p>
             <p class="endereco">
-                <span class="map"></span>Avenida Otavio Mangabeira, 27, Pituba - Salvador - Bahia
+                <span class="map"></span>#{estabelecimentoFaces.fornecedorModel.enderecoConcatenado}
             </p>
-            <a href="callto:07133408808">
-                <p class="tel"><span class="tel"></span>(71) 3340.8808</p>
+            <a href="callto:#{estabelecimentoFaces.fornecedorModel.telefone}">
+                <p class="tel"><span class="tel"></span>#{estabelecimentoFaces.fornecedorModel.telefone}</p>
             </a>
             <div class="pagamento">
                 <p>Formas de Pagamento</p>

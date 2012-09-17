@@ -7,24 +7,34 @@
 	
 		<div data-role="page" id="menu">
 			<div data-theme="f" data-role="header">
-				<span class="ui-title"> </span> <a data-role="button" data-transition="fade" href="#page1" data-icon="refresh" data-iconpos="left" class="ui-btn-left"> atualizar </a> <a data-role="button" data-transition="slidedown" href="#config" data-icon="gear" data-iconpos="left" class="ui-btn-right"> configuração </a>
+				<span class="ui-title"> </span> <a data-role="button" rel="external" data-transition="fade" href="menu.xhtml" data-icon="refresh" data-iconpos="left" class="ui-btn-left"> atualizar </a> <a data-role="button" data-transition="slidedown" href="configuracao.xhtml" data-icon="gear" data-iconpos="left" class="ui-btn-right"> Configurações </a>
 			</div>
 
 			<div id="content" data-role="content" style="padding: 0px; height: 100%">
-
+				<input type="hidden" name="location" id="location"/>
 				<div class="ui-grid-b" id="gridb">
 					<ui:repeat var="menu" varStatus="key" value="#{menuFaces.menus}">
 						<div class="#{menu.styleClass}">
 							<a  rel="external" data-role="button"  data-inline="true" data-transition="flip" 
-								href="listagem.xhtml?categoriaId=#{menu.id}" data-icon="grid" data-iconpos="top"> #{menu.descricao} </a>
+								onclick="redirect('#{menu.id}');" href="#" data-icon="grid" data-iconpos="top"> #{menu.descricao} </a>
 						</div>
 					</ui:repeat>
 				</div>
 			</div>
 	
 			<div data-theme="f" data-role="footer" data-position="fixed">
-				<h6>Você está aqui: ENDEREÇO</h6>
+				<h6>Você está aqui: <label id="info" >Obtendo localização...</label></h6>
 			</div>
 		</div>
+		
+		<script>
+			function redirect(menu) {
+				var endereco='listagem.xhtml?categoriaId='+menu+'&amp;location=';
+				var location = document.getElementById('location');
+				endereco = endereco + location.value;
+ 				window.location.href=endereco;
+			}
+		</script>
+		
 		</ui:define>
 </ui:composition>

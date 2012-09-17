@@ -1,7 +1,11 @@
 package br.com.zapeat.site.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Date;
+
+import br.com.topsys.util.TSUtil;
 
 @SuppressWarnings("serial")
 public class PromocaoModel implements Serializable {
@@ -29,6 +33,8 @@ public class PromocaoModel implements Serializable {
 	private String imagemThumb;
 
 	private CategoriaModel categoriaModel;
+
+	private Double distanciaCalculada;
 
 	public PromocaoModel() {
 
@@ -166,6 +172,25 @@ public class PromocaoModel implements Serializable {
 
 	public void setCategoriaModel(CategoriaModel categoriaModel) {
 		this.categoriaModel = categoriaModel;
+	}
+
+	public Double getDistanciaCalculada() {
+		return distanciaCalculada;
+	}
+
+	public void setDistanciaCalculada(Double distanciaCalculada) {
+		this.distanciaCalculada = distanciaCalculada;
+	}
+
+	public Integer getDistancia() {
+		if (TSUtil.isEmpty(this.distanciaCalculada)) {
+			return null;
+		}
+
+		BigDecimal distancia = new BigDecimal(this.distanciaCalculada).setScale(0, RoundingMode.DOWN);
+
+		return distancia.intValue();
+
 	}
 
 }

@@ -12,7 +12,7 @@ public class FornecedorDAO {
 		
 		broker.setPropertySQL("fornecedordao.obter",model.getId());
 		
-		return (FornecedorModel) broker.getObjectBean(FornecedorModel.class,"id","nomeFantasia","latitude","longitude");
+		return (FornecedorModel) broker.getObjectBean(FornecedorModel.class,"id","nomeFantasia","latitude", "longitude","cidadeModel.nome","cidadeModel.estadoModel.sigla","logradouro","numero","cep","bairro","telefone","quantidadeIndicacoes");
 		
 	}
 

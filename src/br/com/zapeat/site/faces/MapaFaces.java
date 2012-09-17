@@ -1,9 +1,5 @@
 package br.com.zapeat.site.faces;
 
-import java.io.Serializable;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-
 import javax.faces.bean.ManagedBean;
 
 import br.com.topsys.util.TSUtil;
@@ -14,7 +10,7 @@ import br.com.zapeat.site.util.Constantes;
 
 @SuppressWarnings("serial")
 @ManagedBean
-public class MapaFaces implements Serializable {
+public class MapaFaces  extends LocationServiceFaces  {
 
 	private FornecedorModel fornecedorModel;
 	private String categoriaId;

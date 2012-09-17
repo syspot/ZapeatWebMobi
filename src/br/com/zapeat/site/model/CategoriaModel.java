@@ -14,6 +14,10 @@ public class CategoriaModel implements Serializable {
 	private String imagem;
 
 	private String styleClass;
+	
+	//Filtro
+	
+	private Integer distanciaMaxima;
 
 	public CategoriaModel() {
 	
@@ -87,5 +91,15 @@ public class CategoriaModel implements Serializable {
 			return false;
 		return true;
 	}
+
+	public Integer getDistanciaMaxima() {
+		return distanciaMaxima;
+	}
+
+	public void setDistanciaMaxima(Integer distanciaMaxima) {
+		this.distanciaMaxima = distanciaMaxima;
+	}
+	
+	
 
 }

@@ -9,9 +9,9 @@
         <h3>
             Configuração
         </h3>
-        <a data-role="button" rel="external" data-transition="fade" href="menu.xhtml" data-icon="grid"
+        <a data-role="button" data-transition="fade" href="listagem.xhtml?categoriaId=#{configuracaoFaces.categoriaId}" data-icon="grid"
         data-iconpos="left" class="ui-btn-left">
-            menu
+            Voltar
         </a>
     </div>
     
@@ -34,6 +34,7 @@
                 </fieldset>
             </div>
             <input type="submit" data-theme="a" value="configurar"/>
+			            <input type="hidden" value="#{configuracaoFaces.categoriaId}" name="categoriaId" id="categoriaId"/>            
         </h:form>    
 	</div>    
 </div>

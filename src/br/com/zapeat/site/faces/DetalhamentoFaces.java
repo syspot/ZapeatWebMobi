@@ -1,6 +1,5 @@
 package br.com.zapeat.site.faces;
 
-import java.io.Serializable;
 import java.util.Date;
 
 import javax.faces.bean.ManagedBean;
@@ -16,7 +15,7 @@ import br.com.zapeat.site.util.Utilitarios;
 
 @SuppressWarnings("serial")
 @ManagedBean
-public class DetalhamentoFaces implements Serializable {
+public class DetalhamentoFaces extends LocationServiceFaces {
 
 	private String categoriaId;
 	private PromocaoModel promocaoModel;

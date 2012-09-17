@@ -1,10 +1,8 @@
 package br.com.zapeat.site.faces;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -17,17 +15,18 @@ import br.com.zapeat.site.util.Utilitarios;
 @SuppressWarnings("serial")
 @ManagedBean
 @ViewScoped
-public class MenuFaces implements Serializable {
+public class MenuFaces extends LocationServiceFaces  {
 
 	private String nextStyleClass;
 
 	private List<CategoriaModel> menus;
 
-	@PostConstruct
-	private void init() {
+	
+	public MenuFaces() {
+		
 		this.nextStyleClass = null;
 		this.menus = new ArrayList<CategoriaModel>();
-
+		
 		for (CategoriaModel categoria : new CategoriaDAO().pesquisar(Utilitarios.getUsuarioLogado())) {
 
 			categoria.setStyleClass(getNextStyleClass());

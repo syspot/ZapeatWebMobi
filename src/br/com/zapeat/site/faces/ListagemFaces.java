@@ -1,6 +1,5 @@
 package br.com.zapeat.site.faces;
 
-import java.io.Serializable;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -14,7 +13,7 @@ import br.com.zapeat.site.util.Constantes;
 
 @SuppressWarnings("serial")
 @ManagedBean
-public class ListagemFaces implements Serializable {
+public class ListagemFaces extends LocationServiceFaces {
 
 	private List<PromocaoModel> promocoes;
 
@@ -22,9 +21,19 @@ public class ListagemFaces implements Serializable {
 		String categoriaId = TSFacesUtil.getRequestParameter(Constantes.HttpParams.CATEGORIA_ID);
 
 		if (TSUtil.isNumeric(categoriaId)) {
-			this.promocoes = new PromocaoDAO().pesquisar(new CategoriaModel(Long.valueOf(categoriaId)));
+			CategoriaModel categoriaModel = new CategoriaModel(Long.valueOf(categoriaId));
+
+			Integer distanciaMaxima = (Integer) TSFacesUtil.getObjectInSession(Constantes.HttpParams.FILTRO_DISTANCIA);
+
+			if (!TSUtil.isEmpty(distanciaMaxima)) {
+
+				categoriaModel.setDistanciaMaxima(distanciaMaxima);
+
+			}
+
+			this.promocoes = new PromocaoDAO().pesquisar(categoriaModel,super.getLocalizacaoAtual());
 		}
-		
+
 		TSFacesUtil.getRequest().setAttribute(Constantes.HttpParams.CATEGORIA_ID, categoriaId);
 
 	}

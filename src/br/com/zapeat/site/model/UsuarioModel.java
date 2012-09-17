@@ -6,23 +6,28 @@ import java.io.Serializable;
 public class UsuarioModel implements Serializable {
 
 	private Long id;
-	
+
 	private String nome;
-	
+
 	private String login;
-	
-	private String senha;	
-	
+
+	private String senha;
+
 	private String email;
-	
+
 	private String confirmaSenha;
-	
-	private Boolean flagAtivo;	
-	
+
+	private Boolean flagAtivo;
+
 	private String imagem;
-	
+
 	public UsuarioModel() {
 
+	}
+
+	public UsuarioModel(String email, String senha) {
+		this.email = email;
+		this.senha = senha;
 	}
 
 	public Long getId() {

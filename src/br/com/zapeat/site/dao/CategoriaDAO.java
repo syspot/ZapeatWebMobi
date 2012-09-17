@@ -20,5 +20,17 @@ public class CategoriaDAO {
 		
 		
 	}
+	
+	
+	public CategoriaModel obter(CategoriaModel model) {
+		
+		TSDataBaseBrokerIf broker = TSDataBaseBrokerFactory.getDataBaseBrokerIf();
+		
+		broker.setPropertySQL("categoriadao.obter",model.getId());
+		
+		return (CategoriaModel) broker.getObjectBean(CategoriaModel.class,"id","descricao");
+		
+		
+	}
 
 }
