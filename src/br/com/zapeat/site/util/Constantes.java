@@ -5,7 +5,7 @@ public class Constantes {
 	private Constantes() {
 	}
 
-	public static final String TEXT_INDICACAO_MOBILE = "Promoção indicada atrávez do Zapeat Mobile";
+	public static final String TEXT_INDICACAO_MOBILE = "Promoção indicada atráves do Zapeat Mobile";
 
 	public interface HttpParams {
 		String CATEGORIA_ID = "categoriaId";

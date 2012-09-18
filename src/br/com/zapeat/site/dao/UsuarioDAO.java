@@ -12,7 +12,27 @@ public class UsuarioDAO {
 		
 		broker.setPropertySQL("usuariodao.obteracesso",model.getEmail(),model.getSenha());
 		
-		return (UsuarioModel) broker.getObjectBean(UsuarioModel.class, "id","nome");
+		return (UsuarioModel) broker.getObjectBean(UsuarioModel.class, "id","nome","token");
+		
+	}
+	
+	public UsuarioModel obterPorEmail(UsuarioModel model) {
+		
+		TSDataBaseBrokerIf broker = TSDataBaseBrokerFactory.getDataBaseBrokerIf();
+		
+		broker.setPropertySQL("usuariodao.obterporemail",model.getEmail());
+		
+		return (UsuarioModel) broker.getObjectBean(UsuarioModel.class, "id","nome","token","senha");
+		
+	}
+	
+	public UsuarioModel obterPorToken(UsuarioModel model) {
+		
+		TSDataBaseBrokerIf broker = TSDataBaseBrokerFactory.getDataBaseBrokerIf();
+		
+		broker.setPropertySQL("usuariodao.obterportoken",model.getToken());
+		
+		return (UsuarioModel) broker.getObjectBean(UsuarioModel.class, "id","nome","token");
 		
 	}
 

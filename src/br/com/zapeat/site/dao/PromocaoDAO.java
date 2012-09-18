@@ -81,7 +81,7 @@ public class PromocaoDAO {
 
 		TSDataBaseBrokerIf broker = TSDataBaseBrokerFactory.getDataBaseBrokerIf();
 
-		broker.setPropertySQL("promocaodao.usuario.pesquisar", model.getId());
+		broker.setPropertySQL("promocaodao.usuario.pesquisar", model.getToken());
 
 		return broker.getCollectionBean(PromocaoModel.class, "id", "descricao", "fornecedorModel.nomeFantasia", "titulo", "precoOriginal", "precoPromocional", "inicio", "fim","fornecedorModel.latitude","fornecedorModel.longitude");
 

@@ -24,8 +24,8 @@ import br.com.zapeat.site.util.Constantes;
 /**
  * Servlet implementation class AuthenticationServlet
  */
-@WebServlet("/autenticar")
-public class AuthenticationServlet extends HttpServlet {
+@WebServlet("/autenticarIOS")
+public class AuthenticationIOSServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	public static class Promocao {
@@ -38,7 +38,7 @@ public class AuthenticationServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public AuthenticationServlet() {
+	public AuthenticationIOSServlet() {
 		super();
 	}
 
@@ -47,15 +47,16 @@ public class AuthenticationServlet extends HttpServlet {
 		JSONObject object = new JSONObject();
 
 		String email = request.getParameter(Constantes.HttpParams.EMAIL);
-		String senha = request.getParameter(Constantes.HttpParams.SENHA);
+		
+		UsuarioModel usuario = new UsuarioModel(email, null);
 
-		UsuarioModel usuario = new UsuarioModel(email, senha);
-
-		usuario = new UsuarioDAO().obterAcesso(usuario);
+		usuario = new UsuarioDAO().obterPorEmail(usuario);
 
 		if (!TSUtil.isEmpty(usuario)) {
 
 			object.put("logged", true);
+			
+			object.put("key", usuario.getSenha());
 
 			object.put("id", usuario.getId());
 			object.put("nome", usuario.getNome());

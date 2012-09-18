@@ -21,6 +21,8 @@ public class UsuarioModel implements Serializable {
 
 	private String imagem;
 
+	private String token;
+
 	public UsuarioModel() {
 
 	}
@@ -92,6 +94,14 @@ public class UsuarioModel implements Serializable {
 
 	public void setImagem(String imagem) {
 		this.imagem = imagem;
+	}
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
 	}
 
 }

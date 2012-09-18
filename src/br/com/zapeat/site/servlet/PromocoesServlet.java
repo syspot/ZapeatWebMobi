@@ -35,15 +35,15 @@ public class PromocoesServlet extends HttpServlet {
 
 	private void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		String usuarioId = req.getParameter("usuarioId");
+		String token = req.getParameter("token");
 
 		JSONObject object = new JSONObject();
 		JSONArray array = new JSONArray();
 		JSONObject promo = null;
-		if (TSUtil.isNumeric(usuarioId)) {
+		if (!TSUtil.isEmpty(token)) {
 
 			UsuarioModel usuario = new UsuarioModel();
-			usuario.setId(Long.valueOf(usuarioId));
+			usuario.setToken(token);
 			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 			NumberFormat formatNumber = NumberFormat.getCurrencyInstance(Locale.getDefault());
 			for (PromocaoModel promocao : new PromocaoDAO().pesquisarDisponiveis(usuario)) {
