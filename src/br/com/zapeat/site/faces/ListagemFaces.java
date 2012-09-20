@@ -10,6 +10,7 @@ import br.com.zapeat.site.dao.PromocaoDAO;
 import br.com.zapeat.site.model.CategoriaModel;
 import br.com.zapeat.site.model.PromocaoModel;
 import br.com.zapeat.site.util.Constantes;
+import br.com.zapeat.site.util.Utilitarios;
 
 @SuppressWarnings("serial")
 @ManagedBean
@@ -31,7 +32,7 @@ public class ListagemFaces extends LocationServiceFaces {
 
 			}
 
-			this.promocoes = new PromocaoDAO().pesquisar(categoriaModel,super.getLocalizacaoAtual());
+			this.promocoes = new PromocaoDAO().pesquisar(categoriaModel,super.getLocalizacaoAtual(),Utilitarios.getUsuarioLogado());
 		}
 
 		TSFacesUtil.getRequest().setAttribute(Constantes.HttpParams.CATEGORIA_ID, categoriaId);

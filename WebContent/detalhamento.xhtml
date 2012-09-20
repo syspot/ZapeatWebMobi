@@ -36,21 +36,24 @@
     <div data-role="content" style="padding: 0px">
     	<div id="topoPromo">
             <div class="marca">
-                <figure><a href="estabelecimento.xhtml?fornecedorId=#{detalhamentoFaces.promocaoModel.fornecedorModel.id}&amp;promocaoId=#{detalhamentoFaces.promocaoModel.id}&amp;categoriaId=#{requestScope.categoriaId}"  data-transition="slide"><img src="img/model/80x80.jpg" alt="MARCA DO ESTABELECIMENTO" /></a></figure>
+                <figure>
+             	   <a href="estabelecimento.xhtml?fornecedorId=#{detalhamentoFaces.promocaoModel.fornecedorModel.id}&amp;promocaoId=#{detalhamentoFaces.promocaoModel.id}&amp;categoriaId=#{detalhamentoFaces.categoriaId}" rel="external"  data-transition="slide">
+               			<h:graphicImage value="img/model/80x80.jpg" rendered="#{empty detalhamentoFaces.promocaoModel.fornecedorModel.imagemThumb}"/>
+               			<h:graphicImage value="#{detalhamentoFaces.promocaoModel.fornecedorModel.imagemThumbView}" rendered="#{!empty detalhamentoFaces.promocaoModel.fornecedorModel.imagemThumb}"/>
+              		</a>
+           		</figure>
+                		
             </div>
-            <!--<div class="info">
-                <div class="nomeEstab">Restaurante Yemanjá</div>
-                <div class="categoria">Restaurante</div>
-                <span class="separador"></span>-->
                 <div class="tipoPromocao">#{detalhamentoFaces.promocaoModel.tipoPromocaoModel.descricao}</div>
                 <div class="nomePromocao">#{detalhamentoFaces.promocaoModel.titulo}</div>
-                
-                <span class="indicacao">60 indicações</span>
-            <!--</div>-->
+
             <h:form>
-	            <span class="btnIndicar">
-		            <p:commandLink process="@this" action="#{detalhamentoFaces.indicar}">
+	            <span class="btnIndicar" id="btnindicar">
+		            <p:commandLink process="@form" action="#{detalhamentoFaces.indicar}" update="@form" rendered="#{!detalhamentoFaces.promocaoModel.indicada}">
 		            	Eu indico
+		           	</p:commandLink>
+		           	<p:commandLink  disabled="true" rendered="#{detalhamentoFaces.promocaoModel.indicada}">
+		            	Você indicou isto!
 		           	</p:commandLink>
 	           	</span>
            	</h:form>
@@ -73,7 +76,11 @@
     
             <!--SE FOR PROMOÇÃO POR DESCONTO-->
             <div id="desconto">
-                <p class="percentual">40%</p>
+                <p class="percentual">
+                	<h:outputText value="#{detalhamentoFaces.promocaoModel.porcentagemDesconto}">
+                		<f:convertNumber type="number" minFractionDigits="2" locale="pt_BR" />
+                	</h:outputText>%
+                </p>
                 <p>desconto</p>
             </div>
             <span class="preco">

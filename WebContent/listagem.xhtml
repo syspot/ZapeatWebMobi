@@ -36,11 +36,12 @@
 					
 						<li data-theme="c" class="tipo#{promocao.tipoPromocaoModel.id}">
 						
-						<a href="detalhamento.xhtml?promocaoId=#{promocao.id}&amp;categoriaId=#{requestScope.categoriaId}" data-transition="slide">
+						<a href="detalhamento.xhtml?promocaoId=#{promocao.id}&amp;categoriaId=#{requestScope.categoriaId}" data-transition="slide" rel="external">
 								
 								<div class="marca">
 									<figure>
-										<img src="img/model/80x80.jpg" alt="MARCA DO ESTABELECIMENTO" />
+										<h:graphicImage value="#{promocao.fornecedorModel.imagemThumbView}" rendered="#{!empty promocao.fornecedorModel.imagemThumb}" />
+										<img value="img/model/80x80.jpg" rendered="#{empty promocao.fornecedorModel.imagemThumb}" />
 									</figure>
 								</div>
 								
@@ -54,13 +55,18 @@
 									<div class="nomePromocao">
 										#{promocao.titulo}		
 									</div>
-									<span class="ui-li-count">
-										<h:outputText value=" a #{promocao.distancia} km" rendered="#{!empty promocao.distancia and promocao.distancia>0}"/>
-										<h:outputText value="Você está aqui!" rendered="#{!empty promocao.distancia and promocao.distancia==0}"/>
-									</span> <span class="indicacao">
-									<h:outputText value="#{promocao.fornecedorModel.quantidadeIndicacoes} indicação" rendered="#{promocao.fornecedorModel.quantidadeIndicacoes==1}"/>
-                	<h:outputText value="Nenhuma indicação" rendered="#{promocao.fornecedorModel.quantidadeIndicacoes==0}"/>
-                	<h:outputText value="#{promocao.fornecedorModel.quantidadeIndicacoes} indicações" rendered="#{promocao.fornecedorModel.quantidadeIndicacoes>1}"/>
+									<h:panelGroup rendered="#{!empty promocao.distancia}">
+											<span class="ui-li-count">
+												<h:outputText value=" a #{promocao.distancia} km" rendered="#{promocao.distancia>0}"/>
+												<h:outputText value="Você está aqui!" rendered="#{promocao.distancia==0}"/>
+											</span> 
+									</h:panelGroup>
+									<span class="indicacao">
+									<h:outputText value="#{promocao.fornecedorModel.quantidadeIndicacoes} pessoa indicou isto" rendered="#{promocao.fornecedorModel.quantidadeIndicacoes==1 and !promocao.fornecedorModel.indicado}"/>
+									<h:outputText value="Você indicou isto" rendered="#{promocao.fornecedorModel.quantidadeIndicacoes==1 and promocao.fornecedorModel.indicado}"/>
+                					<h:outputText value="Nenhuma indicação" rendered="#{promocao.fornecedorModel.quantidadeIndicacoes==0}"/>
+				                	<h:outputText value="#{promocao.fornecedorModel.quantidadeIndicacoes} pessoas indicaram isto" rendered="#{promocao.fornecedorModel.quantidadeIndicacoes >1 and !promocao.fornecedorModel.indicado}"/>
+			                		<h:outputText value="Você e mais #{promocao.fornecedorModel.quantidadeIndicacoes -1} pessoa(s) indicaram isto" rendered="#{promocao.fornecedorModel.quantidadeIndicacoes >1 and promocao.fornecedorModel.indicado}"/>
 									</span>
 								</div>
 						</a></li>

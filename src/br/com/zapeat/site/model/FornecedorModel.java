@@ -53,6 +53,8 @@ public class FornecedorModel implements Serializable {
 	private Integer quantidadeIndicacoes;
 
 	private String cssTopGeral;
+	
+	private Boolean indicado;
 
 	public FornecedorModel(Long id) {
 
@@ -294,4 +296,12 @@ public class FornecedorModel implements Serializable {
 		return endereco.toString();
 	}
 
+	public Boolean getIndicado() {
+		return indicado;
+	}
+
+	public void setIndicado(Boolean indicado) {
+		this.indicado = indicado;
+	}
+	
 }

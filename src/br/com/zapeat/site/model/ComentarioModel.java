@@ -10,7 +10,7 @@ public class ComentarioModel implements Serializable {
 
 	private UsuarioModel usuarioModel;
 
-	private PromocaoModel promocaoModel;
+	private FornecedorModel fornecedorModel;
 
 	private String descricao;
 
@@ -93,12 +93,12 @@ public class ComentarioModel implements Serializable {
 		return true;
 	}
 
-	public PromocaoModel getPromocaoModel() {
-		return promocaoModel;
+	public FornecedorModel getFornecedorModel() {
+		return fornecedorModel;
 	}
 
-	public void setPromocaoModel(PromocaoModel promocaoModel) {
-		this.promocaoModel = promocaoModel;
+	public void setFornecedorModel(FornecedorModel fornecedorModel) {
+		this.fornecedorModel = fornecedorModel;
 	}
 
 }

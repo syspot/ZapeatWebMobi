@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" template="index.xhtml">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" template="index.xhtml" xmlns:p="http://primefaces.org/ui" >
 
 <ui:define name="conteudo">
 <!-- Estabelecimento -->
@@ -22,7 +22,10 @@
     <div data-role="content" style="padding: 0px">
     	<div id="topoPromo">
             <div class="marca">
-                <figure><img src="img/model/80x80.jpg" alt="MARCA DO ESTABELECIMENTO" /></figure>
+                <figure>
+                		<h:graphicImage value="img/model/80x80.jpg" rendered="#{empty estabelecimentoFaces.fornecedorModel.imagemThumb}"/>
+		                <h:graphicImage value="#{estabelecimentoFaces.fornecedorModel.imagemThumbView}" rendered="#{empty estabelecimentoFaces.fornecedorModel.imagemThumb}"/>
+                </figure>
             </div>
             <!--<div class="info">-->
                 <div class="nomeEstab">#{estabelecimentoFaces.fornecedorModel.nomeFantasia}</div>
@@ -34,7 +37,16 @@
                 	<h:outputText value="#{estabelecimentoFaces.fornecedorModel.quantidadeIndicacoes} indicações" rendered="#{estabelecimentoFaces.fornecedorModel.quantidadeIndicacoes>1}"/>
                 </span>
             <!--</div>-->
-            	<span class="btnIndicar"><a href="">Eu indico</a></span>
+            <h:form>
+  				<span class="btnIndicar" id="btnindicar">
+		            <p:commandLink process="@form" action="#{estabelecimentoFaces.indicar}" update="@form" rendered="#{!estabelecimentoFaces.fornecedorModel.indicado}">
+		            	Eu indico
+		           	</p:commandLink>
+		           	<p:commandLink  disabled="true" rendered="#{estabelecimentoFaces.fornecedorModel.indicado}">
+		            	Você indicou isto!
+		           	</p:commandLink>
+	           	</span>
+		</h:form>
         </div>
     	<div class="mapa">
             <figure><img src="img/model/590x260.jpg" width="320" height="160" alt="IMAGEM DO ESTABELECIMENTO. PODE SER A DO SITE WEB"/></figure>

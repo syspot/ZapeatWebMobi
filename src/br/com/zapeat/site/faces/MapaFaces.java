@@ -7,6 +7,7 @@ import br.com.topsys.web.util.TSFacesUtil;
 import br.com.zapeat.site.dao.FornecedorDAO;
 import br.com.zapeat.site.model.FornecedorModel;
 import br.com.zapeat.site.util.Constantes;
+import br.com.zapeat.site.util.Utilitarios;
 
 @SuppressWarnings("serial")
 @ManagedBean
@@ -23,7 +24,7 @@ public class MapaFaces  extends LocationServiceFaces  {
 		if (TSUtil.isNumeric(id)) {
 			FornecedorModel model = new FornecedorModel(Long.valueOf(id));
 
-			this.fornecedorModel = new FornecedorDAO().obter(model);
+			this.fornecedorModel = new FornecedorDAO().obter(model,Utilitarios.getUsuarioLogado());
 
 		}
 

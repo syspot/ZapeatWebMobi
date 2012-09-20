@@ -35,6 +35,8 @@ public class PromocaoModel implements Serializable {
 	private CategoriaModel categoriaModel;
 
 	private Double distanciaCalculada;
+	private Boolean indicada;
+	private Double porcentagemDesconto;
 
 	public PromocaoModel() {
 
@@ -191,6 +193,22 @@ public class PromocaoModel implements Serializable {
 
 		return distancia.intValue();
 
+	}
+
+	public Boolean getIndicada() {
+		return indicada;
+	}
+
+	public void setIndicada(Boolean indicada) {
+		this.indicada = indicada;
+	}
+
+	public Double getPorcentagemDesconto() {
+		return porcentagemDesconto;
+	}
+
+	public void setPorcentagemDesconto(Double porcentagemDesconto) {
+		this.porcentagemDesconto = porcentagemDesconto;
 	}
 
 }

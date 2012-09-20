@@ -3,11 +3,13 @@ package br.com.zapeat.site.faces;
 import java.util.Date;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 
 import br.com.topsys.util.TSUtil;
 import br.com.topsys.web.util.TSFacesUtil;
 import br.com.zapeat.site.dao.ComentarioDAO;
 import br.com.zapeat.site.dao.PromocaoDAO;
+import br.com.zapeat.site.dao.UsuarioDAO;
 import br.com.zapeat.site.model.ComentarioModel;
 import br.com.zapeat.site.model.PromocaoModel;
 import br.com.zapeat.site.util.Constantes;
@@ -15,6 +17,7 @@ import br.com.zapeat.site.util.Utilitarios;
 
 @SuppressWarnings("serial")
 @ManagedBean
+@ViewScoped
 public class DetalhamentoFaces extends LocationServiceFaces {
 
 	private String categoriaId;
@@ -26,7 +29,7 @@ public class DetalhamentoFaces extends LocationServiceFaces {
 		String promocaoId = TSFacesUtil.getRequestParameter(Constantes.HttpParams.PROMOCAO_ID);
 
 		if (TSUtil.isNumeric(promocaoId)) {
-			this.promocaoModel = new PromocaoDAO().obter(new PromocaoModel(Long.valueOf(promocaoId)));
+			this.promocaoModel = new PromocaoDAO().obter(new PromocaoModel(Long.valueOf(promocaoId)),Utilitarios.getUsuarioLogado());
 		}
 
 		if (TSUtil.isEmpty(this.promocaoModel)) {
@@ -44,10 +47,14 @@ public class DetalhamentoFaces extends LocationServiceFaces {
 		comentario.setDescricao(Constantes.TEXT_INDICACAO_MOBILE);
 		comentario.setDataCadastro(new Date());
 		comentario.setFlagIndicaPromocao(Boolean.TRUE);
-		comentario.setPromocaoModel(this.promocaoModel);
+		comentario.setFlagIndicaAtendimento(Boolean.TRUE);
+		comentario.setFornecedorModel(this.promocaoModel.getFornecedorModel());
+		comentario.setUsuarioModel(new UsuarioDAO().obterPorToken(comentario.getUsuarioModel()));
 		try {
 			new ComentarioDAO().inserir(comentario);
+			this.promocaoModel.setIndicada(Boolean.TRUE);
 		} catch (Exception ex) {
+			ex.printStackTrace();
 		}
 		return null;
 

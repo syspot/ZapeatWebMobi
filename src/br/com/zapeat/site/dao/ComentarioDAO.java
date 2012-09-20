@@ -14,12 +14,11 @@ public class ComentarioDAO {
 		
 		model.setId(broker.getSequenceNextValue(Constantes.Sequences.COMENTARIOS));
 
-		broker.setPropertySQL("comentariodao.inserir",model.getId(),model.getDescricao(),model.getPromocaoModel().getId(),model.getUsuarioModel().getId(),model.getFlagIndicaPromocao(),model.getFlagIndicaAtendimento(),model.getDataCadastro());
+		broker.setPropertySQL("comentariodao.inserir",model.getId(),model.getDescricao(),model.getFornecedorModel().getId(),model.getUsuarioModel().getId(),model.getFlagIndicaPromocao(),model.getFlagIndicaAtendimento(),model.getDataCadastro());
 		
 		broker.execute();
 
-		return (ComentarioModel) broker.getObjectBean(ComentarioModel.class, "id", "descricao", "usuarioModel.nome", "fornecedorModel.id", "fornecedorModel.nomeFantasia", "fornecedorModel.logoMarca");
+		return model;
 
 	}
-
 }
