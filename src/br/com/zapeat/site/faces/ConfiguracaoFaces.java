@@ -14,7 +14,7 @@ public class ConfiguracaoFaces implements Serializable {
 
 	private Integer filtroDistancia;
 	private String categoriaId;
-
+	
 	public ConfiguracaoFaces() {
 
 		this.filtroDistancia = (Integer) TSFacesUtil.getObjectInSession(Constantes.HttpParams.FILTRO_DISTANCIA);
@@ -22,13 +22,20 @@ public class ConfiguracaoFaces implements Serializable {
 		String filtro = TSFacesUtil.getRequestParameter(Constantes.HttpParams.FILTRO_DISTANCIA);
 
 		if (!TSUtil.isEmpty(filtro)) {
+			
 			this.filtroDistancia = Integer.valueOf(filtro);
+			
 			if(!TSUtil.isEmpty(this.filtroDistancia) && Integer.valueOf(0).compareTo(this.filtroDistancia)==0) {
 				this.filtroDistancia=null;
 			}
+			
 			TSFacesUtil.addObjectInSession(Constantes.HttpParams.FILTRO_DISTANCIA, this.filtroDistancia);
+			
+			TSFacesUtil.getRequest().setAttribute("msg","Configuração alterada!");
+			
+			
 		}
-
+		
 		this.categoriaId = TSFacesUtil.getRequestParameter(Constantes.HttpParams.CATEGORIA_ID);
 
 	}

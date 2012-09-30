@@ -7,7 +7,7 @@
 	
 		<div data-role="page" id="menu">
 			<div data-theme="f" data-role="header">
-				<span class="ui-title"> </span> <a data-role="button" rel="external" data-transition="fade" href="menu.xhtml" data-icon="refresh" data-iconpos="left" class="ui-btn-left"> atualizar </a> <a data-role="button" data-transition="slidedown" href="configuracao.xhtml" data-icon="gear" data-iconpos="left" class="ui-btn-right"> Configurações </a>
+				<span class="ui-title"> </span> <a data-role="button" rel="external" data-transition="fade" href="menu.xhtml" data-icon="refresh" data-iconpos="left" class="ui-btn-left"> Atualizar </a> <a data-role="button" data-transition="slidedown" href="configuracao.xhtml" data-icon="gear" data-iconpos="left" class="ui-btn-right"> Configurações </a>
 			</div>
 
 			<div id="content" data-role="content" style="padding: 0px; height: 100%">
@@ -15,7 +15,7 @@
 				<div class="ui-grid-b" id="gridb">
 					<ui:repeat var="menu" varStatus="key" value="#{menuFaces.menus}">
 						<div class="#{menu.styleClass}">
-							<a  rel="external" data-role="button"  data-inline="true" data-transition="flip" 
+							<a  data-role="button"  data-inline="true" data-transition="flip" 
 								onclick="redirect('#{menu.id}');" href="#" data-icon="grid" data-iconpos="top"> #{menu.descricao} </a>
 						</div>
 					</ui:repeat>

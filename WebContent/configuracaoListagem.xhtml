@@ -10,13 +10,13 @@
             Configuração
         </h3>
         <a data-role="button" data-transition="fade" href="listagem.xhtml?categoriaId=#{configuracaoFaces.categoriaId}" data-icon="grid"
-        data-iconpos="left" class="ui-btn-left">
+        data-iconpos="left" rel="external" class="ui-btn-left">
             Voltar
         </a>
     </div>
     
     <div data-role="content" style="padding: 15px">
-        <h:form>
+        <form>
             <div data-role="fieldcontain">
                 <fieldset data-role="controlgroup">
                     <a data-role="button" rel="external" data-transition="fade" href="sair.xhtml" data-icon="grid"
@@ -33,9 +33,9 @@
                     <input type="range" name="filtroDistancia" id="filtroDistancia" value="#{configuracaoFaces.filtroDistancia}" min="0" max="10" data-highlight="true" />
                 </fieldset>
             </div>
-            <input type="submit" data-theme="a" value="configurar"/>
-			            <input type="hidden" value="#{configuracaoFaces.categoriaId}" name="categoriaId" id="categoriaId"/>            
-        </h:form>    
+            <input data-theme="a" value="configurar" type="button" onclick="if(true){submit(); return true;}"/>
+            <input type="hidden" value="#{configuracaoFaces.categoriaId}" name="categoriaId" id="categoriaId"/>            
+        </form>    
 	</div>    
 </div>
 </ui:define>
