@@ -98,24 +98,38 @@
 
 <script>
 	$(document).ready(function(){
-		
-		$('#clickDaHora').click(function() {
+
+		$('.tipo2').hide();
+		$('.tipo3').hide();
+		$('#clickDaHora').addClass('ui-btn-active');
+				
+		$('#clickDaHora').bind('touchstart',function() {
 			$('.tipo2').hide();
 			$('.tipo3').hide();	
 			$('.tipo1').hide();	
 			$('.tipo1').fadeIn();
+			$('#clickDaHora').addClass('ui-btn-active');
+			$('#clickDoDia').removeClass('ui-btn-active');
+			$('#clickDaSemana').removeClass('ui-btn-active');
 		});
-		$('#clickDoDia').click(function() {
+		
+		$('#clickDoDia').bind('touchstart',function() {
 			$('.tipo1').hide();
 			$('.tipo3').hide();
 			$('.tipo2').hide();
 			$('.tipo2').fadeIn();
+			$('#clickDoDia').addClass('ui-btn-active');
+			$('#clickDaHora').removeClass('ui-btn-active');
+			$('#clickDaSemana').removeClass('ui-btn-active');
 		});
-		$('#clickDaSemana').click(function() {
+		$('#clickDaSemana').bind('touchstart',function() {
 			$('.tipo1').hide();
 			$('.tipo2').hide();
 			$('.tipo3').hide();
-			$('.tipo3').fadeIn();	
+			$('.tipo3').fadeIn();
+			$('#clickDoDia').removeClass('ui-btn-active');
+			$('#clickDaHora').removeClass('ui-btn-active');
+			$('#clickDaSemana').addClass('ui-btn-active');
 		});
 	});
 </script>
