@@ -1,0 +1,197 @@
+.text-align-center {
+  text-align: center;
+}
+.text-align-right {
+  text-align: right;
+}
+
+/*#page1{background-color:#fcfe6d;
+	background-image:-webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #ffae00), color-stop(0, #fcfe6d));
+	background-image:-moz-linear-gradient(top, #ffae00, #fcfe6d);
+	background-image:-o-linear-gradient(top, #ffae00, #fcfe6d);
+}*/
+
+
+/** CSS for non-standard jQuery Mobile styles or Codiqa components **/
+.split-wrapper {
+  width: 100%;
+  min-height: 200px;
+  clear: both;
+}
+@media all and (min-width: 650px) {
+	.content-secondary {
+		text-align: left;
+		float: left;
+		width: 45%;
+		background: none;
+		padding: 1.5em 6% 3em 0;
+		margin: 0;
+	}
+	.content-secondary {
+    background: none;
+    border-top: none;
+	}
+	.content-primary {
+		width: 45%;
+		float: right;
+		margin-right: 1%;
+		padding-right: 1%;
+	}
+	.content-primary ul:first-child {
+		margin-top: 0;
+	}
+  .content-secondary ul.ui-listview, .content-secondary ul.ui-listview-inset {
+    margin: 0;
+  }
+  .content-secondary ul.ui-listview .ui-li-divider, .content-secondary ul.ui-listview .ui-li {
+    border-radius: 0px;
+  }
+  .content-secondary ul.ui-listview .ui-li {
+    border-left: 0;
+    border-right: 0;
+  }
+	.content-secondary h2 {
+		position: absolute;
+		left: -9999px;
+	}
+	.content-secondary .ui-li-divider {
+		padding-top: 1em;
+		padding-bottom: 1em;
+	}
+	.content-secondary {
+		margin: 0;
+		padding: 0;
+	}
+  
+}
+@media all and (min-width: 750px){
+	.content-secondary {
+		width: 34%;
+	}
+	.content-primary {
+		width: 60%;
+		padding-right: 1%;
+	}	
+  .content-secondary ul.ui-listview-inset {
+}
+
+@media all and (min-width: 1200px){
+	.content-secondary {
+		width: 30%;
+		padding-right:6%;
+		margin: 0px 0 20px 5%;
+	}
+	.content-secondary ul {
+    margin: 0;
+  }
+	.content-secondary {
+		margin: 0;
+		padding: 0;
+	}
+	.content-primary {
+		width: 50%;
+		margin-right: 5%;
+		padding-right: 3%;
+	}
+	.content-primary {
+		width: 60%;
+	}
+}
+
+/* CSS PAGE*/
+*{margin:0; padding:0; font-family:Arial, Helvetica, sans-serif;}
+
+#topoPromo{	background-color:#ffffad;
+	background-image:-webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #ff9), color-stop(0, #ffffad));
+	background-image:-moz-linear-gradient(top, #ff9, #ffffad);
+	background-image:-o-linear-gradient(top, #ff9, #ffffad);border-bottom:2px solid #FFC116; position:relative; height:50px;
+}
+span.btnIndicar{ border-radius:3px; moz-border-radius:3px; o-border-radius:3px; webkit-border-radius:3px; padding:3px 5px; border:1px solid #fc0; background:#ffffb7; position:absolute; right:5px; top:25px;font-size:10px;}
+span.btnIndicar:hover{background: #ffae00; color:#fff!important;}
+span.btnIndicar a{ color:#fc0!important; text-decoration:none!important;}
+
+#map_canvas{ width:100%; height:100%;}
+#infoPromo{border-top:4px solid #FFAE00; min-width:320px; width:100%; min-height:70px; height:auto; position:relative; padding:10px 0px;
+	background-color:#ffffad;
+	background-image:-webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #ff9), color-stop(0, #ffffad));
+	background-image:-moz-linear-gradient(top, #ff9, #ffffad);
+	background-image:-o-linear-gradient(top, #ff9, #ffffad); clear:both; overflow:hidden;
+}
+#infoPromo .titulo,
+#infoEstab .titulo{ font-size:12px; font-weight:bold; color:#000; padding:0px 10px;}
+
+#infoPromo .dados{ font-size:10px; color:#000; padding:0px 10px; width:210px; margin-bottom:20px;}
+#infoPromo .dadosEstab{ font-size:10px; color:#000; padding:0px 10px; width:auto; margin-bottom:20px;}
+#desconto{position:absolute; top:-4px; right:10px; width:115px; height:60px; z-index:9999;
+background: #ffae00; /* Old browsers */
+background: -moz-linear-gradient(top,  #ffae00 0%, #fbff3d 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffae00), color-stop(100%,#fbff3d)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #ffae00 0%,#fbff3d 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #ffae00 0%,#fbff3d 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #ffae00 0%,#fbff3d 100%); /* IE10+ */
+background: linear-gradient(to bottom,  #ffae00 0%,#fbff3d 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffae00', endColorstr='#fbff3d',GradientType=0 ); /* IE6-9 */
+
+text-shadow: 1px 1px 5px #000000;
+filter: dropshadow(color=#000000, offx=1, offy=1);
+}
+#desconto .percentual{font-size:28px!important;}
+#desconto p{font-size:10px; font-weight:bold; color:#fff; text-align:center; text-transform: uppercase;}
+span.preco{padding:3px; background:#f60; color:#fff; position:absolute; bottom:0px; left:0px; font-size:12px; font-weight:bold;}
+
+#infoEstab{ min-width:320px; width:100%; min-height:70px; height:auto; position:relative; padding:10px 0px; background:#fff;}
+#infoEstab p.endereco{font-size:10px; margin-left:10px; padding-top:5px; background:url(/img/map.png) no-repeat; padding-left:25px; height:18px;}
+#infoEstab p.tel{font-size:10px; margin-left:10px; cursor:alias; background:url(/img/tel.png) no-repeat; padding-left:25px; height:18px;}
+.pagamento{margin:10px; font-size:10px;}
+figure.cartao{ width:25px; height:18px; float:left; margin-right:2px;}
+.visa{ background:url(/img/visa.png);}
+.master{ background:url(/img/master.png);}
+.amex{ background:url(/img/amex.png);}
+.diners{ background:url(/img/diners.png);}
+
+.mapa{position:relative;}
+.mapa .iconAmpliar{ background:url(/img/ampliarMapa.png) no-repeat 5px 5px; position:absolute; top:5px; left:5px; width:30px; height:25px;}
+.mapa a{ display:block; width:100%; height:100%; z-index:9999;}
+.mapa figure{z-index:8888;}
+
+
+
+	div#marca{ width:128px; height:128px;  margin:10px auto;}
+	div.marca img{width:48px; height:48px;}
+	.info{ float:left; max-width:220px; height: auto;}
+	.nomeEstab		{ font-size:12px; color:#000; font-weight:bold;}
+	.categoria		{ font-size:10px; color:#f90;}
+	span.separador	{ width:100px; height:2px; background:#ff6; display:block; margin:5px 0px;}
+	.tipoPromocao	{ font-size:10px; color:#000; max-width:150px;}
+	.nomePromocao	{ font-size:12px; color:#000; text-overflow: ellipsis;}
+	span.indicacao	{ /*position:absolute; right:0px; bottom:15px;*/font-size:10px; color:#666;}
+	#screen img{width:100%;}
+	#menu .ui-content{background: #f4c700; /* Old browsers */
+background: -moz-linear-gradient(top,  #f4c700 0%, #ffff99 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f4c700), color-stop(100%,#ffff99)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #f4c700 0%,#ffff99 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #f4c700 0%,#ffff99 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #f4c700 0%,#ffff99 100%); /* IE10+ */
+background: linear-gradient(to bottom,  #f4c700 0%,#ffff99 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f4c700', endColorstr='#ffff99',GradientType=0 ); /* IE6-9 */
+}
+#config label{font-size:0.9em!important;}
+span.ui-slider-label{font-size:14px!important;}
+/*#map_canvas{width:auto; height:100%;}
+	.ui-block-a,.ui-block-b,.ui-block-c{width:80px; height:80px;}
+	.marcaZapeat{text-indent:-99999px; background:url(http://www.tigurio.com.br/cliente/topsys/zapeat/m/outro/img/favicon.png) center no-repeat; width:3.75em;}*/
+	
+	 #msg{
+        background:#FC0;
+        opacity:0.9;
+        width:100%;
+        font-size:18px;
+        color:#000;
+        padding:10px;
+        position:absolute;
+        left:0px;
+        top:-45px;
+        z-index:999;
+    }
+    
+    .notFound{ width:200px; height:154px; position:absolute; margin-left:-100px; left:50%; margin-top:-77px; top:50%; background:url(/img/404.png) no-repeat center}

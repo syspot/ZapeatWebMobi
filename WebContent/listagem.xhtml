@@ -13,9 +13,8 @@
 
 <!-- Listagem -->
 <div data-role="page" id="lista">
-    <div data-theme="f" data-role="header">
-        <span class="ui-title">
-        </span>
+    <div data-theme="f" data-role="header" data-position="fixed">
+        <span class="ui-title"></span>
         <a data-role="button" data-transition="slidedown" href="menu.xhtml" data-icon="grid"
         data-iconpos="left" rel="external" class="ui-btn-left">
             Menu
@@ -28,7 +27,8 @@
     <div data-role="content" style="padding: 15px">
     
 	    <c:if test="#{empty listagemFaces.promocoes}">
-				<h6>Ops, nenhuma promoção encontrada!</h6>
+				<div styleClass="notFound"></div>
+				<!-- <h6>Ops, nenhuma promoção encontrada!</h6> -->
 		</c:if>
 		
         <ul data-role="listview" data-divider-theme="b" data-inset="false">
@@ -53,7 +53,7 @@
 			
 									<div class="tipoPromocao">#{promocao.tipoPromocaoModel.descricao}</div>
 									<div class="nomePromocao">
-										#{promocao.titulo}		
+										#{promocao.descricao}		
 									</div>
 									<h:panelGroup rendered="#{!empty promocao.distancia}">
 											<span class="ui-li-count">
