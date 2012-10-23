@@ -9,7 +9,7 @@
             <div data-theme="f" data-role="header" data-position="fixed">
 				<span class="ui-title"> </span> <a data-role="button" rel="external" data-transition="fade" href="menu.xhtml" data-icon="refresh" data-iconpos="left" class="ui-btn-left"> Atualizar </a> <a data-role="button" data-transition="slidedown" href="configuracao.xhtml" data-icon="gear" data-iconpos="left" class="ui-btn-right"> Configurações </a>
 			</div>
-			<div id="marca"><img src="img/marcaZapeat.png" alt="Marca Zapeat" title="Marca Zapeat" /></div>
+			<div align="center"><img src="img/marcaZapeat.png" alt="Marca Zapeat" title="Marca Zapeat" /></div>
             <div data-role="content">
             	<input type="hidden" name="location" id="location"/>
                 <ul data-role="listview" data-divider-theme="b" data-inset="true">
@@ -22,7 +22,7 @@
 						<a  data-inline="true" data-transition="flip" 
 						onclick="redirect('#{menu.id}');" href="#"> #{menu.descricao}
 							<span class="ui-li-count">
-                                0
+                                #{menu.quantidadePromocoes}
                             </span>
 						</a>
 					</li>		

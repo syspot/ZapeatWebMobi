@@ -16,7 +16,7 @@ public class CategoriaDAO {
 
 		broker.setPropertySQL("categoriadao.usuario.pesquisar", model.getToken());
 
-		return broker.getCollectionBean(CategoriaModel.class, "id", "descricao", "imagem");
+		return broker.getCollectionBean(CategoriaModel.class, "id", "descricao", "imagem","quantidadePromocoes");
 
 	}
 

@@ -8,9 +8,11 @@ import javax.faces.bean.ViewScoped;
 import br.com.topsys.util.TSUtil;
 import br.com.topsys.web.util.TSFacesUtil;
 import br.com.zapeat.site.dao.ComentarioDAO;
+import br.com.zapeat.site.dao.FornecedorDAO;
 import br.com.zapeat.site.dao.PromocaoDAO;
 import br.com.zapeat.site.dao.UsuarioDAO;
 import br.com.zapeat.site.model.ComentarioModel;
+import br.com.zapeat.site.model.FornecedorModel;
 import br.com.zapeat.site.model.PromocaoModel;
 import br.com.zapeat.site.util.Constantes;
 import br.com.zapeat.site.util.Utilitarios;
@@ -29,15 +31,20 @@ public class DetalhamentoFaces extends LocationServiceFaces {
 		String promocaoId = TSFacesUtil.getRequestParameter(Constantes.HttpParams.PROMOCAO_ID);
 
 		if (TSUtil.isNumeric(promocaoId)) {
-			this.promocaoModel = new PromocaoDAO().obter(new PromocaoModel(Long.valueOf(promocaoId)),Utilitarios.getUsuarioLogado());
+			this.promocaoModel = new PromocaoDAO().obter(new PromocaoModel(Long.valueOf(promocaoId)), Utilitarios.getUsuarioLogado());
 		}
 
 		if (TSUtil.isEmpty(this.promocaoModel)) {
+
 			this.promocaoModel = new PromocaoModel();
+			this.promocaoModel.setFornecedorModel(new FornecedorModel());
+
+		} else {
+			this.promocaoModel.setFornecedorModel(new FornecedorDAO().obter(this.promocaoModel.getFornecedorModel(), Utilitarios.getUsuarioLogado()));
 		}
 
 		TSFacesUtil.getRequest().setAttribute(Constantes.HttpParams.CATEGORIA_ID, this.categoriaId);
-		
+
 	}
 
 	public String indicar() {

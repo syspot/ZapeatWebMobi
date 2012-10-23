@@ -1,3 +1,4 @@
+
 .text-align-center {
   text-align: center;
 }
@@ -160,10 +161,10 @@ figure.cartao{ width:25px; height:18px; float:left; margin-right:2px;}
 	div.marca img{width:48px; height:48px;}
 	.info{ float:left; max-width:220px; height: auto;}
 	.nomeEstab		{ font-size:12px; color:#000; font-weight:bold;}
-	.categoria		{ font-size:10px; color:#f90;}
+	.categoria		{ font-size:11px; color:#f90;}
 	span.separador	{ width:100px; height:2px; background:#ff6; display:block; margin:5px 0px;}
-	.tipoPromocao	{ font-size:10px; color:#000; max-width:150px;}
-	.nomePromocao	{ font-size:12px; color:#000; text-overflow: ellipsis;}
+	.tipoPromocao	{ font-size:11px; color:#000; max-width:150px;}
+	.nomePromocao	{ font-size:12px; color:#000; width:100%; }
 	span.indicacao	{ /*position:absolute; right:0px; bottom:15px;*/font-size:10px; color:#666;}
 	#screen img{width:100%;}
 	#menu .ui-content{background: #f4c700; /* Old browsers */
@@ -195,3 +196,5 @@ span.ui-slider-label{font-size:14px!important;}
     }
     
     .notFound{ width:200px; height:154px; position:absolute; margin-left:-100px; left:50%; margin-top:-77px; top:50%; background:url(/img/404.png) no-repeat center}
+    
+    

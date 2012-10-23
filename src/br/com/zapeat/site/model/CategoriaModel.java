@@ -14,19 +14,21 @@ public class CategoriaModel implements Serializable {
 	private String imagem;
 
 	private String styleClass;
-	
-	//Filtro
-	
+
+	private Long quantidadePromocoes;
+
+	// Filtro
+
 	private Integer distanciaMaxima;
 
 	public CategoriaModel() {
-	
+
 	}
-	
+
 	public CategoriaModel(Long id) {
 		this.id = id;
 	}
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -99,7 +101,13 @@ public class CategoriaModel implements Serializable {
 	public void setDistanciaMaxima(Integer distanciaMaxima) {
 		this.distanciaMaxima = distanciaMaxima;
 	}
-	
-	
+
+	public Long getQuantidadePromocoes() {
+		return quantidadePromocoes;
+	}
+
+	public void setQuantidadePromocoes(Long quantidadePromocoes) {
+		this.quantidadePromocoes = quantidadePromocoes;
+	}
 
 }

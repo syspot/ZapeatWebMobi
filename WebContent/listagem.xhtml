@@ -28,7 +28,6 @@
     
 	    <c:if test="#{empty listagemFaces.promocoes}">
 				<div styleClass="notFound"></div>
-				<!-- <h6>Ops, nenhuma promoção encontrada!</h6> -->
 		</c:if>
 		
         <ul data-role="listview" data-divider-theme="b" data-inset="false">
@@ -40,8 +39,8 @@
 								
 								<div class="marca">
 									<figure>
-										<h:graphicImage value="#{promocao.fornecedorModel.imagemThumbView}" rendered="#{!empty promocao.fornecedorModel.imagemThumb}" />
-										<img value="img/model/80x80.jpg" rendered="#{empty promocao.fornecedorModel.imagemThumb}" />
+										<h:graphicImage value="#{promocao.fornecedorModel.imagemThumbView}" rendered="#{!empty promocao.fornecedorModel.imagemThumb and false}" />
+										<h:graphicImage  value="img/model/80x80.jpg" rendered="#{empty promocao.fornecedorModel.imagemThumb}" />
 									</figure>
 								</div>
 								
@@ -52,9 +51,11 @@
 			                        <span class="separador"/>
 			
 									<div class="tipoPromocao">#{promocao.tipoPromocaoModel.descricao}</div>
+									
 									<div class="nomePromocao">
-										#{promocao.descricao}		
+										#{promocao.descricao}
 									</div>
+									
 									<h:panelGroup rendered="#{!empty promocao.distancia}">
 											<span class="ui-li-count">
 												<h:outputText value=" a #{promocao.distancia} km" rendered="#{promocao.distancia>0}"/>
@@ -62,11 +63,11 @@
 											</span> 
 									</h:panelGroup>
 									<span class="indicacao">
-									<h:outputText value="#{promocao.fornecedorModel.quantidadeIndicacoes} pessoa indicou isto" rendered="#{promocao.fornecedorModel.quantidadeIndicacoes==1 and !promocao.fornecedorModel.indicado}"/>
-									<h:outputText value="Você indicou isto" rendered="#{promocao.fornecedorModel.quantidadeIndicacoes==1 and promocao.fornecedorModel.indicado}"/>
-                					<h:outputText value="Nenhuma indicação" rendered="#{promocao.fornecedorModel.quantidadeIndicacoes==0}"/>
-				                	<h:outputText value="#{promocao.fornecedorModel.quantidadeIndicacoes} pessoas indicaram isto" rendered="#{promocao.fornecedorModel.quantidadeIndicacoes >1 and !promocao.fornecedorModel.indicado}"/>
-			                		<h:outputText value="Você e mais #{promocao.fornecedorModel.quantidadeIndicacoes -1} pessoa(s) indicaram isto" rendered="#{promocao.fornecedorModel.quantidadeIndicacoes >1 and promocao.fornecedorModel.indicado}"/>
+										<h:outputText value="#{promocao.fornecedorModel.quantidadeIndicacoes} pessoa indicou isto" rendered="#{promocao.fornecedorModel.quantidadeIndicacoes==1 and !promocao.fornecedorModel.indicado}"/>
+										<h:outputText value="Você indicou isto" rendered="#{promocao.fornecedorModel.quantidadeIndicacoes==1 and promocao.fornecedorModel.indicado}"/>
+        	        					<h:outputText value="Nenhuma indicação" rendered="#{promocao.fornecedorModel.quantidadeIndicacoes==0}"/>
+					                	<h:outputText value="#{promocao.fornecedorModel.quantidadeIndicacoes} pessoas indicaram isto" rendered="#{promocao.fornecedorModel.quantidadeIndicacoes >1 and !promocao.fornecedorModel.indicado}"/>
+				                		<h:outputText value="Você e mais #{promocao.fornecedorModel.quantidadeIndicacoes -1} pessoa(s) indicaram isto" rendered="#{promocao.fornecedorModel.quantidadeIndicacoes >1 and promocao.fornecedorModel.indicado}"/>
 									</span>
 								</div>
 						</a></li>

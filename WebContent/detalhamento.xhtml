@@ -59,10 +59,34 @@
            	</h:form>
         </div>
     	<div class="mapa">
-            <a href="mapa.xhtml?fornecedorId=#{detalhamentoFaces.promocaoModel.fornecedorModel.id}&amp;promocaoId=#{detalhamentoFaces.promocaoModel.id}&amp;categoriaId=#{detalhamentoFaces.categoriaId}" rel="external" data-transition="flip">
-                <div class="iconAmpliar"></div>
-                <figure><img src="https://maps.googleapis.com/maps/api/staticmap?center=Alameda+Padua,salvador,Ba&amp;zoom=16&amp;size=320x160&amp;markers=Salvador,ba&amp;sensor=false" width="320" height="160"/></figure>
-            </a>
+        	  <div id="map" style="width: 345px; height: 250px;"></div>
+              <script type="text/javascript">
+				var locations = [
+				  ['${detalhamentoFaces.promocaoModel.fornecedorModel.nomeFantasiaSemApostrofe}',${detalhamentoFaces.promocaoModel.fornecedorModel.latitude},${detalhamentoFaces.promocaoModel.fornecedorModel.longitude}, 4]
+				];
+			
+				var map = new google.maps.Map(document.getElementById('map'), {
+				  zoom: 10,
+				  center: new google.maps.LatLng(${detalhamentoFaces.promocaoModel.fornecedorModel.latitude},${detalhamentoFaces.promocaoModel.fornecedorModel.longitude}),
+				  mapTypeId: google.maps.MapTypeId.ROADMAP
+				});
+			
+				var infowindow = new google.maps.InfoWindow();
+			
+				var marker, i;
+				  marker = new google.maps.Marker({
+					position: new google.maps.LatLng(locations[0][1], locations[0][2]),
+					map: map
+				  });
+			
+				  google.maps.event.addListener(marker, 'click', (function(marker, i) {
+					return function() {
+					  infowindow.setContent(locations[0][0]);
+					  infowindow.open(map, marker);
+					}
+				  })(marker, i));
+              
+			  </script>
         </div>
         <div id="infoPromo">
             <p class="titulo">Sobre a promoção</p>

@@ -7,7 +7,6 @@ import br.com.topsys.web.util.TSFacesUtil;
 import br.com.zapeat.site.model.LocalizacaoModel;
 import br.com.zapeat.site.model.UsuarioModel;
 import br.com.zapeat.site.util.Constantes;
-import br.com.zapeat.site.util.Utilitarios;
 
 @SuppressWarnings("serial")
 public class LocationServiceFaces implements Serializable {
@@ -29,21 +28,16 @@ public class LocationServiceFaces implements Serializable {
 
 	private void handleUsuarioLogado() {
 
-		UsuarioModel usuario = Utilitarios.getUsuarioLogado();
+		String token = TSFacesUtil.getRequestParameter(Constantes.HttpParams.USUARIO_ID);
 
-		if (TSUtil.isEmpty(usuario)) {
+		if (!TSUtil.isEmpty(token)) {
 
-			String token = TSFacesUtil.getRequestParameter(Constantes.HttpParams.USUARIO_ID);
+			UsuarioModel usuario = new UsuarioModel();
 
-			if (!TSUtil.isEmpty(token)) {
+			usuario.setToken(token);
 
-				usuario = new UsuarioModel();
+			TSFacesUtil.addObjectInSession(Constantes.USUARIO_LOGADO, usuario);
 
-				usuario.setToken(token);
-
-				TSFacesUtil.addObjectInSession(Constantes.USUARIO_LOGADO, usuario);
-
-			}
 		}
 
 	}
