@@ -65,7 +65,7 @@ public class AuthenticationServlet extends HttpServlet {
 			JSONObject promo = null;
 			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 			NumberFormat formatNumber = NumberFormat.getCurrencyInstance(Locale.getDefault());
-			for (PromocaoModel promocao : new PromocaoDAO().pesquisarDisponiveis(usuario)) {
+			for (PromocaoModel promocao : new PromocaoDAO().pesquisarDisponiveis()) {
 
 				promo = new JSONObject();
 

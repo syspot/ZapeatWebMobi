@@ -37,16 +37,7 @@
                 	<h:outputText value="#{estabelecimentoFaces.fornecedorModel.quantidadeIndicacoes} indicações" rendered="#{estabelecimentoFaces.fornecedorModel.quantidadeIndicacoes>1}"/>
                 </span>
             <!--</div>-->
-            <h:form>
-  				<span class="btnIndicar" id="btnindicar">
-		            <p:commandLink process="@form" action="#{estabelecimentoFaces.indicar}" update="@form" rendered="#{!estabelecimentoFaces.fornecedorModel.indicado}">
-		            	Eu indico
-		           	</p:commandLink>
-		           	<p:commandLink  disabled="true" rendered="#{estabelecimentoFaces.fornecedorModel.indicado}">
-		            	Você indicou isto!
-		           	</p:commandLink>
-	           	</span>
-		</h:form>
+            
         </div>
     	<div class="mapa">
             <figure><img src="img/model/590x260.jpg" width="320" height="160" alt="IMAGEM DO ESTABELECIMENTO. PODE SER A DO SITE WEB"/></figure>

@@ -27,6 +27,10 @@ public class UsuarioModel implements Serializable {
 
 	}
 
+	public UsuarioModel(String token) {
+		this.token=token;
+	}
+
 	public UsuarioModel(String email, String senha) {
 		this.email = email;
 		this.senha = senha;

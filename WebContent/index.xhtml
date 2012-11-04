@@ -26,17 +26,13 @@
 
  <ui:insert name="conteudo"/>
  <div id="msg"/>
-  <input id="msgRetorno" type="hidden" value="#{requestScope.msg}"/>  
-  
+ <input id="msgRetorno" type="hidden" value="#{requestScope.msg}"/>  
+
 <script>
-    $(function(){
+    $(document).ready(function(){
         var strMsg = document.getElementById('msgRetorno').value;
         if ( strMsg ) {
-            $("#msg").animate( { 'top':'0px' }, 500 )
-                     .html( strMsg )
-                     .delay( 1500 )
-                     .animate( { 'top':'-45px' }, 500 );
-
+            alert(strMsg);
         }
     });
 </script>

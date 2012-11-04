@@ -35,42 +35,35 @@ public class PromocoesServlet extends HttpServlet {
 
 	private void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		String token = req.getParameter("token");
-
 		JSONObject object = new JSONObject();
 		JSONArray array = new JSONArray();
 		JSONObject promo = null;
-		if (!TSUtil.isEmpty(token)) {
 
-			UsuarioModel usuario = new UsuarioModel();
-			usuario.setToken(token);
-			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-			NumberFormat formatNumber = NumberFormat.getCurrencyInstance(Locale.getDefault());
-			for (PromocaoModel promocao : new PromocaoDAO().pesquisarDisponiveis(usuario)) {
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		NumberFormat formatNumber = NumberFormat.getCurrencyInstance(Locale.getDefault());
+		for (PromocaoModel promocao : new PromocaoDAO().pesquisarDisponiveis()) {
 
-				promo = new JSONObject();
+			promo = new JSONObject();
 
-				promo.put("descricao", promocao.getTitulo());
+			promo.put("descricao", promocao.getTitulo());
 
-				promo.put("id", promocao.getId());
+			promo.put("id", promocao.getId());
 
-				promo.put("localidade", promocao.getFornecedorModel().getNomeFantasia());
+			promo.put("localidade", promocao.getFornecedorModel().getNomeFantasia());
 
-				promo.put("latitude", promocao.getFornecedorModel().getLatitude());
+			promo.put("latitude", promocao.getFornecedorModel().getLatitude());
 
-				promo.put("longitude", promocao.getFornecedorModel().getLongitude());
+			promo.put("longitude", promocao.getFornecedorModel().getLongitude());
 
-				promo.put("dataFinal", format.format(promocao.getFim()));
+			promo.put("dataFinal", format.format(promocao.getFim()));
 
-				promo.put("dataInicial", format.format(promocao.getInicio()));
+			promo.put("dataInicial", format.format(promocao.getInicio()));
 
-				promo.put("precoOriginal", formatNumber.format(promocao.getPrecoOriginal()));
+			promo.put("precoOriginal", formatNumber.format(promocao.getPrecoOriginal()));
 
-				promo.put("precoPromocional", formatNumber.format(promocao.getPrecoPromocional()));
+			promo.put("precoPromocional", formatNumber.format(promocao.getPrecoPromocional()));
 
-				array.put(promo);
-
-			}
+			array.put(promo);
 
 		}
 

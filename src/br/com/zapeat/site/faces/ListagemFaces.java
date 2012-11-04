@@ -17,22 +17,36 @@ import br.com.zapeat.site.util.Utilitarios;
 public class ListagemFaces extends LocationServiceFaces {
 
 	private List<PromocaoModel> promocoes;
+	private String filtro;
 
 	public ListagemFaces() {
 		String categoriaId = TSFacesUtil.getRequestParameter(Constantes.HttpParams.CATEGORIA_ID);
 
 		if (TSUtil.isNumeric(categoriaId)) {
+
 			CategoriaModel categoriaModel = new CategoriaModel(Long.valueOf(categoriaId));
 
 			Integer distanciaMaxima = (Integer) TSFacesUtil.getObjectInSession(Constantes.HttpParams.FILTRO_DISTANCIA);
 
-			if (!TSUtil.isEmpty(distanciaMaxima)) {
+			if (!TSUtil.isEmpty(distanciaMaxima) && !TSUtil.isEmpty(super.getLocalizacaoAtual())) {
 
-				categoriaModel.setDistanciaMaxima(distanciaMaxima);
+				super.getLocalizacaoAtual().setDistanciaMaxima(distanciaMaxima);
 
 			}
 
-			this.promocoes = new PromocaoDAO().pesquisar(categoriaModel,super.getLocalizacaoAtual(),Utilitarios.getUsuarioLogado());
+			PromocaoModel promocao = new PromocaoModel();
+
+			promocao.setCategoriaModel(categoriaModel);
+
+			this.filtro = TSFacesUtil.getRequestParameter(Constantes.HttpParams.FILTRO);
+
+			if (!TSUtil.isEmpty(this.filtro)) {
+
+				promocao.setDescricao(this.filtro);
+
+			}
+
+			this.promocoes = new PromocaoDAO().pesquisar(promocao, super.getLocalizacaoAtual(), Utilitarios.getUsuarioLogado());
 		}
 
 		TSFacesUtil.getRequest().setAttribute(Constantes.HttpParams.CATEGORIA_ID, categoriaId);
@@ -45,6 +59,14 @@ public class ListagemFaces extends LocationServiceFaces {
 
 	public void setPromocoes(List<PromocaoModel> promocoes) {
 		this.promocoes = promocoes;
+	}
+
+	public String getFiltro() {
+		return filtro;
+	}
+
+	public void setFiltro(String filtro) {
+		this.filtro = filtro;
 	}
 
 }

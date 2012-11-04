@@ -53,7 +53,7 @@ public class FornecedorModel implements Serializable {
 	private Integer quantidadeIndicacoes;
 
 	private String cssTopGeral;
-	
+
 	private Boolean indicado;
 
 	public FornecedorModel(Long id) {
@@ -91,9 +91,9 @@ public class FornecedorModel implements Serializable {
 	public String getNomeFantasia() {
 		return nomeFantasia;
 	}
-	
+
 	public String getNomeFantasiaSemApostrofe() {
-		if(TSUtil.isEmpty(nomeFantasia)) {
+		if (TSUtil.isEmpty(nomeFantasia)) {
 			return null;
 		}
 		return nomeFantasia.replaceAll("'", "");
@@ -145,6 +145,20 @@ public class FornecedorModel implements Serializable {
 
 	public String getTelefone() {
 		return telefone;
+	}
+
+	public String getTelefoneCallTo() {
+
+		if (TSUtil.isEmpty(telefone)) {
+			return null;
+		}
+
+		String callto = "+55";
+		
+		callto = callto + telefone.replaceAll("[()-]", "").replaceAll(" ", "");
+		
+		return callto;
+
 	}
 
 	public void setTelefone(String telefone) {
@@ -303,5 +317,5 @@ public class FornecedorModel implements Serializable {
 	public void setIndicado(Boolean indicado) {
 		this.indicado = indicado;
 	}
-	
+
 }

@@ -5,16 +5,15 @@ import java.util.List;
 import br.com.topsys.database.TSDataBaseBrokerIf;
 import br.com.topsys.database.factory.TSDataBaseBrokerFactory;
 import br.com.zapeat.site.model.CategoriaModel;
-import br.com.zapeat.site.model.UsuarioModel;
 
 public class CategoriaDAO {
 
 	@SuppressWarnings("unchecked")
-	public List<CategoriaModel> pesquisar(UsuarioModel model) {
+	public List<CategoriaModel> pesquisar() {
 
 		TSDataBaseBrokerIf broker = TSDataBaseBrokerFactory.getDataBaseBrokerIf();
 
-		broker.setPropertySQL("categoriadao.usuario.pesquisar", model.getToken());
+		broker.setPropertySQL("categoriadao.pesquisar");
 
 		return broker.getCollectionBean(CategoriaModel.class, "id", "descricao", "imagem","quantidadePromocoes");
 

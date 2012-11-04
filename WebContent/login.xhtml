@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" template="index.xhtml" xmlns:p="http://primefaces.org/ui" xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+	<ui:define name="conteudo">
+
+
+	<script>
+		function logar() {
+			var login = document.getElementById('login'); 
+			var senha = document.getElementById('senha');
+			if(!login.value){
+				alert('Preencha o login!');
+				return false;
+			} else if(!senha.value){
+				alert('Preencha a senha!');
+				return false;
+			} else {
+				document.forms[0].submit();
+				return true;
+			}			
+		}
+</script>
+		<div data-role="page" id="menu">
+		
+		<div data-theme="f" data-role="header" data-position="fixed">
+			<span class="ui-title"></span>
+			 <a data-role="button" data-transition="slidedown" href="detalhamento.xhtml?promocaoId=#{loginFaces.promocaoModel.id}&amp;categoriaId=#{loginFaces.categoriaId}&amp;filtro=#{loginFaces.filtro}" data-icon="arrow-l" data-iconpos="left" rel="external" class="ui-btn-left"> Voltar </a> 
+			</div>
+		
+			<div data-role="content" style="padding: 0px">
+
+			<div data-role="fieldcontain" style="margin:2%">
+			<form method="post" action="login.xhtml">
+				<input type="hidden" name="promocaoId" id="promocaoId" value="#{loginFaces.promocaoModel.id}"/>
+				<input type="hidden" name="categoriaId" id="categoriaId" value="#{loginFaces.categoriaId}"/>
+				<input type="hidden" name="filtro" id="filtro" value="#{loginFaces.filtro}"/>
+				<input type="text" placeholder="E-mail" name="login" style="width:100%" id="login" />
+				<br/>
+				<input type="password" placeholder="Senha" style="width:100%" id="senha" name="senha"/>
+	            <input data-theme="a" value="Logar e Indicar" type="button" onclick="return logar();"/>
+            </form>
+			</div>
+			</div>
+		</div>
+
+	</ui:define>
+</ui:composition>

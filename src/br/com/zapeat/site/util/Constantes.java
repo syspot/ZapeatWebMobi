@@ -14,6 +14,7 @@ public class Constantes {
 		String LATITUDE = "latitude";
 		String LONGITUDE = "longitude";
 		String LOCATION = "location";
+		String FILTRO = "filtro";
 		String FILTRO_DISTANCIA = "filtroDistancia";
 		String LOCALIZACAO = "localizacao";
 		String USUARIO_ID= "usuarioId";
@@ -22,10 +23,10 @@ public class Constantes {
 	}
 
 	public interface Sequences {
-		String COMENTARIOS = "comentarios_id_seq";
+		String INDICACOES = "indicacoes_id_seq";
 	}
 
-	public static final String USUARIO_LOGADO = "usuario.logado";
+	public static final String USUARIO_LOGADO = "usuarioLogado";
 
 	public static final String PASTA_DOWNLOAD = "";
 	public static final String PREFIXO_IMAGEM_FORNECEDOR_THUMB = "";

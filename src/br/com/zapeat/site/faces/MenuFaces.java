@@ -9,7 +9,6 @@ import br.com.topsys.util.TSUtil;
 import br.com.zapeat.site.dao.CategoriaDAO;
 import br.com.zapeat.site.model.CategoriaModel;
 import br.com.zapeat.site.util.Constantes;
-import br.com.zapeat.site.util.Utilitarios;
 
 @SuppressWarnings("serial")
 @ManagedBean
@@ -24,15 +23,11 @@ public class MenuFaces extends LocationServiceFaces {
 		this.nextStyleClass = null;
 		this.menus = new ArrayList<CategoriaModel>();
 
-		if (!TSUtil.isEmpty(Utilitarios.getUsuarioLogado())) {
+		for (CategoriaModel categoria : new CategoriaDAO().pesquisar()) {
 
-			for (CategoriaModel categoria : new CategoriaDAO().pesquisar(Utilitarios.getUsuarioLogado())) {
+			categoria.setStyleClass(getNextStyleClass());
 
-				categoria.setStyleClass(getNextStyleClass());
-
-				this.menus.add(categoria);
-
-			}
+			this.menus.add(categoria);
 
 		}
 	}

@@ -9,6 +9,7 @@ public class LocalizacaoModel implements Serializable {
 
 	private Double latitude;
 	private Double longitude;
+	private Integer distanciaMaxima;
 
 	public LocalizacaoModel() {
 
@@ -40,6 +41,14 @@ public class LocalizacaoModel implements Serializable {
 
 	public void setLongitude(Double longitude) {
 		this.longitude = longitude;
+	}
+
+	public Integer getDistanciaMaxima() {
+		return distanciaMaxima;
+	}
+
+	public void setDistanciaMaxima(Integer distanciaMaxima) {
+		this.distanciaMaxima = distanciaMaxima;
 	}
 
 }

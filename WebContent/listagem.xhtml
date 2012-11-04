@@ -1,119 +1,115 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
- xmlns:h="http://java.sun.com/jsf/html" template="index.xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" template="index.xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core">
 
-<ui:define name="conteudo">
+	<ui:define name="conteudo">
 
-<style>
-	.tipo1 {}
-	.tipo2 {}
-	.tipo3 {}
+		<style>
+.tipo1 {
+	
+}
+
+.tipo2 {
+	
+}
+
+.tipo3 {
+	
+}
 </style>
 
-<!-- Listagem -->
-<div data-role="page" id="lista">
-    <div data-theme="f" data-role="header" data-position="fixed">
-        <span class="ui-title"></span>
-        <a data-role="button" data-transition="slidedown" href="menu.xhtml" data-icon="grid"
-        data-iconpos="left" rel="external" class="ui-btn-left">
-            Menu
-        </a>
-        <a data-role="button" data-transition="slidedown" href="configuracaoListagem.xhtml?categoriaId=#{requestScope.categoriaId}" data-icon="gear"
-        data-iconpos="left" class="ui-btn-right">
-            Configurações
-        </a>
-    </div>
-    <div data-role="content" style="padding: 15px">
-    
-	    <c:if test="#{empty listagemFaces.promocoes}">
-				<div id="notFound"></div>
-		</c:if>
-		
-        <ul style="list-style-type:none; width:100%">
-        
+		<!-- Listagem -->
+		<div data-role="page" id="lista">
+			<div data-theme="f" data-role="header" data-position="fixed">
+				<span class="ui-title"></span> <a data-role="button" data-transition="slidedown" href="menu.xhtml" data-icon="grid" data-iconpos="left" rel="external" class="ui-btn-left"> Menu </a> <a data-role="button" data-transition="slidedown" href="configuracaoListagem.xhtml?categoriaId=#{requestScope.categoriaId}" data-icon="gear" data-iconpos="left" class="ui-btn-right"> Configurações </a>
+			</div>
+			<div data-role="content" style="padding: 15px">
+
+				<c:if test="#{empty listagemFaces.promocoes}">
+					<h:panelGrid columns="2" style="width:100%">
+						<input type="text" style="width: 100%" id="filtro" placeholder="O que deseja?" />
+						<h:panelGroup>
+							<a onclick="listarGeral();" data-transition="slidedown" data-theme="c" data-role="button" id="search" data-icon="search" data-iconpos="notext">Buscar</a>
+						</h:panelGroup>
+					</h:panelGrid>
+					<div id="notFound"></div>
+				</c:if>
+
+
+				<c:if test="#{!empty listagemFaces.promocoes}">
+					<h:panelGrid columns="2" style="width:100%">
+						<input type="text" style="width: 100%" id="filtro" placeholder="O que deseja?" />
+						<h:panelGroup>
+							<a onclick="listarGeral();" data-transition="slidedown" data-theme="c" data-role="button" id="search" data-icon="search" data-iconpos="notext">Buscar</a>
+						</h:panelGroup>
+					</h:panelGrid>
+				</c:if>
+
+				<ul style="list-style-type: none; width: 100%">
+
 					<ui:repeat var="promocao" value="#{listagemFaces.promocoes}">
-					
-						<li data-theme="c" class="listaPromocoes tipo#{promocao.tipoPromocaoModel.id}">
-						
-						<a href="detalhamento.xhtml?promocaoId=#{promocao.id}&amp;categoriaId=#{requestScope.categoriaId}" data-transition="slide" rel="external">
-								
+
+						<li data-theme="c" class="listaPromocoes tipo#{promocao.tipoPromocaoModel.id}"><a href="detalhamento.xhtml?promocaoId=#{promocao.id}&amp;categoriaId=#{requestScope.categoriaId}&amp;filtro=#{listagemFaces.filtro}" data-transition="slide" rel="external">
+
 								<div class="marca">
-									<figure>
-										<h:graphicImage value="#{promocao.fornecedorModel.imagemThumbView}" rendered="#{!empty promocao.fornecedorModel.imagemThumb and false}" />
-										<h:graphicImage  value="img/model/80x80.jpg" rendered="#{empty promocao.fornecedorModel.imagemThumb}" />
-									</figure>
+									<figure> <h:graphicImage value="#{promocao.fornecedorModel.imagemThumbView}" rendered="#{!empty promocao.fornecedorModel.imagemThumb and false}" /> <h:graphicImage value="img/model/80x80.jpg" rendered="#{empty promocao.fornecedorModel.imagemThumb}" /> </figure>
 								</div>
-								
+
 								<div class="info">
 									<div class="tipoPromocao">#{promocao.tipoPromocaoModel.descricao}</div>
 									<div class="nomePromocao">#{promocao.titulo}</div>
 									<span class="indicacao">#{promocao.fornecedorModel.nomeFantasia}</span>
-								</div>    
-								<span class="distancia">
-										<h:outputText value=" a #{promocao.distancia} km" rendered="#{promocao.distancia>0 and !empty promocao.distancia}"/>
-										<h:outputText value="Você está aqui!" rendered="#{promocao.distancia==0 and !empty promocao.distancia}"/>
-								</span> 
-								
+								</div> <span class="distancia"> <h:outputText value=" a #{promocao.distancia} km" rendered="#{promocao.distancia>0 and !empty promocao.distancia}" /> <h:outputText value="Você está aqui!" rendered="#{promocao.distancia==0 and !empty promocao.distancia}" />
+							</span>
+
 								<div class="tipoPromocao">#{promocao.descricao}</div>
-								<div class="preco"><span class="floatLeft">De: 
-								<h:outputText value="#{promocao.precoOriginal}">
-									<f:convertNumber type="currency" currencySymbol="R$" locale="pt_BR" minFractionDigits="2" />
-								</h:outputText>
-								
-								</span> 
-								
-								<span class="floatRight">Por: 
-								<h:outputText value="#{promocao.precoPromocional}">
-									<f:convertNumber type="currency" currencySymbol="R$" locale="pt_BR" minFractionDigits="2" />
-								</h:outputText>
-								
-								</span></div>
+								<div class="preco">
+									<span class="floatLeft">De: <h:outputText value="#{promocao.precoOriginal}">
+											<f:convertNumber type="currency" currencySymbol="R$" locale="pt_BR" minFractionDigits="2" />
+										</h:outputText>
+
+									</span> <span class="floatRight">Por: <h:outputText value="#{promocao.precoPromocional}">
+											<f:convertNumber type="currency" currencySymbol="R$" locale="pt_BR" minFractionDigits="2" />
+										</h:outputText>
+
+									</span>
+								</div>
 								<div class="tipoPagamento">
-                   					<figure class="cartao visa"></figure>
-                   					<figure class="cartao master"></figure>
-                   					<figure class="cartao amex"></figure>
-                  		  			<figure class="cartao diners"></figure>
-               					</div>
-               					
-                   					
-									<div class="tipoPromocao">
-										<h:outputText value="#{promocao.fornecedorModel.quantidadeIndicacoes} pessoa indicou isto" rendered="#{promocao.fornecedorModel.quantidadeIndicacoes==1 and !promocao.fornecedorModel.indicado}"/>
-										<h:outputText value="Você indicou isto" rendered="#{promocao.fornecedorModel.quantidadeIndicacoes==1 and promocao.fornecedorModel.indicado}"/>
-        	        					<h:outputText value="Nenhuma indicação" rendered="#{promocao.fornecedorModel.quantidadeIndicacoes==0}"/>
-					                	<h:outputText value="#{promocao.fornecedorModel.quantidadeIndicacoes} pessoas indicaram isto" rendered="#{promocao.fornecedorModel.quantidadeIndicacoes >1 and !promocao.fornecedorModel.indicado}"/>
-				                		<h:outputText value="Você e mais #{promocao.fornecedorModel.quantidadeIndicacoes -1} pessoa(s) indicaram isto" rendered="#{promocao.fornecedorModel.quantidadeIndicacoes >1 and promocao.fornecedorModel.indicado}"/>
-									</div>
-									
-						</a>
-						</li>
+									<figure class="cartao visa"></figure>
+									<figure class="cartao master"></figure>
+									<figure class="cartao amex"></figure>
+									<figure class="cartao diners"></figure>
+								</div>
+
+
+								<div class="tipoPromocao">
+									<h:outputText value="#{promocao.fornecedorModel.quantidadeIndicacoes} pessoa indicou isto" rendered="#{promocao.fornecedorModel.quantidadeIndicacoes==1 and !promocao.fornecedorModel.indicado}" />
+									<h:outputText value="Você indicou isto" rendered="#{promocao.fornecedorModel.quantidadeIndicacoes==1 and promocao.fornecedorModel.indicado}" />
+									<h:outputText value="Nenhuma indicação" rendered="#{promocao.fornecedorModel.quantidadeIndicacoes==0}" />
+									<h:outputText value="#{promocao.fornecedorModel.quantidadeIndicacoes} pessoas indicaram isto" rendered="#{promocao.fornecedorModel.quantidadeIndicacoes >1 and !promocao.fornecedorModel.indicado}" />
+									<h:outputText value="Você e mais #{promocao.fornecedorModel.quantidadeIndicacoes -1} pessoa(s) indicaram isto" rendered="#{promocao.fornecedorModel.quantidadeIndicacoes >1 and promocao.fornecedorModel.indicado}" />
+								</div>
+
+						</a></li>
 					</ui:repeat>
 				</ul>
-    </div>
-    <div data-theme="f" data-role="footer" data-position="fixed">
-        <div data-role="navbar" data-iconpos="top">
-            <ul>
-                <li>
-                    <a href="#lista" data-theme="" id="clickDaHora" data-icon="grid" data-transition="slideup">
-                        Promoção<br /> da Hora
-                    </a>
-                </li>
-                <li>
-                    <a href="#lista" data-theme="" id="clickDoDia" data-icon="minus" data-transition="slideup">
-                        Promoção<br /> do Dia
-                    </a>
-                </li>
-                <li>
-                    <a href="#lista" data-theme="" id="clickDaSemana" data-icon="alert" data-transition="slideup">
-                        Promoção<br /> da Semana
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</div>
 
-<script>
+			</div>
+			<div data-theme="f" data-role="footer" data-position="fixed">
+				<div data-role="navbar" data-iconpos="top">
+					<ul>
+						<li><a href="#lista" data-theme="" id="clickDaHora" data-transition="slideup"> Promoção<br /> da Hora
+						</a></li>
+						<li><a href="#lista" data-theme="" id="clickDoDia"  data-transition="slideup"> Promoção<br /> do Dia
+						</a></li>
+						<li><a href="#lista" data-theme="" id="clickDaSemana"  data-transition="slideup"> Promoção<br /> da Semana
+						</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<script>
 	$(document).ready(function(){
 
 		$('.tipo2').hide();
@@ -148,9 +144,24 @@
 			$('#clickDaHora').removeClass('ui-btn-active');
 			$('#clickDaSemana').addClass('ui-btn-active');
 		});
+
+		$('#filtro').val('#{listagemFaces.filtro}');
+		
 	});
 </script>
 
-</ui:define>
+<script>
+
+	function listarGeral() {
+		var filtro = document.getElementById('filtro');
+		if(filtro.value) {
+			window.location.href='listagem.xhtml?filtro='+filtro.value+'&amp;categoriaId=#{requestScope.categoriaId}';
+		} else {
+			window.location.href='listagem.xhtml?categoriaId=#{requestScope.categoriaId}';
+		}
+	}
+	</script>
+
+	</ui:define>
 
 </ui:composition>

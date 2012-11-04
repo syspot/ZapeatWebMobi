@@ -7,12 +7,11 @@ import javax.faces.bean.ViewScoped;
 
 import br.com.topsys.util.TSUtil;
 import br.com.topsys.web.util.TSFacesUtil;
-import br.com.zapeat.site.dao.ComentarioDAO;
 import br.com.zapeat.site.dao.FornecedorDAO;
+import br.com.zapeat.site.dao.IndicacaoDAO;
 import br.com.zapeat.site.dao.PromocaoDAO;
-import br.com.zapeat.site.dao.UsuarioDAO;
-import br.com.zapeat.site.model.ComentarioModel;
 import br.com.zapeat.site.model.FornecedorModel;
+import br.com.zapeat.site.model.IndicacaoModel;
 import br.com.zapeat.site.model.PromocaoModel;
 import br.com.zapeat.site.util.Constantes;
 import br.com.zapeat.site.util.Utilitarios;
@@ -22,13 +21,16 @@ import br.com.zapeat.site.util.Utilitarios;
 @ViewScoped
 public class DetalhamentoFaces extends LocationServiceFaces {
 
-	private String categoriaId;
-	private PromocaoModel promocaoModel;
+	protected String categoriaId;
+	protected PromocaoModel promocaoModel;
+	protected String filtro;
 
 	public DetalhamentoFaces() {
 		this.categoriaId = TSFacesUtil.getRequestParameter(Constantes.HttpParams.CATEGORIA_ID);
 
 		String promocaoId = TSFacesUtil.getRequestParameter(Constantes.HttpParams.PROMOCAO_ID);
+
+		this.filtro = TSFacesUtil.getRequestParameter(Constantes.HttpParams.FILTRO);
 
 		if (TSUtil.isNumeric(promocaoId)) {
 			this.promocaoModel = new PromocaoDAO().obter(new PromocaoModel(Long.valueOf(promocaoId)), Utilitarios.getUsuarioLogado());
@@ -49,16 +51,14 @@ public class DetalhamentoFaces extends LocationServiceFaces {
 
 	public String indicar() {
 
-		ComentarioModel comentario = new ComentarioModel();
+		IndicacaoModel comentario = new IndicacaoModel();
 		comentario.setUsuarioModel(Utilitarios.getUsuarioLogado());
-		comentario.setDescricao(Constantes.TEXT_INDICACAO_MOBILE);
 		comentario.setDataCadastro(new Date());
-		comentario.setFlagIndicaPromocao(Boolean.TRUE);
-		comentario.setFlagIndicaAtendimento(Boolean.TRUE);
 		comentario.setFornecedorModel(this.promocaoModel.getFornecedorModel());
-		comentario.setUsuarioModel(new UsuarioDAO().obterPorToken(comentario.getUsuarioModel()));
+		comentario.setFlagIndica(Boolean.TRUE);
+
 		try {
-			new ComentarioDAO().inserir(comentario);
+			new IndicacaoDAO().inserir(comentario);
 			this.promocaoModel.setIndicada(Boolean.TRUE);
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -81,6 +81,14 @@ public class DetalhamentoFaces extends LocationServiceFaces {
 
 	public void setPromocaoModel(PromocaoModel promocaoModel) {
 		this.promocaoModel = promocaoModel;
+	}
+
+	public String getFiltro() {
+		return filtro;
+	}
+
+	public void setFiltro(String filtro) {
+		this.filtro = filtro;
 	}
 
 }
