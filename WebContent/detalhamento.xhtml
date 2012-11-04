@@ -15,12 +15,12 @@
 					<a data-role="button" rel="external" data-transition="fade" href="listagemGeral.xhtml?filtro=#{detalhamentoFaces.filtro}" data-icon="arrow-l" data-iconpos="left" class="ui-btn-left"> Voltar </a>
 					<a data-role="button" rel="external" data-transition="fade" href="menu.xhtml" data-icon="grid" data-iconpos="left" class="ui-btn-right"> menu </a>
 				</h:panelGroup>
-				
+
 				<h:panelGroup rendered="#{!empty detalhamentoFaces.categoriaId and !empty detalhamentoFaces.filtro}">
 					<a data-role="button" rel="external" data-transition="fade" href="listagem.xhtml?filtro=#{detalhamentoFaces.filtro}&amp;categoriaId=#{detalhamentoFaces.categoriaId}" data-icon="arrow-l" data-iconpos="left" class="ui-btn-left"> Voltar </a>
 					<a data-role="button" rel="external" data-transition="fade" href="menu.xhtml" data-icon="grid" data-iconpos="left" class="ui-btn-right"> menu </a>
 				</h:panelGroup>
-				
+
 				<h:panelGroup rendered="#{empty detalhamentoFaces.categoriaId and empty detalhamentoFaces.filtro}">
 					<a data-role="button" rel="external" data-transition="fade" href="menu.xhtml" data-icon="grid" data-iconpos="left" class="ui-btn-right"> menu </a>
 				</h:panelGroup>
@@ -33,33 +33,44 @@
 			<div data-role="content" style="padding: 0px">
 				<div id="topoPromo">
 					<div class="marca">
-						<figure> 
-							<h:graphicImage value="img/model/80x80.jpg" rendered="#{empty detalhamentoFaces.promocaoModel.fornecedorModel.imagemThumb}" /> 
-							<h:graphicImage value="#{detalhamentoFaces.promocaoModel.fornecedorModel.imagemThumbView}" rendered="#{!empty detalhamentoFaces.promocaoModel.fornecedorModel.imagemThumb}" />
-						</figure>
-
+						<figure> <h:graphicImage value="img/model/80x80.jpg" rendered="#{empty detalhamentoFaces.promocaoModel.fornecedorModel.imagemThumb}" /> <h:graphicImage value="#{detalhamentoFaces.promocaoModel.fornecedorModel.imagemThumbView}" rendered="#{!empty detalhamentoFaces.promocaoModel.fornecedorModel.imagemThumb}" /> </figure>
 					</div>
-					<div class="tipoPromocao">#{detalhamentoFaces.promocaoModel.tipoPromocaoModel.descricao}</div>
-					<div class="nomePromocao">#{detalhamentoFaces.promocaoModel.titulo}</div>
 
-					<h:form>
-						<span class="btnIndicar" id="btnindicar"> 
-						
-						<c:if test="#{detalhamentoFaces.logado and !detalhamentoFaces.promocaoModel.indicada}">
+					<h:form prependId="false">
 
-						<p:commandLink process="@form" action="#{detalhamentoFaces.indicar}" update="@form">
-		            		Eu indico		           	
-		           		</p:commandLink>
-
-							</c:if> <c:if test="#{!detalhamentoFaces.logado}">
-								<a href="login.xhtml?promocaoId=#{detalhamentoFaces.promocaoModel.id}&amp;categoriaId=#{requestScope.categoriaId}&amp;filtro=#{detalhamentoFaces.filtro}" rel="external"> Eu indico </a>
-							</c:if> 
+						<span class="btnIndicar" id="btnindicar">						
+						<c:if test="#{detalhamentoFaces.logado and !detalhamentoFaces.promocaoModel.fornecedorModel.indicado and !detalhamentoFaces.promocaoModel.fornecedorModel.naoIndicado}">
 							
-							<p:commandLink disabled="true" rendered="#{detalhamentoFaces.promocaoModel.indicada}">
-		            			Você indicou isto!
-		          		 	</p:commandLink>
+							<a href="indicacao.xhtml?promocaoId=#{detalhamentoFaces.promocaoModel.id}&amp;categoriaId=#{requestScope.categoriaId}&amp;filtro=#{detalhamentoFaces.filtro}&amp;indica=1" rel="external"> 
+								Indico 
+							</a>
+			           		
+							<a href="indicacao.xhtml?promocaoId=#{detalhamentoFaces.promocaoModel.id}&amp;categoriaId=#{requestScope.categoriaId}&amp;filtro=#{detalhamentoFaces.filtro}&amp;naoIndica=true" rel="external"> 
+								Não Indico 
+							</a>
+
+						</c:if> 
+							
+						<c:if test="#{!detalhamentoFaces.logado}">
+							<a href="indicacao.xhtml?promocaoId=#{detalhamentoFaces.promocaoModel.id}&amp;categoriaId=#{requestScope.categoriaId}&amp;filtro=#{detalhamentoFaces.filtro}" rel="external"> 
+								Indico 
+							</a>
+							<a href="indicacao.xhtml?promocaoId=#{detalhamentoFaces.promocaoModel.id}&amp;categoriaId=#{requestScope.categoriaId}&amp;filtro=#{detalhamentoFaces.filtro}&amp;naoIndica=true" rel="external"> 
+								Não Indico 
+							</a>
+						</c:if>
+						
+						<p:commandLink disabled="true" rendered="#{detalhamentoFaces.promocaoModel.fornecedorModel.indicado}">
+	            			Você indicou isto!
+	          		 	</p:commandLink>
+	          		 	
+						<p:commandLink disabled="true" rendered="#{detalhamentoFaces.promocaoModel.fornecedorModel.naoIndicado}">
+	            			Você não indicou isto!
+	          		 	</p:commandLink>
+		          		 	
 						</span>
 					</h:form>
+					
 				</div>
 				<div class="mapa">
 					<div id="map" style="width: 100%; height: 220px;"></div>
@@ -91,14 +102,13 @@
               
 			  </script>
 				</div>
+
 				<div id="infoPromo">
-					<p class="titulo">Sobre a promoção</p>
+					<div class="tipoPromocao" style="margin-left:10px">#{detalhamentoFaces.promocaoModel.tipoPromocaoModel.descricao}</div>
+					<div class="titulo"><p>#{detalhamentoFaces.promocaoModel.titulo}</p></div>
 					<div class="dados">
 						<p>#{detalhamentoFaces.promocaoModel.descricao}</p>
-						<!--<p><b>PERÍODO DA PROMOÇÃO</b></p>
-                <p>- Terça a Quinta das 11h às 12 horas</p>
-                <p>- Sexta e Sábado das 18h às 19 horas</p>
-                <p>- Domingo das 13h as 14 horas</p>-->
+
 					</div>
 
 					<!--SE FOR PROMOÇÃO POR DESCONTO-->
@@ -119,7 +129,7 @@
 					</span>
 				</div>
 				<div id="infoEstab">
-					<p class="titulo">Sobre o Estabelecimento</p>
+					<p class="titulo">#{detalhamentoFaces.promocaoModel.fornecedorModel.nomeFantasia}</p>
 					<p class="endereco">
 						<span class="map"></span>#{detalhamentoFaces.promocaoModel.fornecedorModel.enderecoConcatenado}
 					</p>
@@ -130,6 +140,33 @@
 					</a>
 				</div>
 			</div>
+			
+			<ul data-role="listview" data-theme="f">
+				<li data-role="list-divider">
+					<span class="ui-li-count">#{detalhamentoFaces.tamanhoComentarios}</span>
+					<c:if test="#{detalhamentoFaces.logado}">
+						<a rel="external" href="comentario.xhtml?promocaoId=#{detalhamentoFaces.promocaoModel.id}&amp;categoriaId=#{requestScope.categoriaId}&amp;filtro=#{detalhamentoFaces.filtro}">Clique aqui para comentar!</a>
+					</c:if>
+					<c:if test="#{!detalhamentoFaces.logado}">
+						<a rel="external" href="login.xhtml?promocaoId=#{detalhamentoFaces.promocaoModel.id}&amp;categoriaId=#{requestScope.categoriaId}&amp;filtro=#{detalhamentoFaces.filtro}">Clique aqui para logar e comentar!</a>
+					</c:if>
+				</li>
+					
+				<c:forEach var="coment" items="#{detalhamentoFaces.promocaoModel.comentarios}">
+				<li>
+					<h3>#{coment.usuarioModel.nome}</h3>
+					<p><strong></strong></p>
+					<p>#{coment.descricao}</p>
+					<p class="ui-li-aside"><strong>
+						<h:outputText value="#{coment.dataCadastro}">
+							<f:convertDateTime pattern="dd/MM/yyyy HH:mm"/>
+						</h:outputText>
+						</strong>
+					</p>
+			</li>
+			</c:forEach>
+			</ul>
 		</div>
+		
 	</ui:define>
 </ui:composition>

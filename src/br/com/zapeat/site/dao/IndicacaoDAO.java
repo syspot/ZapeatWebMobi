@@ -14,7 +14,7 @@ public class IndicacaoDAO {
 
 		model.setId(broker.getSequenceNextValue(Constantes.Sequences.INDICACOES));
 
-		broker.setPropertySQL("indicacaodao.inserir", model.getId(), model.getFornecedorModel().getId(), model.getUsuarioModel().getId(), model.getFlagIndica(),model.getDataCadastro());
+		broker.setPropertySQL("indicacaodao.inserir", model.getId(), model.getFornecedorModel().getId(), model.getUsuarioModel().getId(), model.getFlagIndica(),model.getFlagNaoIndica(),model.getDescricao(),model.getDataCadastro());
 
 		broker.execute();
 

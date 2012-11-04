@@ -31,14 +31,21 @@
 			<div data-role="content" style="padding: 0px">
 
 			<div data-role="fieldcontain" style="margin:2%">
+
 			<form method="post" action="login.xhtml">
+				
+
+				<input type="text" placeholder="E-mail" name="login" style="width:100%" id="login" />
+				<br/><br/>
+				<input type="password" placeholder="Senha" style="width:100%" id="senha" name="senha"/>
+				<input data-theme="a" value="Logar" type="button" onclick="return logar();"/>
+			
+	            
+	            
 				<input type="hidden" name="promocaoId" id="promocaoId" value="#{loginFaces.promocaoModel.id}"/>
 				<input type="hidden" name="categoriaId" id="categoriaId" value="#{loginFaces.categoriaId}"/>
 				<input type="hidden" name="filtro" id="filtro" value="#{loginFaces.filtro}"/>
-				<input type="text" placeholder="E-mail" name="login" style="width:100%" id="login" />
-				<br/>
-				<input type="password" placeholder="Senha" style="width:100%" id="senha" name="senha"/>
-	            <input data-theme="a" value="Logar e Indicar" type="button" onclick="return logar();"/>
+	            
             </form>
 			</div>
 			</div>

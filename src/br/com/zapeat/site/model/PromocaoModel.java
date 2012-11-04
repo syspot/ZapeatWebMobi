@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Date;
+import java.util.List;
 
 import br.com.topsys.util.TSUtil;
 
@@ -11,32 +12,22 @@ import br.com.topsys.util.TSUtil;
 public class PromocaoModel implements Serializable {
 
 	private Long id;
-
 	private TipoPromocaoModel tipoPromocaoModel;
-
 	private FornecedorModel fornecedorModel;
-
 	private String titulo;
-
 	private String descricao;
-
 	private Date inicio;
-
 	private Date fim;
-
 	private Double precoOriginal;
-
 	private Double precoPromocional;
-
 	private Integer indicacoes;
-
 	private String imagemThumb;
-
 	private CategoriaModel categoriaModel;
-
 	private Double distanciaCalculada;
 	private Boolean indicada;
+	private Boolean naoIndicada;
 	private Double porcentagemDesconto;
+	private List<ComentarioModel> comentarios;
 
 	public PromocaoModel() {
 
@@ -210,5 +201,23 @@ public class PromocaoModel implements Serializable {
 	public void setPorcentagemDesconto(Double porcentagemDesconto) {
 		this.porcentagemDesconto = porcentagemDesconto;
 	}
+
+	public Boolean getNaoIndicada() {
+		return naoIndicada;
+	}
+
+	public void setNaoIndicada(Boolean naoIndicada) {
+		this.naoIndicada = naoIndicada;
+	}
+
+	public List<ComentarioModel> getComentarios() {
+		return comentarios;
+	}
+
+	public void setComentarios(List<ComentarioModel> comentarios) {
+		this.comentarios = comentarios;
+	}
+	
+	
 
 }

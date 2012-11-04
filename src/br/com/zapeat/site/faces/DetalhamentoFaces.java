@@ -7,6 +7,7 @@ import javax.faces.bean.ViewScoped;
 
 import br.com.topsys.util.TSUtil;
 import br.com.topsys.web.util.TSFacesUtil;
+import br.com.zapeat.site.dao.ComentarioDAO;
 import br.com.zapeat.site.dao.FornecedorDAO;
 import br.com.zapeat.site.dao.IndicacaoDAO;
 import br.com.zapeat.site.dao.PromocaoDAO;
@@ -26,6 +27,7 @@ public class DetalhamentoFaces extends LocationServiceFaces {
 	protected String filtro;
 
 	public DetalhamentoFaces() {
+
 		this.categoriaId = TSFacesUtil.getRequestParameter(Constantes.HttpParams.CATEGORIA_ID);
 
 		String promocaoId = TSFacesUtil.getRequestParameter(Constantes.HttpParams.PROMOCAO_ID);
@@ -33,7 +35,13 @@ public class DetalhamentoFaces extends LocationServiceFaces {
 		this.filtro = TSFacesUtil.getRequestParameter(Constantes.HttpParams.FILTRO);
 
 		if (TSUtil.isNumeric(promocaoId)) {
+
 			this.promocaoModel = new PromocaoDAO().obter(new PromocaoModel(Long.valueOf(promocaoId)), Utilitarios.getUsuarioLogado());
+
+			if (!TSUtil.isEmpty(this.promocaoModel)) {
+				this.promocaoModel.setComentarios(new ComentarioDAO().pesquisar(this.promocaoModel));
+			}
+
 		}
 
 		if (TSUtil.isEmpty(this.promocaoModel)) {
@@ -42,7 +50,9 @@ public class DetalhamentoFaces extends LocationServiceFaces {
 			this.promocaoModel.setFornecedorModel(new FornecedorModel());
 
 		} else {
+
 			this.promocaoModel.setFornecedorModel(new FornecedorDAO().obter(this.promocaoModel.getFornecedorModel(), Utilitarios.getUsuarioLogado()));
+
 		}
 
 		TSFacesUtil.getRequest().setAttribute(Constantes.HttpParams.CATEGORIA_ID, this.categoriaId);
@@ -56,10 +66,12 @@ public class DetalhamentoFaces extends LocationServiceFaces {
 		comentario.setDataCadastro(new Date());
 		comentario.setFornecedorModel(this.promocaoModel.getFornecedorModel());
 		comentario.setFlagIndica(Boolean.TRUE);
+		comentario.setFlagNaoIndica(Boolean.FALSE);
 
 		try {
 			new IndicacaoDAO().inserir(comentario);
 			this.promocaoModel.setIndicada(Boolean.TRUE);
+			this.promocaoModel.setNaoIndicada(Boolean.FALSE);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
@@ -89,6 +101,13 @@ public class DetalhamentoFaces extends LocationServiceFaces {
 
 	public void setFiltro(String filtro) {
 		this.filtro = filtro;
+	}
+	
+	public Integer getTamanhoComentarios() {
+		if(TSUtil.isEmpty(this.promocaoModel) || TSUtil.isEmpty(this.promocaoModel.getComentarios())) {
+			return 0;
+		}
+		return this.promocaoModel.getComentarios().size();
 	}
 
 }

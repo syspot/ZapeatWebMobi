@@ -5,9 +5,14 @@
 	background-image:-moz-linear-gradient(top, #ff9, #ffffad);
 	background-image:-o-linear-gradient(top, #ff9, #ffffad);border-bottom:2px solid #FFC116; position:relative; height:50px;
 }
-span.btnIndicar{ border-radius:3px; moz-border-radius:3px; o-border-radius:3px; webkit-border-radius:3px; padding:3px 5px; border:1px solid #fc0; background:#ffffb7; position:absolute; right:5px; top:25px;font-size:10px;}
+span.btnIndicar{ border-radius:3px; moz-border-radius:3px; o-border-radius:3px; webkit-border-radius:3px; padding:3px 5px; border:1px solid #fc0; background:#ffffb7; position:absolute; right:7%; top:25px;font-size:10px;}
 span.btnIndicar:hover{background: #ffae00; color:#fff!important;}
 span.btnIndicar a{ color:#fc0!important; text-decoration:none!important;}
+
+span.btnNaoIndicar{ border-radius:3px; moz-border-radius:3px; o-border-radius:3px; webkit-border-radius:3px; padding:3px 5px; border:1px solid #fc0; background:#ffffb7; position:absolute; right:1%; top:25px;font-size:10px;}
+span.btnNaoIndicar:hover{background: #ffae00; color:#fff!important;}
+span.btnNaoIndicar a{ color:#fc0!important; text-decoration:none!important;}
+
 
 #map_canvas{ width:100%; height:100%;}
 #infoPromo{border-top:4px solid #FFAE00; min-width:320px; width:100%; min-height:70px; height:auto; position:relative; padding:10px 0px;
@@ -21,7 +26,7 @@ span.btnIndicar a{ color:#fc0!important; text-decoration:none!important;}
 
 #infoPromo .dados{ font-size:10px; color:#000; padding:0px 10px; width:210px; margin-bottom:20px;}
 #infoPromo .dadosEstab{ font-size:10px; color:#000; padding:0px 10px; width:auto; margin-bottom:20px;}
-#desconto{position:absolute; top:-4px; right:10px; width:70px; height:70px; z-index:9999;
+#desconto{position:absolute; top:-4px; right:15px; width:100px; height:60px; z-index:9999;
 background: #ffae00; /* Old browsers */
 background: -moz-linear-gradient(top,  #ffae00 0%, #fbff3d 100%); /* FF3.6+ */
 background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffae00), color-stop(100%,#fbff3d)); /* Chrome,Safari4+ */
@@ -33,7 +38,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffae00', end
 text-shadow: 1px 1px 5px #000000;
 filter: dropshadow(color=#000000, offx=1, offy=1);
 }
-#desconto .percentual{font-size:28px!important;}
+#desconto .percentual{font-size:24px!important;}
 #desconto p{font-size:12px; font-weight:bold; color:#fff; text-align:center; text-transform: uppercase;}
 span.preco{padding:3px; background:#f60; color:#fff; position:absolute; bottom:0px; left:0px; font-size:12px; font-weight:bold;}
 div.preco{ clear:both; overflow:hidden; margin:10px 0;}
@@ -42,17 +47,17 @@ div.preco{ clear:both; overflow:hidden; margin:10px 0;}
 #infoEstab p.tel{font-size:10px; margin-left:10px; cursor:alias; background:url(img/tel.png) no-repeat; padding-left:25px; height:18px;}
 .pagamento{margin:10px; font-size:10px;}
 figure.cartao{ width:25px; height:18px; float:left; margin-right:2px;}
-.visa{ background:url(img/visa.png);}
-.master{ background:url(img/master.png);}
-.amex{ background:url(img/amex.png);}
-.diners{ background:url(img/diners.png);}
+.visa{ background:url(../img/visa.png);}
+.master{ background:url(../img/master.png);}
+.amex{ background:url(../img/amex.png);}
+.diners{ background:url(../img/diners.png);}
 
 .mapa{position:relative;}
 .mapa .iconAmpliar{ background:url(img/ampliarMapa.png) no-repeat 5px 5px; position:absolute; top:5px; left:5px; width:30px; height:25px;}
 .mapa a{ display:block; width:100%; height:100%; z-index:9999;}
 .mapa figure{z-index:8888;}
 
-#notFound{ width:100%; height:154px;; background:url(img/404.png) no-repeat center;}
+#notFound{ width:100%; height:154px;; background:url(../img/404.png) no-repeat center;}
 #marca{ width:128px; height:128px; margin: 10px auto;}
 a{text-decoration:none;}
 	div.marca{ float:left; width:50px; height:50px; background:#ccc; margin-right:10px;}
@@ -173,5 +178,9 @@ span.ui-slider-label{font-size:14px!important;}
 	}
 	.content-primary {
 		width: 60%;
+	}
+	
+	.coluna10 {
+		width:10%;
 	}
 }

@@ -20,6 +20,8 @@ public class Constantes {
 		String USUARIO_ID= "usuarioId";
 		String EMAIL= "email";
 		String SENHA = "senha";
+		String LOGIN = "login";
+		String NAO_INDICA="naoIndica";
 	}
 
 	public interface Sequences {

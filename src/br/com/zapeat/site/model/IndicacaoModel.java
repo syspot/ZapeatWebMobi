@@ -17,6 +17,7 @@ public class IndicacaoModel implements Serializable {
 	private Date dataCadastro;
 
 	private Boolean flagIndica;
+	private Boolean flagNaoIndica;
 
 	public Long getId() {
 		return id;
@@ -89,6 +90,14 @@ public class IndicacaoModel implements Serializable {
 
 	public void setFlagIndica(Boolean flagIndica) {
 		this.flagIndica = flagIndica;
+	}
+
+	public Boolean getFlagNaoIndica() {
+		return flagNaoIndica;
+	}
+
+	public void setFlagNaoIndica(Boolean flagNaoIndica) {
+		this.flagNaoIndica = flagNaoIndica;
 	}
 
 }

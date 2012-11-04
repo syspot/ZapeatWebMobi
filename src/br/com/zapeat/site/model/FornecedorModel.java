@@ -55,6 +55,8 @@ public class FornecedorModel implements Serializable {
 	private String cssTopGeral;
 
 	private Boolean indicado;
+	
+	private Boolean naoIndicado;
 
 	public FornecedorModel(Long id) {
 
@@ -317,5 +319,15 @@ public class FornecedorModel implements Serializable {
 	public void setIndicado(Boolean indicado) {
 		this.indicado = indicado;
 	}
+
+	public Boolean getNaoIndicado() {
+		return naoIndicado;
+	}
+
+	public void setNaoIndicado(Boolean naoIndicado) {
+		this.naoIndicado = naoIndicado;
+	}
+	
+	
 
 }
