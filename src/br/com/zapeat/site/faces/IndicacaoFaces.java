@@ -51,7 +51,8 @@ public class IndicacaoFaces extends DetalhamentoFaces {
 
 			this.logarIndicar();
 
-		} else if (!TSUtil.isEmpty(TSFacesUtil.getRequestParameter("submitLogado")) || !TSUtil.isEmpty(TSFacesUtil.getRequestParameter("indica"))) {
+		} else if (!TSUtil.isEmpty(TSFacesUtil.getRequestParameter("submitLogado")) 
+				|| !TSUtil.isEmpty(TSFacesUtil.getRequestParameter("indica"))) {
 
 			this.indicar();
 
@@ -115,7 +116,27 @@ public class IndicacaoFaces extends DetalhamentoFaces {
 
 		try {
 
-			new IndicacaoDAO().inserir(comentario);
+			IndicacaoDAO indicacaoDAO = new IndicacaoDAO();
+
+			IndicacaoModel anterior = indicacaoDAO.obter(comentario);
+
+			if (TSUtil.isEmpty(anterior)) {
+
+				indicacaoDAO.inserir(comentario);
+
+			} else {
+
+				if (anterior.getFlagIndica()) {
+
+					TSFacesUtil.getRequest().setAttribute("msg", "Você já indicou isto.");
+
+				} else {
+
+					TSFacesUtil.getRequest().setAttribute("msg", "Você já não indicou isto.");
+
+				}
+
+			}
 
 		} catch (TSApplicationException ex) {
 

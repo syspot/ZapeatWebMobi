@@ -52,7 +52,7 @@
 						<li data-theme="c" class="listaPromocoes tipo#{promocao.tipoPromocaoModel.id}"><a href="detalhamento.xhtml?promocaoId=#{promocao.id}&amp;categoriaId=#{requestScope.categoriaId}&amp;filtro=#{listagemFaces.filtro}" data-transition="slide" rel="external">
 
 								<div class="marca">
-									<figure> <h:graphicImage value="#{promocao.fornecedorModel.imagemThumbView}" rendered="#{!empty promocao.fornecedorModel.imagemThumb and false}" /> <h:graphicImage value="img/model/80x80.jpg" rendered="#{empty promocao.fornecedorModel.imagemThumb}" /> </figure>
+									<figure> <h:graphicImage value="#{promocao.imagemThumbView}" rendered="#{!empty promocao.imagemThumb}" /> <h:graphicImage value="img/model/80x80.jpg" rendered="#{empty promocao.imagemThumb}" /> </figure>
 								</div>
 
 								<div class="info">
@@ -75,10 +75,9 @@
 									</span>
 								</div>
 								<div class="tipoPagamento">
-									<figure class="cartao visa"></figure>
-									<figure class="cartao master"></figure>
-									<figure class="cartao amex"></figure>
-									<figure class="cartao diners"></figure>
+									<ui:repeat value="#{promocao.fornecedorModel.formasPagamento}" var="forma">
+										<img width="25" height="18" style="float:left; margin-right:2px;" src="#{forma.imagemView}"/>
+									</ui:repeat>
 								</div>
 
 

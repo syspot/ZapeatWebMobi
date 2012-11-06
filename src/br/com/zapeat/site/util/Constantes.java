@@ -1,5 +1,7 @@
 package br.com.zapeat.site.util;
 
+import br.com.topsys.web.util.TSFacesUtil;
+
 public class Constantes {
 
 	private Constantes() {
@@ -30,9 +32,6 @@ public class Constantes {
 
 	public static final String USUARIO_LOGADO = "usuarioLogado";
 
-	public static final String PASTA_DOWNLOAD = "";
-	public static final String PREFIXO_IMAGEM_FORNECEDOR_THUMB = "";
-
 	public interface StyleClassMenu {
 
 		String BLOCK_A = "ui-block-a";
@@ -40,4 +39,22 @@ public class Constantes {
 		String BLOCK_C = "ui-block-c";
 
 	}
+	
+	public static final String PASTA_DOWNLOAD_TEMP = "http://"+TSFacesUtil.getRequest().getServerName() + ":" + TSFacesUtil.getRequest().getServerPort() + "/img_zapeat/";
+	public static final String PASTA_DOWNLOAD = "http://"+TSFacesUtil.getRequest().getServerName() + ":" + TSFacesUtil.getRequest().getServerPort() + "/img_zapeat/";
+	public static final String PASTA_DOWNLOAD_FORNECEDOR = "http://"+TSFacesUtil.getRequest().getServerName() + ":" + TSFacesUtil.getRequest().getServerPort() + "/img_zapeat/fornecedor/";
+	
+	public static final String PREFIXO_IMAGEM_CATEGORIA = "20x20_";
+	public static final String PREFIXO_IMAGEM_FORMA_PAGAMENTO = "25x18_";
+	public static final String PREFIXO_IMAGEM_PROMOCAO_FULL = "590x260_";
+	public static final String PREFIXO_IMAGEM_PROMOCAO_THUMB = "180x79_";
+	public static final String PREFIXO_PROMOCAO_THUMB = "80x80_";
+	public static final String PREFIXO_IMAGEM_FORNECEDOR_FULL = "590x260_";
+	public static final String PREFIXO_IMAGEM_FORNECEDOR_THUMB = "180x79_";
+	public static final String PREFIXO_IMAGEM_CARRO_CHEFE_FULL = "590x260_";
+	public static final String PREFIXO_IMAGEM_CARRO_CHEFE_THUMB = "180x79_";
+	public static final String PREFIXO_IMAGEM_FORNECEDOR_LOGOMARCA = "80x80_";
+	public static final String PREFIXO_IMAGEM_BANNER_SUPERIOR_GRANDE = "728x90_";
+	public static final String PREFIXO_IMAGEM_BANNER_LATERAL = "170x260_";
+	public static final String PREFIXO_IMAGEM_BANNER_SUPERIOR_PEQUENO = "210x110_";
 }

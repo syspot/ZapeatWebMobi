@@ -21,4 +21,14 @@ public class IndicacaoDAO {
 		return model;
 
 	}
+	
+	public IndicacaoModel obter(IndicacaoModel model) {
+		
+		TSDataBaseBrokerIf broker = TSDataBaseBrokerFactory.getDataBaseBrokerIf();
+		
+		broker.setPropertySQL("indicacaodao.obter",model.getFornecedorModel().getId(),model.getUsuarioModel().getId());
+		
+		return (IndicacaoModel) broker.getObjectBean(IndicacaoModel.class,"id","flagIndica","flagNaoIndica");
+		
+	}
 }

@@ -42,7 +42,7 @@
 						<c:if test="#{detalhamentoFaces.logado and !detalhamentoFaces.promocaoModel.fornecedorModel.indicado and !detalhamentoFaces.promocaoModel.fornecedorModel.naoIndicado}">
 							
 							<a href="indicacao.xhtml?promocaoId=#{detalhamentoFaces.promocaoModel.id}&amp;categoriaId=#{requestScope.categoriaId}&amp;filtro=#{detalhamentoFaces.filtro}&amp;indica=1" rel="external"> 
-								Indico 
+								Indico &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
 							</a>
 			           		
 							<a href="indicacao.xhtml?promocaoId=#{detalhamentoFaces.promocaoModel.id}&amp;categoriaId=#{requestScope.categoriaId}&amp;filtro=#{detalhamentoFaces.filtro}&amp;naoIndica=true" rel="external"> 
@@ -52,11 +52,8 @@
 						</c:if> 
 							
 						<c:if test="#{!detalhamentoFaces.logado}">
-							<a href="indicacao.xhtml?promocaoId=#{detalhamentoFaces.promocaoModel.id}&amp;categoriaId=#{requestScope.categoriaId}&amp;filtro=#{detalhamentoFaces.filtro}" rel="external"> 
-								Indico 
-							</a>
-							<a href="indicacao.xhtml?promocaoId=#{detalhamentoFaces.promocaoModel.id}&amp;categoriaId=#{requestScope.categoriaId}&amp;filtro=#{detalhamentoFaces.filtro}&amp;naoIndica=true" rel="external"> 
-								Não Indico 
+							<a href="login.xhtml?promocaoId=#{detalhamentoFaces.promocaoModel.id}&amp;categoriaId=#{requestScope.categoriaId}&amp;filtro=#{detalhamentoFaces.filtro}" rel="external"> 
+								Logue para indicar ou não indicar!
 							</a>
 						</c:if>
 						

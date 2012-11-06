@@ -21,7 +21,7 @@ public class FornecedorDAO {
 		
 		broker.setPropertySQL("fornecedordao.obter",token,token,model.getId());
 		
-		return (FornecedorModel) broker.getObjectBean(FornecedorModel.class,"id","nomeFantasia","latitude", "longitude","cidadeModel.nome","cidadeModel.estadoModel.sigla","logradouro","numero","cep","bairro","telefone","quantidadeIndicacoes","indicado","naoIndicado");
+		return (FornecedorModel) broker.getObjectBean(FornecedorModel.class,"id","nomeFantasia","latitude", "longitude","cidadeModel.nome","cidadeModel.estadoModel.sigla","logradouro","numero","cep","bairro","telefone","quantidadeIndicacoes","indicado","naoIndicado","imagemThumb");
 		
 	}
 

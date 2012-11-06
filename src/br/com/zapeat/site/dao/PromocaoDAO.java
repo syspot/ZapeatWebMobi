@@ -15,7 +15,12 @@ public class PromocaoDAO {
 	@SuppressWarnings("unchecked")
 	public List<PromocaoModel> pesquisar(PromocaoModel model, LocalizacaoModel localizacao, UsuarioModel usuario) {
 
-		StringBuilder sql = new StringBuilder("SELECT P.ID,P.DESCRICAO,T.ID,T.DESCRICAO,F.ID,F.NOME_FANTASIA,F.CEP,F.LOGRADOURO,F.NUMERO,F.BAIRRO,C.NOME,P.INICIO,P.FIM,P.PRECO_ORIGINAL,P.PRECO_PROMOCIONAL,P.TITULO,P.IMAGEM_THUMB,CAT.DESCRICAO,(SELECT COALESCE(COUNT(*),0) FROM INDICACOES COM WHERE COM.FORNECEDOR_ID = F.ID AND COM.FLAG_INDICA),EXISTS(SELECT 1 FROM INDICACOES COM,USUARIOS_SITE US WHERE US.ID = COM.USUARIO_ID AND COM.FORNECEDOR_ID = F.ID AND COM.FLAG_INDICA  AND US.TOKEN = ?) ");
+		StringBuilder sql = new StringBuilder("SELECT P.ID,P.DESCRICAO,T.ID,T.DESCRICAO,F.ID,F.NOME_FANTASIA,F.CEP,F.LOGRADOURO,")
+											 .append("F.NUMERO,F.BAIRRO,C.NOME,P.INICIO,P.FIM,P.PRECO_ORIGINAL,P.PRECO_PROMOCIONAL,")
+											 .append("P.TITULO,P.IMAGEM_THUMB,CAT.DESCRICAO,")
+											 .append("(SELECT string_agg(FP.IMAGEM,',') FROM FORMAS_PAGAMENTOS FP,FORNECEDORES_FORMAS_PAGAMENTOS FPP WHERE FPP.FORNECEDOR_ID = F.ID AND FPP.FORMA_PAGAMENTO_ID = FP.ID),")
+									 		 .append("(SELECT COALESCE(COUNT(*),0) FROM INDICACOES COM WHERE COM.FORNECEDOR_ID = F.ID AND COM.FLAG_INDICA),")
+							 		 		 .append("EXISTS(SELECT 1 FROM INDICACOES COM,USUARIOS_SITE US WHERE US.ID = COM.USUARIO_ID AND COM.FORNECEDOR_ID = F.ID AND COM.FLAG_INDICA  AND US.TOKEN = ?) ");
 
 		boolean existeLatitudeLongitude = !TSUtil.isEmpty(localizacao) && !TSUtil.isEmpty(localizacao.getLatitude()) && !TSUtil.isEmpty(localizacao.getLongitude());
 
@@ -101,7 +106,7 @@ public class PromocaoDAO {
 
 		}
 
-		return broker.getCollectionBean(PromocaoModel.class, "id", "descricao", "tipoPromocaoModel.id", "tipoPromocaoModel.descricao", "fornecedorModel.id", "fornecedorModel.nomeFantasia", "fornecedorModel.cep", "fornecedorModel.logradouro", "fornecedorModel.numero", "fornecedorModel.bairro", "fornecedorModel.cidadeModel.nome", "inicio", "fim", "precoOriginal", "precoPromocional", "titulo", "imagemThumb", "categoriaModel.descricao", "fornecedorModel.quantidadeIndicacoes", "fornecedorModel.indicado", "distanciaCalculada");
+		return broker.getCollectionBean(PromocaoModel.class, "id", "descricao", "tipoPromocaoModel.id", "tipoPromocaoModel.descricao", "fornecedorModel.id", "fornecedorModel.nomeFantasia", "fornecedorModel.cep", "fornecedorModel.logradouro", "fornecedorModel.numero", "fornecedorModel.bairro", "fornecedorModel.cidadeModel.nome", "inicio", "fim", "precoOriginal", "precoPromocional", "titulo", "imagemThumb", "categoriaModel.descricao","fornecedorModel.imagensFormaPagamento", "fornecedorModel.quantidadeIndicacoes", "fornecedorModel.indicado", "distanciaCalculada");
 
 	}
 
@@ -115,9 +120,9 @@ public class PromocaoDAO {
 			token = usuario.getToken();
 		}
 
-		broker.setPropertySQL("promocaodao.obter", token, model.getId());
+		broker.setPropertySQL("promocaodao.obter", token,token,model.getId());
 
-		return (PromocaoModel) broker.getObjectBean(PromocaoModel.class, "id", "tipoPromocaoModel.id", "tipoPromocaoModel.descricao", "fornecedorModel.id", "fornecedorModel.nomeFantasia", "descricao", "inicio", "fim", "precoOriginal", "precoPromocional", "titulo", "fornecedorModel.longitude", "fornecedorModel.latitude", "fornecedorModel.cidadeModel.nome", "fornecedorModel.cidadeModel.estadoModel.sigla", "fornecedorModel.logradouro", "fornecedorModel.numero", "fornecedorModel.cep", "fornecedorModel.bairro", "fornecedorModel.telefone", "fornecedorModel.quantidadeIndicacoes", "indicada", "porcentagemDesconto");
+		return (PromocaoModel) broker.getObjectBean(PromocaoModel.class, "id", "tipoPromocaoModel.id", "tipoPromocaoModel.descricao", "fornecedorModel.id", "fornecedorModel.nomeFantasia", "descricao", "inicio", "fim", "precoOriginal", "precoPromocional", "titulo", "fornecedorModel.longitude", "fornecedorModel.latitude", "fornecedorModel.cidadeModel.nome", "fornecedorModel.cidadeModel.estadoModel.sigla", "fornecedorModel.logradouro", "fornecedorModel.numero", "fornecedorModel.cep", "fornecedorModel.bairro", "fornecedorModel.telefone", "fornecedorModel.quantidadeIndicacoes", "fornecedorModel.indicado","fornecedorModel.naoIndicado", "porcentagemDesconto","fornecedorModel.imagemThumb");
 
 	}
 

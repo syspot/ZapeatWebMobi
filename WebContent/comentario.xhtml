@@ -17,7 +17,7 @@
 			}			
 		}
 	</script>
-		<div data-role="page" id="comentar">
+		<div data-role="page" id="menu">
 		
 			<div data-theme="f" data-role="header" data-position="fixed">
 				<span class="ui-title"></span>
@@ -30,7 +30,7 @@
 
 					<form method="post" action="comentario.xhtml">
 						
-						<textarea  rows="6" placeholder="Comentário..." name="comentario" style="width:100%" id="comentario" />
+						<textarea  rows="10" placeholder="Comentário..." name="comentario" style="width:100%" id="comentario" />
 						<input data-theme="a" value="Comentar" type="button" onclick="return comentar();"/>
 						
 						<input type="hidden" value="#{comentarioFaces.promocaoModel.id}" name="promocaoId" id="promocaoId"/>

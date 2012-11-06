@@ -8,7 +8,6 @@ import javax.faces.bean.ViewScoped;
 import br.com.topsys.util.TSUtil;
 import br.com.topsys.web.util.TSFacesUtil;
 import br.com.zapeat.site.dao.ComentarioDAO;
-import br.com.zapeat.site.dao.FornecedorDAO;
 import br.com.zapeat.site.dao.IndicacaoDAO;
 import br.com.zapeat.site.dao.PromocaoDAO;
 import br.com.zapeat.site.model.FornecedorModel;
@@ -48,10 +47,6 @@ public class DetalhamentoFaces extends LocationServiceFaces {
 
 			this.promocaoModel = new PromocaoModel();
 			this.promocaoModel.setFornecedorModel(new FornecedorModel());
-
-		} else {
-
-			this.promocaoModel.setFornecedorModel(new FornecedorDAO().obter(this.promocaoModel.getFornecedorModel(), Utilitarios.getUsuarioLogado()));
 
 		}
 
@@ -102,9 +97,9 @@ public class DetalhamentoFaces extends LocationServiceFaces {
 	public void setFiltro(String filtro) {
 		this.filtro = filtro;
 	}
-	
+
 	public Integer getTamanhoComentarios() {
-		if(TSUtil.isEmpty(this.promocaoModel) || TSUtil.isEmpty(this.promocaoModel.getComentarios())) {
+		if (TSUtil.isEmpty(this.promocaoModel) || TSUtil.isEmpty(this.promocaoModel.getComentarios())) {
 			return 0;
 		}
 		return this.promocaoModel.getComentarios().size();

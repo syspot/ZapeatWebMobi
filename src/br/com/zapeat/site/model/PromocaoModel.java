@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 import br.com.topsys.util.TSUtil;
+import br.com.zapeat.site.util.Constantes;
 
 @SuppressWarnings("serial")
 public class PromocaoModel implements Serializable {
@@ -218,6 +219,8 @@ public class PromocaoModel implements Serializable {
 		this.comentarios = comentarios;
 	}
 	
-	
+	public String getImagemThumbView() {
+		return TSUtil.isEmpty(this.imagemThumb) ? this.imagemThumb : Constantes.PASTA_DOWNLOAD + Constantes.PREFIXO_PROMOCAO_THUMB + imagemThumb;
+	}
 
 }

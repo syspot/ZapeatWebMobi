@@ -1,6 +1,8 @@
 package br.com.zapeat.site.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import br.com.topsys.util.TSUtil;
 import br.com.zapeat.site.util.Constantes;
@@ -9,54 +11,32 @@ import br.com.zapeat.site.util.Constantes;
 public class FornecedorModel implements Serializable {
 
 	private Long id;
-
 	private String razaoSocial;
-
 	private String cnpj;
-
 	private String nomeFantasia;
-
 	private String cep;
-
 	private String logradouro;
-
 	private String numero;
-
 	private String bairro;
-
 	private String site;
-
 	private String telefone;
-
 	private Double latitude;
-
 	private Double longitude;
-
 	private String logoMarca;
-
 	private Boolean flagAtivo;
-
 	private String descricao;
-
 	private String horariosFuncionamento;
-
 	private String twitter;
-
 	private String facebook;
-
 	private CidadeModel cidadeModel;
-
 	private String imagemThumb;
-
 	private CategoriaModel categoriaPrincipal;
-
 	private Integer quantidadeIndicacoes;
-
 	private String cssTopGeral;
-
 	private Boolean indicado;
-	
 	private Boolean naoIndicado;
+	private List<FormaPagamentoModel> formasPagamento;
+	private String imagensFormaPagamento;
 
 	public FornecedorModel(Long id) {
 
@@ -156,9 +136,9 @@ public class FornecedorModel implements Serializable {
 		}
 
 		String callto = "+55";
-		
+
 		callto = callto + telefone.replaceAll("[()-]", "").replaceAll(" ", "");
-		
+
 		return callto;
 
 	}
@@ -327,7 +307,35 @@ public class FornecedorModel implements Serializable {
 	public void setNaoIndicado(Boolean naoIndicado) {
 		this.naoIndicado = naoIndicado;
 	}
-	
-	
+
+	public List<FormaPagamentoModel> getFormasPagamento() {
+		return formasPagamento;
+	}
+
+	public void setFormasPagamento(List<FormaPagamentoModel> formasPagamento) {
+		this.formasPagamento = formasPagamento;
+	}
+
+	public String getImagensFormaPagamento() {
+		return imagensFormaPagamento;
+	}
+
+	public void setImagensFormaPagamento(String imagensFormaPagamento) {
+
+		this.imagensFormaPagamento = imagensFormaPagamento;
+
+		this.formasPagamento = new ArrayList<FormaPagamentoModel>();
+
+		if (!TSUtil.isEmpty(this.imagensFormaPagamento)) {
+
+			for (String imagem : this.imagensFormaPagamento.split(",")) {
+
+				this.formasPagamento.add(new FormaPagamentoModel(imagem));
+
+			}
+
+		}
+
+	}
 
 }
