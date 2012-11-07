@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" template="index.xhtml" xmlns:p="http://primefaces.org/ui" xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+	<ui:define name="conteudo">
+
+
+	<script>
+		function logar() {
+			var nome = document.getElementById('nome'); 
+			var email = document.getElementById('email'); 
+			var senha = document.getElementById('senha');
+			var termo = document.getElementById('termo');
+
+			if(!nome.value){
+				alert('Preencha o nome!');
+				return false;
+			} else if(!email.value){
+				alert('Preencha a e-mail!');
+				return false;
+			} else if(!senha.value){
+				alert('Preencha a senha!');
+				return false;
+			} else if(!termo.checked){
+				alert('É necessário aceitar o termo e condições gerais de uso!');
+				return false;
+			} else {
+				document.forms[0].submit();
+				return true;
+			}			
+		}
+</script>
+		<div data-role="page" id="menu">
+		
+		<div data-theme="f" data-role="header" data-position="fixed">
+			<span class="ui-title"></span>
+			<c:if test="#{!empty cadastroFaces.promocaoModel.id}">
+			 <a data-role="button" data-transition="slidedown" href="login.xhtml?promocaoId=#{cadastroFaces.promocaoModel.id}&amp;categoriaId=#{cadastroFaces.categoriaId}&amp;filtro=#{cadastroFaces.filtro}"  data-icon="arrow-l" data-iconpos="left" rel="external" class="ui-btn-left"> Voltar </a> 
+			 </c:if>
+
+			<c:if test="#{empty cadastroFaces.promocaoModel.id}">
+				 <a data-role="button" data-transition="slidedown" href="menu.xhtml"  data-icon="arrow-l" data-iconpos="left" rel="external" class="ui-btn-left"> Menu </a> 
+			 </c:if>			 
+
+			</div>
+		
+			<div data-role="content" style="padding: 0px">
+
+			<div data-role="fieldcontain" style="margin:2%">
+
+			<form method="post" action="cadastro.xhtml">
+				
+				<input type="text" placeholder="Nome" name="nome" style="width:100%" id="nome" />
+				<br/><br/>
+			
+				<input type="text" placeholder="E-mail" name="email" style="width:100%" id="email" />
+				<br/><br/>
+			
+				<input type="password" placeholder="Senha" style="width:100%" id="senha" name="senha" autocomplete="off"/>
+				<br/><br/>
+				<div style="float:left; position: relative; margin-left:-18px">
+					<input type="checkbox" name="termo" id="termo" /> 
+					<div style="margin-left:40px;font-size:11px"><a href="termoUsoView.xhtml" data-rel="dialog">Li e aceito os Termos e Condições Gerais de Uso</a></div>
+				</div>
+				<br/>				
+				<input data-theme="a" value="Cadastrar" type="button" onclick="return logar();"/>
+	            
+				<input type="hidden" name="promocaoId" id="promocaoId" value="#{cadastroFaces.promocaoModel.id}"/>
+				<input type="hidden" name="categoriaId" id="categoriaId" value="#{cadastroFaces.categoriaId}"/>
+				<input type="hidden" name="filtro" id="filtro" value="#{cadastroFaces.filtro}"/>
+	            
+            </form>
+
+			</div>
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>

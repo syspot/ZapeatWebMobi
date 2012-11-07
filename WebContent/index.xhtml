@@ -25,14 +25,19 @@
 <body onload="initialize()">
 
  <ui:insert name="conteudo"/>
- <div id="msg"/>
+ 
+ 
+ <div data-role="popup" id="alert">
+ 	#{requestScope.msg}
+	<a href="#" data-rel="back" data-role="button" data-theme="a" data-iconpos="notext" class="ui-btn-right">Fechar</a>
+</div>
  <input id="msgRetorno" type="hidden" value="#{requestScope.msg}"/>  
 
 <script>
     $(document).ready(function(){
         var strMsg = document.getElementById('msgRetorno').value;
         if ( strMsg ) {
-            alert(strMsg);
+			alert(strMsg);
         }
     });
 </script>

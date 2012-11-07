@@ -7,7 +7,20 @@
 		
 		<div data-role="page" id="menu">
             <div data-theme="f" data-role="header" data-position="fixed">
-				<span class="ui-title"> </span> <a data-role="button" rel="external" data-transition="fade" href="menu.xhtml" data-icon="refresh" data-iconpos="left" class="ui-btn-left"> Atualizar </a>
+				<span class="ui-title"> </span> 
+				<a data-role="button" rel="external" data-transition="fade" href="menu.xhtml" data-icon="refresh" data-iconpos="left" class="ui-btn-left"> Atualizar </a>
+			
+				<c:if test="#{menuFaces.logado}">
+					<a data-role="button" data-transition="slidedown" href="sair.xhtml" data-icon="back" data-iconpos="left" class="ui-btn-right">
+						#{menuFaces.usuarioLogado.nomeExibicao} (Logout)
+	        		</a>
+        		</c:if>
+        		
+        		<c:if test="#{!menuFaces.logado}">
+					<a data-role="button" data-transition="slidedown" href="login.xhtml" rel="external" data-icon="forward" data-iconpos="left" class="ui-btn-right">
+			            Login
+	        		</a>
+        		</c:if>
 			</div>
 			
            <div data-role="content">

@@ -1,6 +1,8 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" template="index.xhtml" xmlns:p="http://primefaces.org/ui" xmlns:c="http://java.sun.com/jsp/jstl/core">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+ xmlns:f="http://java.sun.com/jsf/core" template="index.xhtml" xmlns:p="http://primefaces.org/ui" 
+ xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 	<ui:define name="conteudo">
 
@@ -25,7 +27,15 @@
 		
 		<div data-theme="f" data-role="header" data-position="fixed">
 			<span class="ui-title"></span>
-			 <a data-role="button" data-transition="slidedown" href="detalhamento.xhtml?promocaoId=#{loginFaces.promocaoModel.id}&amp;categoriaId=#{loginFaces.categoriaId}&amp;filtro=#{loginFaces.filtro}" data-icon="arrow-l" data-iconpos="left" rel="external" class="ui-btn-left"> Voltar </a> 
+			<c:if test="#{!empty loginFaces.promocaoModel.id}">
+				 <a data-role="button" data-transition="slidedown" href="detalhamento.xhtml?promocaoId=#{loginFaces.promocaoModel.id}&amp;categoriaId=#{loginFaces.categoriaId}&amp;filtro=#{loginFaces.filtro}" data-icon="arrow-l" data-iconpos="left" rel="external" class="ui-btn-left"> Voltar </a>
+			 </c:if>	
+
+			<c:if test="#{empty loginFaces.promocaoModel.id}">
+				 <a data-role="button" data-transition="slidedown" href="menu.xhtml"  data-icon="arrow-l" data-iconpos="left" rel="external" class="ui-btn-left"> Menu </a> 
+			 </c:if>	
+			 
+            <a data-role="button" data-transition="slidedown" href="cadastro.xhtml?promocaoId=#{loginFaces.promocaoModel.id}&amp;categoriaId=#{loginFaces.categoriaId}&amp;filtro=#{loginFaces.filtro}">Cadastre-se!</a>
 			</div>
 		
 			<div data-role="content" style="padding: 0px">
@@ -39,17 +49,20 @@
 				<br/><br/>
 				<input type="password" placeholder="Senha" style="width:100%" id="senha" name="senha" autocomplete="off"/>
 				<input data-theme="a" value="Logar" type="button" onclick="return logar();"/>
-			
-	            
 	            
 				<input type="hidden" name="promocaoId" id="promocaoId" value="#{loginFaces.promocaoModel.id}"/>
 				<input type="hidden" name="categoriaId" id="categoriaId" value="#{loginFaces.categoriaId}"/>
 				<input type="hidden" name="filtro" id="filtro" value="#{loginFaces.filtro}"/>
 	            
             </form>
+            <br/>
+            	<div align="center">
+	           		<h:outputLink value="#{faceBookFaces.url}&amp;promocaoId=#{loginFaces.promocaoModel.id}&amp;categoriaId=#{loginFaces.categoriaId}&amp;filtro=#{loginFaces.filtro}">
+						<h:graphicImage value="img/facebook.gif"/>
+				  </h:outputLink>
+			  </div>
 			</div>
 			</div>
 		</div>
-
 	</ui:define>
 </ui:composition>

@@ -27,13 +27,7 @@
 			<div data-role="content" style="padding: 15px">
 
 				<c:if test="#{empty listagemFaces.promocoes}">
-					<h:panelGrid columns="2" style="width:100%">
-						<input type="text" style="width: 100%" id="filtro" placeholder="O que deseja?" />
-						<h:panelGroup>
-							<a onclick="listarGeral();" data-transition="slidedown" data-theme="c" data-role="button" id="search" data-icon="search" data-iconpos="notext">Buscar</a>
-						</h:panelGroup>
-					</h:panelGrid>
-					<div id="notFound"></div>
+					<div id="notFound"/>
 				</c:if>
 
 
@@ -75,12 +69,6 @@
 
 									</span>
 								</div>
-								<div class="tipoPagamento">
-									<ui:repeat value="#{promocao.fornecedorModel.formasPagamento}" var="forma">
-										<img width="25" height="18" style="float:left; margin-right:2px;" src="#{forma.imagemView}"/>
-									</ui:repeat>
-								</div>
-
 
 								<div class="tipoPromocao">
 									<h:outputText value="#{promocao.fornecedorModel.quantidadeIndicacoes} pessoa indicou isto" rendered="#{promocao.fornecedorModel.quantidadeIndicacoes==1 and !promocao.fornecedorModel.indicado}" />
