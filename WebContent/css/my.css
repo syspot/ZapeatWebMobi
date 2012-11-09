@@ -39,7 +39,7 @@ span.preco{padding:3px; background:#f60; color:#fff; position:absolute; bottom:0
 div.preco{ clear:both; overflow:hidden; margin:10px 0;}
 #infoEstab{ min-width:320px; width:100%; min-height:70px; height:auto; position:relative; padding:10px 0px; background:#fff;}
 #infoEstab p.endereco{font-size:12px; margin-left:10px; padding-top:5px; background:url(img/map.png) no-repeat; padding-left:25px; height:18px;}
-#infoEstab p.tel{font-size:10px; margin-left:10px; cursor:alias; background:url(img/tel.png) no-repeat; padding-left:25px; height:18px;}
+#infoEstab p.tel{font-size:12px; margin-left:10px; margin-top:11px; cursor:alias; background:url(img/tel.png) no-repeat; padding-left:25px; height:18px;}
 .pagamento{margin:10px; font-size:10px;}
 figure.cartao{ width:25px; height:18px; float:left; margin-right:2px;}
 .visa{ background:url(../img/visa.png);}
@@ -82,6 +82,10 @@ span.ui-slider-label{font-size:14px!important;}
     .floatLeft{float:left;}
     .floatRight{float:right;}
 
+div.confiraLocal {
+    color: #888888;
+    font-size: 11px;
+    padding: 3px;right: 0;}
 
 .text-align-center {
   text-align: center;

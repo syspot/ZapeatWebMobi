@@ -33,7 +33,8 @@
 			<div data-role="content" style="padding: 0px">
 				<div id="topoPromo">
 					<div class="marca">
-						<figure> <h:graphicImage value="img/model/80x80.jpg" rendered="#{empty detalhamentoFaces.promocaoModel.fornecedorModel.imagemThumb}" /> <h:graphicImage value="#{detalhamentoFaces.promocaoModel.fornecedorModel.imagemThumbView}" rendered="#{!empty detalhamentoFaces.promocaoModel.fornecedorModel.imagemThumb}" /> </figure>
+						<figure> <h:graphicImage value="img/model/80x80.jpg" rendered="#{empty detalhamentoFaces.promocaoModel.fornecedorModel.imagemThumb}" /> 
+								<h:graphicImage value="#{detalhamentoFaces.promocaoModel.fornecedorModel.imagemThumbView}" rendered="#{!empty detalhamentoFaces.promocaoModel.fornecedorModel.imagemThumb}" /> </figure>
 					</div>
 
 					<h:form prependId="false">
@@ -130,11 +131,11 @@
 					<p class="endereco">
 						<span class="map"></span>#{detalhamentoFaces.promocaoModel.fornecedorModel.enderecoConcatenado}
 					</p>
-					<a href="tel:#{detalhamentoFaces.promocaoModel.fornecedorModel.telefoneCallTo}">
-						<p class="tel">
-							<span class="tel"></span>#{detalhamentoFaces.promocaoModel.fornecedorModel.telefone}
-						</p>
-					</a>
+					<p class="tel">
+						<a href="tel:#{detalhamentoFaces.promocaoModel.fornecedorModel.telefoneCallTo}">
+							#{detalhamentoFaces.promocaoModel.fornecedorModel.telefone}
+						</a>
+					</p>
 				</div>
 			</div>
 			

@@ -59,7 +59,7 @@ public class Constantes {
 	public static final String PREFIXO_IMAGEM_BANNER_SUPERIOR_GRANDE = "728x90_";
 	public static final String PREFIXO_IMAGEM_BANNER_LATERAL = "170x260_";
 	public static final String PREFIXO_IMAGEM_BANNER_SUPERIOR_PEQUENO = "210x110_";
-	public static final String URL_APLICACAO = "http://" + TSFacesUtil.getRequest().getServerName() + ":"+ TSFacesUtil.getRequest().getServerPort() + TSFacesUtil.getRequest().getContextPath() + "/";
+	public static final String URL_APLICACAO = "http://www.zapeat.com/demo/";
 	public static final String SMTP_GMAIL = "smtp.gmail.com";
 	public static final String PORTAL_GMAIL = "465";
 	public static final String ZAPEAT_GMAIL = "zapeatx@gmail.com";

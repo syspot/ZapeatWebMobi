@@ -35,7 +35,7 @@
 				 <a data-role="button" data-transition="slidedown" href="menu.xhtml"  data-icon="arrow-l" data-iconpos="left" rel="external" class="ui-btn-left"> Menu </a> 
 			 </c:if>	
 			 
-            <a data-role="button" data-transition="slidedown" href="cadastro.xhtml?promocaoId=#{loginFaces.promocaoModel.id}&amp;categoriaId=#{loginFaces.categoriaId}&amp;filtro=#{loginFaces.filtro}">Cadastre-se!</a>
+            <a data-role="button" rel="external" data-transition="slidedown" href="cadastro.xhtml?promocaoId=#{loginFaces.promocaoModel.id}&amp;categoriaId=#{loginFaces.categoriaId}&amp;filtro=#{loginFaces.filtro}">Cadastre-se!</a>
 			</div>
 		
 			<div data-role="content" style="padding: 0px">
@@ -57,7 +57,7 @@
             </form>
             <br/>
             	<div align="center">
-	           		<h:outputLink value="#{faceBookFaces.url}&amp;promocaoId=#{loginFaces.promocaoModel.id}&amp;categoriaId=#{loginFaces.categoriaId}&amp;filtro=#{loginFaces.filtro}">
+	           		<h:outputLink value="#{faceBookFaces.url}">
 						<h:graphicImage value="img/facebook.gif"/>
 				  </h:outputLink>
 			  </div>

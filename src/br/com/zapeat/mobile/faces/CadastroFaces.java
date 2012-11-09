@@ -72,7 +72,7 @@ public class CadastroFaces extends DetalhamentoFaces {
 
 			this.usuarioModel = new UsuarioModel();
 
-			TSFacesUtil.getRequest().setAttribute("msg", "Para efetivar seu cadastro é necessério acessar o e-mail informado e clicar no link de confirmação.");
+			TSFacesUtil.getRequest().setAttribute("msg", "Para efetivar seu cadastro é necessério acessar o e-mail informado e clicar no link de confirmação. Caso não receba o e-mail, mantenha contato conosco.");
 
 		} else {
 
@@ -96,19 +96,18 @@ public class CadastroFaces extends DetalhamentoFaces {
 
 		corpo.append("<br>");
 
-		corpo.append("Para confirmar seu cadastro no site ZAPEAT clique no link abaixo:");
-
-		corpo.append("<br><br>");
-
 		try {
-
-			corpo.append(Constantes.URL_APLICACAO + "confirmacao.jsf?token=" + TSCryptoUtil.criptografar(model.getId().toString()) + "");
-
+		
+		corpo.append("Para confirmar seu cadastro no site ZAPEAT clique <a href=\"")
+			 .append(Constantes.URL_APLICACAO + "confirmacao.jsf?token=" + TSCryptoUtil.criptografar(model.getId().toString()))
+			 .append("\"> aqui </a>");
+			 
+			 EnviarEmail.enviar(Constantes.ZAPEAT_GMAIL, model.getEmail(), "Zapeat - Confirmação de Cadastro", corpo.toString());
+		
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
-		EnviarEmail.enviar(Constantes.ZAPEAT_GMAIL, model.getEmail(), "Zapeat - Confirmação de Cadastro", corpo.toString());
+		
 	}
 
 	public UsuarioModel getUsuarioModel() {

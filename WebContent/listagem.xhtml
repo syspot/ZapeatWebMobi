@@ -22,7 +22,7 @@
 		<div data-role="page" id="lista">
 			<div data-theme="f" data-role="header" data-position="fixed">
 				<span class="ui-title"></span> 
-				<a data-role="button" data-transition="slidedown" href="menu.xhtml" data-icon="grid" data-iconpos="left" rel="external" class="ui-btn-left"> Menu </a> 
+				<a data-role="button" data-transition="slidedown" href="menu.xhtml" data-icon="arrow-l" data-iconpos="left" rel="external" class="ui-btn-left"> Voltar </a> 
 			</div>
 			<div data-role="content" style="padding: 15px">
 
@@ -45,6 +45,10 @@
 					<ui:repeat var="promocao" value="#{listagemFaces.promocoes}">
 
 						<li data-theme="c" class="listaPromocoes tipo#{promocao.tipoPromocaoModel.id}"><a href="detalhamento.xhtml?promocaoId=#{promocao.id}&amp;categoriaId=#{requestScope.categoriaId}&amp;filtro=#{listagemFaces.filtro}" data-transition="slide" rel="external">
+					
+								<div class="confiraLocal" align="right"> 
+									<h:outputText value="Confira no local!"  />
+								</div>
 
 								<div class="marca">
 									<figure> <h:graphicImage value="#{promocao.imagemThumbView}" rendered="#{!empty promocao.imagemThumb}" /> <h:graphicImage value="img/model/80x80.jpg" rendered="#{empty promocao.imagemThumb}" /> </figure>
@@ -54,8 +58,10 @@
 									<div class="tipoPromocao">#{promocao.tipoPromocaoModel.descricao}</div>
 									<div class="nomePromocao">#{promocao.titulo}</div>
 									<span class="indicacao">#{promocao.fornecedorModel.nomeFantasia}</span>
-								</div> <span class="distancia"> <h:outputText value=" a #{promocao.distancia} km" rendered="#{promocao.distancia>0 and !empty promocao.distancia}" /> <h:outputText value="Bem próximo!" rendered="#{promocao.distancia==0 and !empty promocao.distancia}" />
-							</span>
+								</div> 
+								<span class="distancia"> 
+									<h:outputText value=" a #{promocao.distancia} km" rendered="#{promocao.distancia>0 and !empty promocao.distancia}" /> <h:outputText value="Bem próximo!" rendered="#{promocao.distancia==0 and !empty promocao.distancia}" />
+								</span>
 
 								<div class="tipoPromocao">#{promocao.descricao}</div>
 								<div class="preco">
@@ -69,7 +75,7 @@
 
 									</span>
 								</div>
-
+	
 								<div class="tipoPromocao">
 									<h:outputText value="#{promocao.fornecedorModel.quantidadeIndicacoes} pessoa indicou isto" rendered="#{promocao.fornecedorModel.quantidadeIndicacoes==1 and !promocao.fornecedorModel.indicado}" />
 									<h:outputText value="Você indicou isto" rendered="#{promocao.fornecedorModel.quantidadeIndicacoes==1 and promocao.fornecedorModel.indicado}" />
@@ -77,7 +83,6 @@
 									<h:outputText value="#{promocao.fornecedorModel.quantidadeIndicacoes} pessoas indicaram isto" rendered="#{promocao.fornecedorModel.quantidadeIndicacoes >1 and !promocao.fornecedorModel.indicado}" />
 									<h:outputText value="Você e mais #{promocao.fornecedorModel.quantidadeIndicacoes -1} pessoa(s) indicaram isto" rendered="#{promocao.fornecedorModel.quantidadeIndicacoes >1 and promocao.fornecedorModel.indicado}" />
 								</div>
-
 						</a></li>
 					</ui:repeat>
 				</ul>

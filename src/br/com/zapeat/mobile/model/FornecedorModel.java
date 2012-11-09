@@ -242,7 +242,7 @@ public class FornecedorModel implements Serializable {
 	}
 
 	public String getImagemThumbView() {
-		return Constantes.PASTA_DOWNLOAD + Constantes.PREFIXO_IMAGEM_FORNECEDOR_THUMB + getImagemThumb();
+		return Constantes.PASTA_DOWNLOAD + Constantes.PREFIXO_IMAGEM_FORNECEDOR_LOGOMARCA + getImagemThumb();
 	}
 
 	@Override
