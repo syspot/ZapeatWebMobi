@@ -16,7 +16,7 @@ public class PromocaoDAO {
 	public List<PromocaoModel> pesquisar(PromocaoModel model, LocalizacaoModel localizacao, UsuarioModel usuario) {
 
 		StringBuilder sql = new StringBuilder("SELECT P.ID,P.DESCRICAO,T.ID,T.DESCRICAO,F.ID,F.NOME_FANTASIA,F.CEP,F.LOGRADOURO,")
-											 .append("F.NUMERO,F.BAIRRO,C.NOME,P.INICIO,P.FIM,P.PRECO_ORIGINAL,P.PRECO_PROMOCIONAL,")
+											 .append("F.NUMERO,F.LOGOMARCA,F.BAIRRO,C.NOME,P.INICIO,P.FIM,P.PRECO_ORIGINAL,P.PRECO_PROMOCIONAL,")
 											 .append("P.TITULO,P.IMAGEM_THUMB,CAT.DESCRICAO,")
 											 .append("(SELECT COALESCE(COUNT(*),0) FROM INDICACOES COM WHERE COM.FORNECEDOR_ID = F.ID AND COM.FLAG_INDICA),")
 							 		 		 .append("EXISTS(SELECT 1 FROM INDICACOES COM,USUARIOS_SITE US WHERE US.ID = COM.USUARIO_ID AND COM.FORNECEDOR_ID = F.ID AND COM.FLAG_INDICA  AND US.TOKEN = ?) ");
@@ -35,7 +35,7 @@ public class PromocaoDAO {
 
 		}
 
-		sql.append(" FROM PROMOCOES P,TIPOS_PROMOCOES T,FORNECEDORES F,FORNECEDORES_CATEGORIAS FC,CIDADES C,CATEGORIAS CAT WHERE F.ID = FC.FORNECEDOR_ID AND F.CIDADE_ID = C.ID AND P.TIPO_PROMOCAO_ID = T.ID AND FC.ID = P.FORNECEDOR_CATEGORIA_ID AND FC.CATEGORIA_ID = CAT.ID AND FC.ID = P.FORNECEDOR_CATEGORIA_ID AND (INICIO IS NULL OR INICIO <= CURRENT_DATE) AND (FIM IS NULL OR  FIM >= CURRENT_DATE) ");
+		sql.append(" FROM PROMOCOES P,TIPOS_PROMOCOES T,FORNECEDORES F,FORNECEDORES_CATEGORIAS FC,CIDADES C,CATEGORIAS CAT WHERE F.ID = FC.FORNECEDOR_ID AND F.CIDADE_ID = C.ID AND P.TIPO_PROMOCAO_ID = T.ID AND FC.ID = P.FORNECEDOR_CATEGORIA_ID AND FC.CATEGORIA_ID = CAT.ID AND FC.ID = P.FORNECEDOR_CATEGORIA_ID AND CASE T.ID WHEN 1 THEN ((INICIO IS NULL OR INICIO <=  CURRENT_TIMESTAMP) AND (FIM IS NULL OR  FIM >= CURRENT_TIMESTAMP)) ELSE ((INICIO IS NULL OR CAST(INICIO AS DATE) <= CURRENT_DATE) AND (FIM IS NULL OR  CAST(FIM AS DATE) >= CURRENT_DATE)) END ");
 
 		if (!TSUtil.isEmpty(model.getDescricao())) {
 
@@ -105,7 +105,7 @@ public class PromocaoDAO {
 
 		}
 
-		return broker.getCollectionBean(PromocaoModel.class, "id", "descricao", "tipoPromocaoModel.id", "tipoPromocaoModel.descricao", "fornecedorModel.id", "fornecedorModel.nomeFantasia", "fornecedorModel.cep", "fornecedorModel.logradouro", "fornecedorModel.numero", "fornecedorModel.bairro", "fornecedorModel.cidadeModel.nome", "inicio", "fim", "precoOriginal", "precoPromocional", "titulo", "imagemThumb", "categoriaModel.descricao","fornecedorModel.quantidadeIndicacoes", "fornecedorModel.indicado", "distanciaCalculada");
+		return broker.getCollectionBean(PromocaoModel.class, "id", "descricao", "tipoPromocaoModel.id", "tipoPromocaoModel.descricao", "fornecedorModel.id", "fornecedorModel.nomeFantasia", "fornecedorModel.cep", "fornecedorModel.logradouro", "fornecedorModel.numero","fornecedorModel.imagemThumb", "fornecedorModel.bairro", "fornecedorModel.cidadeModel.nome", "inicio", "fim", "precoOriginal", "precoPromocional", "titulo", "imagemThumb", "categoriaModel.descricao","fornecedorModel.quantidadeIndicacoes", "fornecedorModel.indicado", "distanciaCalculada");
 
 	}
 

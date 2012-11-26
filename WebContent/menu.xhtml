@@ -1,66 +1,55 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
- template="index.xhtml" xmlns:c="http://java.sun.com/jsp/jstl/core">
-	
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" template="index.xhtml" xmlns:c="http://java.sun.com/jsp/jstl/core">
+
 	<ui:define name="conteudo">
-		
+
 		<div data-role="page" id="menu">
-            <div data-theme="f" data-role="header" data-position="fixed">
-				<span class="ui-title"> </span> 
-				<a data-role="button" rel="external" data-transition="fade" href="menu.xhtml" data-icon="refresh" data-iconpos="left" class="ui-btn-left"> Atualizar </a>
-			
+			<div data-theme="f" data-role="header" data-position="fixed">
+				<span class="ui-title"> </span> <a data-role="button" rel="external" data-transition="fade" href="menu.xhtml" data-icon="refresh" data-iconpos="left" class="ui-btn-left"> Atualizar </a>
+
 				<c:if test="#{menuFaces.logado}">
-					<a data-role="button" data-transition="slidedown" href="sair.xhtml" data-icon="back" data-iconpos="left" class="ui-btn-right">
-						#{menuFaces.usuarioLogado.nomeExibicao} (Logout)
-	        		</a>
-        		</c:if>
-        		
-        		<c:if test="#{!menuFaces.logado}">
-					<a data-role="button" data-transition="slidedown" href="login.xhtml" rel="external" data-icon="forward" data-iconpos="left" class="ui-btn-right">
-			            Login
-	        		</a>
-        		</c:if>
+					<a data-role="button" data-transition="slidedown" href="sair.xhtml" data-icon="back" data-iconpos="left" class="ui-btn-right"> #{menuFaces.usuarioLogado.nomeExibicao} (Logout) </a>
+				</c:if>
+
+				<c:if test="#{!menuFaces.logado}">
+					<a data-role="button" data-transition="slidedown" href="login.xhtml" rel="external" data-icon="forward" data-iconpos="left" class="ui-btn-right"> Login </a>
+				</c:if>
 			</div>
-			
-           <div data-role="content">
-			<div id="marca"><img src="img/marcaZapeat.png" alt="Marca Zapeat" title="Marca Zapeat" /></div>
-            	
-            	<input type="hidden" name="location" id="location"/>
-       	    	
-       	    	<c:if test="#{!empty menuFaces.menus}">
-			   			<h:panelGrid columns="2" style="width:100%">
-            		    	<input placeholder="O que deseja?" type="text" style="width:100%" id="filtro"/>
+
+			<div data-role="content">
+				<div id="marca">
+					<img src="img/marcaZapeat.png" alt="Marca Zapeat" title="Marca Zapeat" />
+				</div>
+
+				<input type="hidden" name="location" id="location" />
+
+				<c:if test="#{!empty menuFaces.menus}">
+					<h:panelGrid columns="2" style="width:100%">
+						<input placeholder="O que deseja?" type="text" style="width: 100%" id="filtro" />
 						<h:panelGroup>
 							<a onclick="listarGeral();" data-theme="c" data-role="button" id="search" data-icon="search" data-iconpos="notext">Buscar</a>
 						</h:panelGroup>
 					</h:panelGrid>
 				</c:if>
-				
-                <ul data-role="listview" data-divider-theme="b" data-inset="true">
-                    <li data-role="list-divider" role="heading">
-                        CATEGORIAS
-                    </li>
-                    <ui:repeat var="menu" varStatus="key" value="#{menuFaces.menus}">
-					<li data-theme="c">
 
-						<a  data-inline="true" data-transition="flip" 
-						onclick="redirect('#{menu.id}');" href="#"> #{menu.descricao}
-							<span class="ui-li-count">
-                                #{menu.quantidadePromocoes}
-                            </span>
-						</a>
-					</li>		
+				<ul data-role="listview" data-divider-theme="b" data-inset="true">
+					<li data-role="list-divider" role="heading">CATEGORIAS</li>
+					<ui:repeat var="menu" varStatus="key" value="#{menuFaces.menus}">
+						<li data-theme="c"><a data-inline="true" data-transition="flip" onclick="redirect('#{menu.id}');" href="#"> #{menu.descricao} <span class="ui-li-count"> #{menu.quantidadePromocoes} </span>
+						</a></li>
 					</ui:repeat>
-                </ul>
-            </div>
-            <div data-theme="f" data-role="footer" data-position="fixed">
-				<h6>Você está aqui: <label id="info" >Obtendo localização...</label></h6>
+				</ul>
 			</div>
-        </div>
-	
-		
-		
+			<div data-theme="f" data-role="footer" data-position="fixed">
+				<h6>
+					Você está aqui: <label id="info">Obtendo localização...</label>
+				</h6>
+			</div>
+		</div>
+
+
+
 		<script>
 			function redirect(menu) {
 				var endereco='listagem.xhtml?categoriaId='+menu+'&amp;location=';
@@ -80,6 +69,20 @@
 		}
 			
 		</script>
-		
-		</ui:define>
+
+		<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-27981517-8']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+	</ui:define>
 </ui:composition>

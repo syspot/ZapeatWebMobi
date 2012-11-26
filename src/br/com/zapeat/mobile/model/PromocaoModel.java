@@ -222,5 +222,9 @@ public class PromocaoModel implements Serializable {
 	public String getImagemThumbView() {
 		return TSUtil.isEmpty(this.imagemThumb) ? this.imagemThumb : Constantes.PASTA_DOWNLOAD + Constantes.PREFIXO_PROMOCAO_THUMB + imagemThumb;
 	}
+	
+	public boolean isExibirPreco() {
+		return !TSUtil.isEmpty(this.precoOriginal) && this.precoOriginal.compareTo(Double.valueOf(0))>0;
+	}
 
 }
