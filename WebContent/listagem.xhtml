@@ -96,11 +96,11 @@
 			<div data-theme="f" data-role="footer" data-position="fixed">
 				<div data-role="navbar" data-iconpos="top">
 					<ul>
-						<li><a href="#lista" data-theme="" id="clickDaHora" data-transition="slideup"> Promoção<br /> da Hora
+						<li><a href="#lista" data-theme="" id="clickDaHora" data-transition="slideup"> Zapeat<br /> da Hora
 						</a></li>
-						<li><a href="#lista" data-theme="" id="clickDoDia" data-transition="slideup"> Promoção<br /> do Dia
+						<li><a href="#lista" data-theme="" id="clickDoDia" data-transition="slideup"> Zapeat<br /> do Dia
 						</a></li>
-						<li><a href="#lista" data-theme="" id="clickDaSemana" data-transition="slideup"> Promoção<br /> da Semana
+						<li><a href="#lista" data-theme="" id="clickDaSemana" data-transition="slideup"> Zapeat<br /> da Semana
 						</a></li>
 					</ul>
 				</div>
@@ -110,9 +110,25 @@
 		<script>
 	$(document).ready(function(){
 
-		$('.tipo2').hide();
-		$('.tipo3').hide();
-		$('#clickDaHora').addClass('ui-btn-active');
+		var abaSelecionada = '#{listagemFaces.abaSelecionada}';
+
+		if(abaSelecionada=='1') {
+
+			$('.tipo2').hide();
+			$('.tipo3').hide();
+			$('#clickDaHora').addClass('ui-btn-active');
+
+		} else if(abaSelecionada=='2') {
+
+			$('.tipo1').hide();
+			$('.tipo3').hide();
+			$('#clickDoDia').addClass('ui-btn-active');
+
+		} else if(abaSelecionada=='3') {
+			$('.tipo1').hide();
+			$('.tipo2').hide();
+			$('#clickDaSemana').addClass('ui-btn-active');
+		}
 				
 		$('#clickDaHora').bind('touchstart',function() {
 			$('.tipo2').hide();

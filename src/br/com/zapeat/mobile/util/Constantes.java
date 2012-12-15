@@ -42,6 +42,10 @@ public class Constantes {
 
 	}
 	
+	public static final Long PROMOCAO_DA_HORA=1L;
+	public static final Long PROMOCAO_DO_DIA=2L;
+	public static final Long PROMOCAO_DA_SEMANA=3L;
+	
 	public static final String PASTA_DOWNLOAD_TEMP = "http://"+TSFacesUtil.getRequest().getServerName() + ":" + TSFacesUtil.getRequest().getServerPort() + "/img_zapeat/";
 	public static final String PASTA_DOWNLOAD = "http://"+TSFacesUtil.getRequest().getServerName() + ":" + TSFacesUtil.getRequest().getServerPort() + "/img_zapeat/";
 	public static final String PASTA_DOWNLOAD_FORNECEDOR = "http://"+TSFacesUtil.getRequest().getServerName() + ":" + TSFacesUtil.getRequest().getServerPort() + "/img_zapeat/fornecedor/";
