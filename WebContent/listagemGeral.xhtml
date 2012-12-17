@@ -44,45 +44,39 @@
 						
 						<a href="detalhamento.xhtml?promocaoId=#{promocao.id}&amp;categoriaId=#{requestScope.categoriaId}&amp;filtro=#{listagemGeralFaces.filtro}" data-transition="slide" rel="external">
 								
-								<div class="marca">
-									<figure>
-										<h:graphicImage value="#{promocao.fornecedorModel.imagemThumbView}" rendered="#{!empty promocao.fornecedorModel.imagemThumb and false}" />
-										<h:graphicImage  value="img/model/80x80.jpg" rendered="#{empty promocao.fornecedorModel.imagemThumb}" />
-									</figure>
+								<div class="confiraLocal" align="right">
+									<h:outputText value="Confira no local!" />
 								</div>
-								
+
+								<div class="marca">
+									<figure> <h:graphicImage value="#{promocao.imagemThumbView}" rendered="#{!empty promocao.imagemThumb}" /> <h:graphicImage value="#{promocao.fornecedorModel.imagemThumbView}" rendered="#{empty promocao.imagemThumb}" /> </figure>
+								</div>
+
 								<div class="info">
 									<div class="tipoPromocao">#{promocao.tipoPromocaoModel.descricao}</div>
 									<div class="nomePromocao">#{promocao.titulo}</div>
 									<span class="indicacao">#{promocao.fornecedorModel.nomeFantasia}</span>
-								</div>    
-								<span class="distancia">
-										<h:outputText value=" a #{promocao.distancia} km" rendered="#{promocao.distancia>0 and !empty promocao.distancia}"/>
-										<h:outputText value="Você está aqui!" rendered="#{promocao.distancia==0 and !empty promocao.distancia}"/>
-								</span> 
+								</div> <span class="distancia"> <h:outputText value=" a #{promocao.distancia} km" rendered="#{promocao.distancia>0 and !empty promocao.distancia}" /> <h:outputText value="Bem próximo!" rendered="#{promocao.distancia==0 and !empty promocao.distancia}" />
+							</span>
 								
 								<div class="tipoPromocao">#{promocao.descricao}</div>
-								<div class="preco"><span class="floatLeft">De: 
-								<h:outputText value="#{promocao.precoOriginal}">
-									<f:convertNumber type="currency" currencySymbol="R$" locale="pt_BR" minFractionDigits="2" />
-								</h:outputText>
-								
-								</span> 
-								
-								<span class="floatRight">Por: 
-								<h:outputText value="#{promocao.precoPromocional}">
-									<f:convertNumber type="currency" currencySymbol="R$" locale="pt_BR" minFractionDigits="2" />
-								</h:outputText>
-								
-								</span></div>
-								<div class="tipoPagamento">
-                   					<figure class="cartao visa"></figure>
-                   					<figure class="cartao master"></figure>
-                   					<figure class="cartao amex"></figure>
-                  		  			<figure class="cartao diners"></figure>
-               					</div>
-               					
-                   					
+								<div class="preco">
+									
+									<c:if test="#{promocao.exibirPreco}">
+										<span class="floatLeft">De: <h:outputText value="#{promocao.precoOriginal}">
+												<f:convertNumber type="currency" currencySymbol="R$" locale="pt_BR" minFractionDigits="2" />
+											</h:outputText>
+
+										</span>
+										<span class="floatRight">Por: <h:outputText value="#{promocao.precoPromocional}">
+												<f:convertNumber type="currency" currencySymbol="R$" locale="pt_BR" minFractionDigits="2" />
+											</h:outputText>
+
+										</span>
+									</c:if>
+									
+								</div>
+						
 									<div class="tipoPromocao">
 										<h:outputText value="#{promocao.fornecedorModel.quantidadeIndicacoes} pessoa indicou isto" rendered="#{promocao.fornecedorModel.quantidadeIndicacoes==1 and !promocao.fornecedorModel.indicado}"/>
 										<h:outputText value="Você indicou isto" rendered="#{promocao.fornecedorModel.quantidadeIndicacoes==1 and promocao.fornecedorModel.indicado}"/>
@@ -102,17 +96,17 @@
             <ul>
                 <li>
                     <a href="#lista" data-theme="" id="clickDaHora" data-transition="slideup">
-                        Promoção<br /> da Hora
+                        Zapeat<br /> da Hora
                     </a>
                 </li>
                 <li>
                     <a href="#lista" data-theme="" id="clickDoDia"  data-transition="slideup">
-                        Promoção<br /> do Dia
+                        Zapeat<br /> do Dia
                     </a>
                 </li>
                 <li>
                     <a href="#lista" data-theme="" id="clickDaSemana"  data-transition="slideup">
-                        Promoção<br /> da Semana
+                        Zapeat<br /> da Semana
                     </a>
                 </li>
             </ul>
@@ -121,41 +115,60 @@
 </div>
 
 <script>
-	$(document).ready(function(){
+$(document).ready(function(){
+
+	var abaSelecionada = '#{listagemGeralFaces.abaSelecionada}';
+
+	if(abaSelecionada=='1') {
 
 		$('.tipo2').hide();
 		$('.tipo3').hide();
 		$('#clickDaHora').addClass('ui-btn-active');
-				
-		$('#clickDaHora').bind('touchstart',function() {
-			$('.tipo2').hide();
-			$('.tipo3').hide();	
-			$('.tipo1').hide();	
-			$('.tipo1').fadeIn();
-			$('#clickDaHora').addClass('ui-btn-active');
-			$('#clickDoDia').removeClass('ui-btn-active');
-			$('#clickDaSemana').removeClass('ui-btn-active');
-		});
-		
-		$('#clickDoDia').bind('touchstart',function() {
-			$('.tipo1').hide();
-			$('.tipo3').hide();
-			$('.tipo2').hide();
-			$('.tipo2').fadeIn();
-			$('#clickDoDia').addClass('ui-btn-active');
-			$('#clickDaHora').removeClass('ui-btn-active');
-			$('#clickDaSemana').removeClass('ui-btn-active');
-		});
-		$('#clickDaSemana').bind('touchstart',function() {
-			$('.tipo1').hide();
-			$('.tipo2').hide();
-			$('.tipo3').hide();
-			$('.tipo3').fadeIn();
-			$('#clickDoDia').removeClass('ui-btn-active');
-			$('#clickDaHora').removeClass('ui-btn-active');
-			$('#clickDaSemana').addClass('ui-btn-active');
-		});
+
+	} else if(abaSelecionada=='2') {
+
+		$('.tipo1').hide();
+		$('.tipo3').hide();
+		$('#clickDoDia').addClass('ui-btn-active');
+
+	} else if(abaSelecionada=='3') {
+		$('.tipo1').hide();
+		$('.tipo2').hide();
+		$('#clickDaSemana').addClass('ui-btn-active');
+	}
+			
+	$('#clickDaHora').bind('touchstart',function() {
+		$('.tipo2').hide();
+		$('.tipo3').hide();	
+		$('.tipo1').hide();	
+		$('.tipo1').fadeIn();
+		$('#clickDaHora').addClass('ui-btn-active');
+		$('#clickDoDia').removeClass('ui-btn-active');
+		$('#clickDaSemana').removeClass('ui-btn-active');
 	});
+	
+	$('#clickDoDia').bind('touchstart',function() {
+		$('.tipo1').hide();
+		$('.tipo3').hide();
+		$('.tipo2').hide();
+		$('.tipo2').fadeIn();
+		$('#clickDoDia').addClass('ui-btn-active');
+		$('#clickDaHora').removeClass('ui-btn-active');
+		$('#clickDaSemana').removeClass('ui-btn-active');
+	});
+	$('#clickDaSemana').bind('touchstart',function() {
+		$('.tipo1').hide();
+		$('.tipo2').hide();
+		$('.tipo3').hide();
+		$('.tipo3').fadeIn();
+		$('#clickDoDia').removeClass('ui-btn-active');
+		$('#clickDaHora').removeClass('ui-btn-active');
+		$('#clickDaSemana').addClass('ui-btn-active');
+	});
+
+	$('#filtro').val('#{listagemFaces.filtro}');
+	
+});
 </script>
 
 </ui:define>

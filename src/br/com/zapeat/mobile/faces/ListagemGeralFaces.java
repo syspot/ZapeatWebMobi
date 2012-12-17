@@ -18,6 +18,7 @@ public class ListagemGeralFaces extends LocationServiceFaces {
 	private List<PromocaoModel> promocoes;
 
 	private String filtro;
+	private int abaSelecionada;
 
 	public ListagemGeralFaces() {
 
@@ -37,6 +38,27 @@ public class ListagemGeralFaces extends LocationServiceFaces {
 
 		this.promocoes = new PromocaoDAO().pesquisar(promocao, super.getLocalizacaoAtual(), Utilitarios.getUsuarioLogado());
 
+		this.abaSelecionada = 0;
+
+		for (PromocaoModel promo : this.promocoes) {
+
+			if (Constantes.PROMOCAO_DA_HORA.equals(promo.getTipoPromocaoModel().getId())) {
+
+				this.abaSelecionada = 1;
+				break;
+
+			} else if (Constantes.PROMOCAO_DO_DIA.equals(promo.getTipoPromocaoModel().getId())) {
+
+				this.abaSelecionada = 2;
+
+			} else {
+
+				this.abaSelecionada = 3;
+
+			}
+
+		}
+
 	}
 
 	public List<PromocaoModel> getPromocoes() {
@@ -53,6 +75,14 @@ public class ListagemGeralFaces extends LocationServiceFaces {
 
 	public void setFiltro(String filtro) {
 		this.filtro = filtro;
+	}
+
+	public int getAbaSelecionada() {
+		return abaSelecionada;
+	}
+
+	public void setAbaSelecionada(int abaSelecionada) {
+		this.abaSelecionada = abaSelecionada;
 	}
 
 }
