@@ -52,13 +52,13 @@
 					
 					document.getElementById('info').innerHTML=route.long_name +', '+ city.long_name;
 					document.getElementById('location').value=results[0].geometry.location;
-					
+					checkFirstTime(document.getElementById('location').value);
 					
 				} else {
 					error('Nenhum resultado foi encontrado.');
 				}
 			} else {
-				error("Reverse Geocoding failed due to: " + status);
+				
 			}
 		});
 			if(isMaxMind){

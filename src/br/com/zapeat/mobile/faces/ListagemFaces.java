@@ -61,6 +61,7 @@ public class ListagemFaces extends LocationServiceFaces {
 				} else if (Constantes.PROMOCAO_DO_DIA.equals(promo.getTipoPromocaoModel().getId())) {
 
 					this.abaSelecionada = 2;
+					break;
 
 				} else {
 

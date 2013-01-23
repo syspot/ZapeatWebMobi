@@ -19,6 +19,7 @@ public class Constantes {
 		String FILTRO = "filtro";
 		String FILTRO_DISTANCIA = "filtroDistancia";
 		String LOCALIZACAO = "localizacao";
+		String LOCALIZACAO_ANTERIOR = "localizacaoAnterior";
 		String USUARIO_ID= "usuarioId";
 		String EMAIL= "email";
 		String SENHA = "senha";

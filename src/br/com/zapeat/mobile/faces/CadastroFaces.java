@@ -1,8 +1,6 @@
 package br.com.zapeat.mobile.faces;
 
 import javax.faces.bean.ManagedBean;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import br.com.topsys.constant.TSConstant;
 import br.com.topsys.exception.TSApplicationException;

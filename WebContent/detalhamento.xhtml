@@ -5,7 +5,7 @@
 	<ui:define name="conteudo">
 
 		<div data-role="page" id="sobre">
-			<div data-theme="f" data-role="header">
+			<div data-theme="f" data-role="header" data-position="fixed">
 				<h3></h3>
 				<h:panelGroup rendered="#{!empty detalhamentoFaces.categoriaId and empty detalhamentoFaces.filtro}">
 					<a data-role="button" rel="external" data-transition="fade" href="listagem.xhtml?categoriaId=#{detalhamentoFaces.categoriaId}" data-icon="arrow-l" data-iconpos="left" class="ui-btn-left"> voltar </a>

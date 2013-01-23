@@ -32,6 +32,18 @@ public class LoginFaces extends DetalhamentoFaces {
 
 			this.logar();
 
+		} else {
+
+			if (!TSUtil.isEmpty(this.promocaoModel.getId())) {
+
+				TSFacesUtil.addObjectInSession(Constantes.HttpParams.PROMOCAO_ID, this.promocaoModel.getId().toString());
+
+				TSFacesUtil.addObjectInSession(Constantes.HttpParams.CATEGORIA_ID, this.categoriaId);
+
+				TSFacesUtil.addObjectInSession(Constantes.HttpParams.FILTRO, this.filtro);
+
+			}
+
 		}
 	}
 
@@ -44,7 +56,7 @@ public class LoginFaces extends DetalhamentoFaces {
 		if (!TSUtil.isEmpty(usuario)) {
 
 			if (TSUtil.isEmpty(usuario.getFlagAtivo()) || !usuario.getFlagAtivo()) {
-				
+
 				TSFacesUtil.getRequest().setAttribute("msg", "O usuário está inativo ou não confirmou cadastro até o momento!");
 
 			} else {
@@ -69,7 +81,15 @@ public class LoginFaces extends DetalhamentoFaces {
 
 		try {
 
-			TSFacesUtil.getResponse().sendRedirect("detalhamento.xhtml?promocaoId=" + this.promocaoModel.getId() + "&categoriaId=" + this.categoriaId + "&filtro=" + this.filtro);
+			if (!TSUtil.isEmpty(this.promocaoModel.getId())) {
+
+				TSFacesUtil.getResponse().sendRedirect("detalhamento.xhtml?promocaoId=" + this.promocaoModel.getId() + "&categoriaId=" + this.categoriaId + "&filtro=" + this.filtro);
+
+				removerPromocaoSessao();
+
+			} else {
+				TSFacesUtil.getResponse().sendRedirect("menu.xhtml");
+			}
 
 		} catch (Exception ex) {
 

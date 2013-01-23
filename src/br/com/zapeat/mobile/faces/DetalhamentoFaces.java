@@ -105,4 +105,12 @@ public class DetalhamentoFaces extends LocationServiceFaces {
 		return this.promocaoModel.getComentarios().size();
 	}
 
+	protected void removerPromocaoSessao() {
+		TSFacesUtil.removeObjectInSession(Constantes.HttpParams.PROMOCAO_ID);
+
+		TSFacesUtil.removeObjectInSession(Constantes.HttpParams.CATEGORIA_ID);
+
+		TSFacesUtil.removeObjectInSession(Constantes.HttpParams.FILTRO);
+	}
+
 }

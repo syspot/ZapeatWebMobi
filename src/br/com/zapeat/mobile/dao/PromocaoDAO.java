@@ -23,8 +23,6 @@ public class PromocaoDAO {
 
 		boolean existeLatitudeLongitude = !TSUtil.isEmpty(localizacao) && !TSUtil.isEmpty(localizacao.getLatitude()) && !TSUtil.isEmpty(localizacao.getLongitude());
 
-		boolean filtrarDistancia = !TSUtil.isEmpty(localizacao) && !TSUtil.isEmpty(localizacao.getLatitude()) && !TSUtil.isEmpty(localizacao.getLongitude()) && !TSUtil.isEmpty(localizacao.getDistanciaMaxima());
-
 		if (existeLatitudeLongitude) {
 
 			sql.append(" ,distanceInKm(F.LATITUDE,F.LONGITUDE,?,?) as DISTANCIA ");
@@ -35,7 +33,7 @@ public class PromocaoDAO {
 
 		}
 
-		sql.append(" FROM PROMOCOES P,TIPOS_PROMOCOES T,FORNECEDORES F,FORNECEDORES_CATEGORIAS FC,CIDADES C,CATEGORIAS CAT WHERE F.ID = FC.FORNECEDOR_ID AND F.CIDADE_ID = C.ID AND P.TIPO_PROMOCAO_ID = T.ID AND FC.ID = P.FORNECEDOR_CATEGORIA_ID AND FC.CATEGORIA_ID = CAT.ID AND FC.ID = P.FORNECEDOR_CATEGORIA_ID AND CASE T.ID WHEN 1 THEN ((INICIO IS NULL OR INICIO <=  CURRENT_TIMESTAMP) AND (FIM IS NULL OR  FIM >= CURRENT_TIMESTAMP)) ELSE ((INICIO IS NULL OR CAST(INICIO AS DATE) <= CURRENT_DATE) AND (FIM IS NULL OR  CAST(FIM AS DATE) >= CURRENT_DATE)) END ");
+		sql.append(" FROM PROMOCOES P,TIPOS_PROMOCOES T,FORNECEDORES F,FORNECEDORES_CATEGORIAS FC,CIDADES C,CATEGORIAS CAT WHERE F.ID = FC.FORNECEDOR_ID AND F.CIDADE_ID = C.ID AND P.TIPO_PROMOCAO_ID = T.ID AND FC.ID = P.FORNECEDOR_CATEGORIA_ID AND FC.CATEGORIA_ID = CAT.ID AND FC.ID = P.FORNECEDOR_CATEGORIA_ID AND CASE T.ID WHEN 1 THEN ((INICIO IS NULL OR INICIO <=  CURRENT_TIMESTAMP) AND (FIM IS NULL OR  FIM >= CURRENT_TIMESTAMP)) WHEN 2 THEN CAST(INICIO AS DATE) = CURRENT_DATE WHEN 3 THEN ((INICIO IS NULL OR CAST(INICIO AS DATE) <= CURRENT_DATE) 	AND (FIM IS NULL OR  CAST(FIM AS DATE) >= CURRENT_DATE)) END ");
 
 		if (!TSUtil.isEmpty(model.getDescricao())) {
 
@@ -43,9 +41,9 @@ public class PromocaoDAO {
 
 		}
 
-		if (filtrarDistancia) {
+		if (existeLatitudeLongitude) {
 
-			sql.append(" AND distanceInKm(F.LATITUDE,F.LONGITUDE,?,?) <= ? ");
+			sql.append(" AND distanceInKm(F.LATITUDE,F.LONGITUDE,?,?) <= 100 ");
 
 		}
 
@@ -92,11 +90,11 @@ public class PromocaoDAO {
 
 		}
 
-		if (filtrarDistancia) {
+		if (existeLatitudeLongitude) {
 
 			broker.set(localizacao.getLatitude());
 			broker.set(localizacao.getLongitude());
-			broker.set(Double.valueOf(localizacao.getDistanciaMaxima().toString()));
+			
 		}
 
 		if (!TSUtil.isEmpty(model.getCategoriaModel()) && !TSUtil.isEmpty(Utilitarios.tratarLong(model.getCategoriaModel().getId()))) {

@@ -40,6 +40,15 @@
 			alert(strMsg);
         }
     });
+
+	function checkFirstTime(location) {
+		if('#{utilFaces.firstTime}'=='true') {
+			alert('Encontramos sua localização!');
+			window.location.href='menu.xhtml?location='+location;
+		} 
+		
+	}
+    
 </script>
   
 </body>
