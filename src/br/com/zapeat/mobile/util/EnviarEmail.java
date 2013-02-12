@@ -26,7 +26,17 @@ public final class EnviarEmail {
 	        props.put("mail.smtp.auth", "true");
 	        
 	        props.put("mail.smtp.starttls.enable","true"); 
-
+	        
+	        props.put("mail.smtp.auth", "true"); // ativa autenticacao
+			props.put("mail.smtp.user", from); // usuario ou seja, a conta que esta
+												// enviando o email (tem que ser do
+												// GMAIL)
+			props.put("mail.debug", "false");
+			props.put("mail.smtp.port", Constantes.PORTAL_GMAIL);
+			props.put("mail.smtp.socketFactory.port", Constantes.PORTAL_GMAIL); 
+			props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+			props.put("mail.smtp.socketFactory.fallback", "false");
+			
 	        Authenticator auth = new Authenticator() {
 
 	            @Override

@@ -67,7 +67,7 @@ public class Constantes {
 	public static final String URL_APLICACAO = "http://www.zapeat.com/demo/";
 	public static final String SMTP_GMAIL = "smtp.gmail.com";
 	public static final String PORTAL_GMAIL = "465";
-	public static final String ZAPEAT_GMAIL = "zapeatx@gmail.com";
-	public static final String ZAPEAT_SENHA_GMAIL = "zapeat123";
+	public static final String ZAPEAT_GMAIL = "cadastro@zapeat.com";
+	public static final String ZAPEAT_SENHA_GMAIL = "enviar!1";
 	public static final String SEQUENCE_USUARIO_SITE = "usuarios_id_seq";
 }
