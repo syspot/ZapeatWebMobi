@@ -14,10 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import br.com.topsys.util.TSUtil;
 import br.com.zapeat.mobile.dao.PromocaoDAO;
 import br.com.zapeat.mobile.model.PromocaoModel;
-import br.com.zapeat.mobile.model.UsuarioModel;
 
 @SuppressWarnings("serial")
 @WebServlet("/promocoes")

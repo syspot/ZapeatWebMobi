@@ -6,7 +6,14 @@
 
 		<div data-role="page" id="menu">
 			<div data-theme="f" data-role="header" data-position="fixed">
-				<span class="ui-title"> </span> <a data-role="button" rel="external" data-transition="fade" href="menu.xhtml" data-icon="refresh" data-iconpos="left" class="ui-btn-left"> Atualizar </a>
+				<span class="ui-title"> </span> 
+				<c:if test="#{menuFaces.logado}">
+					<a data-role="button" rel="external" data-transition="fade" href="checkin.xhtml" data-icon="check" data-iconpos="left" class="ui-btn-left"> Check-in </a>
+				</c:if>
+				
+				<c:if test="#{!menuFaces.logado}">
+					<a data-role="button" rel="external" data-transition="fade" href="#" onclick="alert('É necessário estar logado!')" data-icon="check" data-iconpos="left" class="ui-btn-left"> Fazer Check-in </a>
+				</c:if>
 
 				<c:if test="#{menuFaces.logado}">
 					<a data-role="button" data-transition="slidedown" href="sair.xhtml" data-icon="back" data-iconpos="left" class="ui-btn-right"> #{menuFaces.usuarioLogado.nomeExibicao} (Logout) </a>
@@ -54,7 +61,7 @@
 			function redirect(menu) {
 				var endereco='listagem.xhtml?categoriaId='+menu+'&amp;location=';
 				var location = document.getElementById('location');
-				endereco = endereco + location.value;
+				endereco = endereco + location.value + '&amp;token_native=[#{menuFaces.usuarioLogado.token}]';
  				window.location.href=endereco;
 			}
 

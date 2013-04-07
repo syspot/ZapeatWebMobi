@@ -38,6 +38,7 @@ public class MenuFaces extends LocationServiceFaces {
 			}
 
 		}
+		
 	}
 
 	private void redirecionarPromocao() {

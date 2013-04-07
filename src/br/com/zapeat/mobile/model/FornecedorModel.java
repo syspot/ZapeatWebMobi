@@ -37,6 +37,7 @@ public class FornecedorModel implements Serializable {
 	private Boolean naoIndicado;
 	private List<FormaPagamentoModel> formasPagamento;
 	private String imagensFormaPagamento;
+	private Integer distancia;
 
 	public FornecedorModel(Long id) {
 
@@ -336,6 +337,14 @@ public class FornecedorModel implements Serializable {
 
 		}
 
+	}
+
+	public Integer getDistancia() {
+		return distancia;
+	}
+
+	public void setDistancia(Integer distancia) {
+		this.distancia = distancia;
 	}
 
 }

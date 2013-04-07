@@ -51,6 +51,8 @@ public class Constantes {
 	public static final String PASTA_DOWNLOAD = "http://"+TSFacesUtil.getRequest().getServerName() + ":" + TSFacesUtil.getRequest().getServerPort() + "/img_zapeat/";
 	public static final String PASTA_DOWNLOAD_FORNECEDOR = "http://"+TSFacesUtil.getRequest().getServerName() + ":" + TSFacesUtil.getRequest().getServerPort() + "/img_zapeat/fornecedor/";
 	
+	public static final String PASTA_UPLOAD = "/arquivos/zapeat/img_zapeat/";
+	
 	public static final String PREFIXO_IMAGEM_CATEGORIA = "20x20_";
 	public static final String PREFIXO_IMAGEM_FORMA_PAGAMENTO = "25x18_";
 	public static final String PREFIXO_IMAGEM_PROMOCAO_FULL = "590x260_";
